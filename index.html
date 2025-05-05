@@ -39,6 +39,8 @@
             background-position: center;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add shadow for readability */
+            position: relative; /* Needed for absolute positioning of text */
+            /* Removed min-height to allow content to define height, h-96 class is used instead */
         }
          /* Added style for the horizontal footer nav */
         .footer-nav-horizontal ul {
@@ -52,6 +54,17 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+
+        /* Style for the department name in the hero section */
+        .hero-dept-name {
+            position: absolute;
+            bottom: 1rem; /* Adjust as needed for spacing from bottom */
+            left: 1rem; /* Adjust as needed for spacing from left */
+            font-size: 2rem; /* Increased font size to 2rem */
+            font-weight: 600; /* Semi-bold */
+            color: white; /* Ensure text is white over the image */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Add shadow for readability */
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -62,8 +75,7 @@
                 <span class="text-xl font-bold">Kannur University</span>
             </div>
 
-            <div class="flex items-center w-full md:w-auto justify-between"> <span class="text-lg mr-6">Department of Mathematical Sciences</span>
-                <nav class="hidden md:block"> <ul class="flex space-x-6 text-sm">
+            <div class="flex items-center w-full md:w-auto justify-between"> <nav class="hidden md:block"> <ul class="flex space-x-6 text-sm">
                         <li class="relative dropdown">
                             <a href="#" class="hover:underline">ACTIVITIES</a>
                             <ul class="dropdown-menu absolute hidden text-gray-800 pt-1 bg-white shadow-md rounded-md">
@@ -85,8 +97,10 @@
     </header>
 
     <section class="hero-section h-96 flex items-center justify-start px-4">
-        <div class="container mx-auto">
-            <h1 class="text-3xl md:text-5xl font-bold">Department of Mathematical Sciences</h1> </div>
+        <div class="container mx-auto relative w-full h-full"> <div class="hero-dept-name">
+                 Department of Mathematical Sciences
+            </div>
+        </div>
     </section>
 
     <main class="container mx-auto px-4 py-8">
