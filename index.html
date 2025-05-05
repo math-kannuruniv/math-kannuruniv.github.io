@@ -73,8 +73,10 @@
         <div class="container mx-auto px-4 flex justify-between items-center flex-wrap md:flex-nowrap">
             <div class="flex items-center flex-grow md:flex-grow-0 flex-wrap md:flex-nowrap mb-4 md:mb-0">
                  <div class="flex items-center mr-6">
-                    <div class="w-10 h-10 bg-white rounded-full mr-3"></div>
-                    <a href="https://www.kannuruniversity.ac.in/en/" class="text-xl font-bold hover:underline">Kannur University</a>
+                    <a href="https://www.kannuruniversity.ac.in/en/" class="flex items-center text-xl font-bold hover:underline">
+                         <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="w-10 h-10 rounded-full mr-3">
+                        <span>Kannur University</span>
+                    </a>
                 </div>
 
                 <div class="flex items-center">
@@ -100,7 +102,13 @@
                                     <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Alumni</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#" class="hover:underline">SERVICES</a></li>
+                            <li class="relative dropdown">
+                                <a href="#" class="hover:underline">SERVICES</a>
+                                <ul class="dropdown-menu absolute hidden text-gray-800 pt-1 bg-white shadow-md rounded-md">
+                                    <li><a href="https://hgcl.kannuruniversity.ac.in/" class="block px-4 py-2 hover:bg-gray-200">Library</a></li>
+                                    <li><a href="https://mail.google.com/" class="block px-4 py-2 hover:bg-gray-200">Email</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#" class="hover:underline">RESOURCES</a></li>
                             <li><a href="#" class="hover:underline">APPLY</a></li>
                         </ul>
