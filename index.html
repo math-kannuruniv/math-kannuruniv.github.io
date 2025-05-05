@@ -20,7 +20,8 @@
             color: white;
         }
         .ias-light-blue {
-             background-color: #e0f2f7; /* A very light blue for sections */
+             /* Changed background color to a softer gray */
+             background-color: #f0f0f0; /* Light gray for the navigation section */
         }
         .ias-teal {
             background-color: #008080; /* Teal color for search button */
@@ -37,6 +38,13 @@
             background-position: center;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add shadow for readability */
+        }
+         /* Added style for the horizontal footer nav */
+        .footer-nav-horizontal ul {
+            justify-content: center; /* Center the horizontal list */
+        }
+         .footer-nav-horizontal li {
+            margin-bottom: 0 !important; /* Remove vertical margin */
         }
     </style>
 </head>
@@ -157,8 +165,23 @@
 
     </main>
 
-    <footer class="ias-blue py-8 mt-12">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+    <section class="ias-light-blue py-4 mt-8">
+        <div class="container mx-auto px-4 footer-nav-horizontal">
+             <nav>
+                <ul class="flex flex-wrap justify-center space-x-4 space-y-2 md:flex-nowrap md:space-y-0 md:space-x-6">
+                    <li><a href="#" class="hover:underline">PRIVACY</a></li>
+                    <li><a href="#" class="hover:underline">CAREERS</a></li>
+                    <li><a href="#" class="hover:underline">PRESS CENTER</a></li>
+                    <li><a href="#" class="hover:underline">LIBRARIES & ARCHIVES</a></li>
+                    <li><a href="#" class="hover:underline">STORE</a></li>
+                    <li><a href="#" class="hover:underline">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+
+    <footer class="ias-blue py-8 mt-0"> <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
 
             <div>
                 <div class="w-20 h-20 bg-white rounded-full mb-4"></div>
@@ -170,19 +193,6 @@
                 <p class="mt-4">PHONE: (0460) XXX XXXX</p>
                 <p>EMAIL: math@kannuruniv.ac.in</p>
                 <p>FAX: (0460) XXX XXXX</p>
-            </div>
-
-            <div>
-                 <nav>
-                    <ul class="flex flex-wrap space-x-4 space-y-2 md:flex-nowrap md:space-y-0 md:space-x-6">
-                        <li><a href="#" class="hover:underline">PRIVACY</a></li>
-                        <li><a href="#" class="hover:underline">CAREERS</a></li>
-                        <li><a href="#" class="hover:underline">PRESS CENTER</a></li>
-                        <li><a href="#" class="hover:underline">LIBRARIES & ARCHIVES</a></li>
-                        <li><a href="#" class="hover:underline">STORE</a></li>
-                        <li><a href="#" class="hover:underline">CONTACT</a></li>
-                    </ul>
-                </nav>
             </div>
 
             <div>
