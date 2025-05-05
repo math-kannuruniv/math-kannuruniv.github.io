@@ -1,0 +1,414 @@
+/* General Body Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* Improve readability */
+}
+
+/* Container for content width */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+}
+
+/* Custom colors based on IAS site */
+.ias-blue {
+    background-color: #003366; /* A deep blue similar to the IAS site */
+    color: white;
+}
+
+.ias-light-blue {
+     background-color: #e0f2f7; /* A very light blue for sections (currently not used in HTML, but kept for potential use) */
+}
+
+.ias-teal {
+    background-color: #008080; /* Teal color for search button */
+    color: white; /* Ensure text is white */
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    transition: opacity 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.ias-teal:hover {
+    opacity: 0.9;
+}
+
+.ias-gold {
+    color: #b8860b; /* Gold color for accents (currently not used in HTML, but kept for potential use) */
+}
+
+/* Header Styles */
+header {
+    padding-top: 1rem; /* py-4 */
+    padding-bottom: 1rem; /* py-4 */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+header .flex-items-center {
+    display: flex;
+    align-items: center;
+}
+
+header .logo-placeholder {
+    width: 2.5rem; /* w-10 */
+    height: 2.5rem; /* h-10 */
+    background-color: white;
+    border-radius: 9999px; /* rounded-full */
+    margin-right: 0.75rem; /* mr-3 */
+}
+
+header .site-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+}
+
+header .department-name {
+    font-size: 1.125rem; /* text-lg */
+    margin-right: 1.5rem; /* mr-6 */
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    space-x: 1.5rem; /* space-x-6 */
+    font-size: 0.875rem; /* text-sm */
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent (ias-blue) */
+    transition: text-decoration 0.2s ease-in-out;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+header .search-button {
+     margin-left: 1.5rem; /* ml-6 */
+}
+
+
+/* Hero Section Styles */
+.hero-section {
+    background-image: url('https://placehold.co/1200x400/c0c0c0/000000?text=Placeholder+Image+for+Kannur+University'); /* Placeholder image */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add shadow for readability */
+    height: 24rem; /* h-96 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+}
+
+.hero-section h1 {
+    font-size: 3rem; /* text-5xl */
+    font-weight: 700; /* font-bold */
+}
+
+/* Main Content Area Styles */
+main {
+    padding-top: 2rem; /* py-8 */
+    padding-bottom: 2rem; /* py-8 */
+}
+
+.breadcrumb {
+    color: #6b7280; /* text-gray-600 */
+    font-size: 0.875rem; /* text-sm */
+    margin-bottom: 2rem; /* mb-8 */
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 2rem; /* gap-8 */
+}
+
+.content-grid h2 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.content-grid h3 {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 500; /* font-medium */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.content-grid .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+
+.content-grid .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+
+.content-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem; /* rounded-md */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.content-grid .text-gray-600 {
+    color: #6b7280;
+}
+
+.content-grid .text-gray-700 {
+    color: #4b5563;
+}
+
+.content-grid button {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.content-grid .bg-gray-300 {
+    background-color: #d1d5db;
+    color: #374151; /* text-gray-800 */
+}
+
+.content-grid .bg-gray-300:hover {
+    background-color: #9ca3af; /* hover:bg-gray-400 */
+}
+
+.content-grid .bg-yellow-600 {
+    background-color: #d97706;
+    color: white;
+}
+
+.content-grid .bg-yellow-600:hover {
+    background-color: #b45309; /* hover:bg-yellow-700 */
+}
+
+.content-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-grid ul li {
+    margin-bottom: 0.5rem;
+}
+
+.content-grid ul li a {
+     text-decoration: none;
+     color: inherit;
+     transition: text-decoration 0.2s ease-in-out;
+}
+
+.content-grid ul li a:hover {
+    text-decoration: underline;
+}
+
+
+/* Scholar Experience/Paths Section */
+.scholar-paths-section {
+    margin-top: 3rem; /* mt-12 */
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 2rem; /* gap-8 */
+    align-items: center;
+}
+
+.video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.375rem; /* rounded-md */
+}
+
+.play-button {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-button svg {
+    width: 4rem; /* w-16 */
+    height: 4rem; /* h-16 */
+    color: #dc2626; /* text-red-600 */
+    opacity: 0.75;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.play-button svg:hover {
+    opacity: 1;
+}
+
+.paths-graphic img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem; /* rounded-md */
+}
+
+
+/* Footer Styles */
+footer {
+    padding-top: 2rem; /* py-8 */
+    padding-bottom: 2rem; /* py-8 */
+    margin-top: 3rem; /* mt-12 */
+}
+
+footer .container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 2rem; /* gap-8 */
+    font-size: 0.875rem; /* text-sm */
+}
+
+footer .university-seal-placeholder {
+    width: 5rem; /* w-20 */
+    height: 5rem; /* h-20 */
+    background-color: white;
+    border-radius: 9999px; /* rounded-full */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+footer h3 {
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+footer .mt-4 {
+    margin-top: 1rem;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    space-y: 0.5rem; /* space-y-2 */
+}
+
+footer nav ul li a {
+    text-decoration: none;
+    color: inherit;
+    transition: text-decoration 0.2s ease-in-out;
+}
+
+footer nav ul li a:hover {
+    text-decoration: underline;
+}
+
+footer button {
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border-radius: 0.375rem; /* rounded-md */
+    transition: background-color 0.2s ease-in-out;
+}
+
+footer .bg-gray-300 {
+    background-color: #d1d5db;
+    color: #374151; /* text-gray-800 */
+}
+
+footer .bg-gray-300:hover {
+    background-color: #9ca3af; /* hover:bg-gray-400 */
+}
+
+footer .bg-yellow-600 {
+    background-color: #d97706;
+    color: white;
+}
+
+footer .bg-yellow-600:hover {
+    background-color: #b45309; /* hover:bg-yellow-700 */
+}
+
+footer .social-icons {
+    display: flex;
+    space-x: 1rem; /* space-x-4 */
+    font-size: 1.25rem; /* text-xl */
+}
+
+footer .social-icons a {
+    color: inherit;
+    transition: opacity 0.2s ease-in-out;
+}
+
+footer .social-icons a:hover {
+    opacity: 0.75;
+}
+
+.copyright {
+    margin-top: 2rem; /* mt-8 */
+    text-align: center;
+    color: #9ca3af; /* text-gray-400 */
+    font-size: 0.75rem; /* text-xs */
+}
+
+
+/* --- Mobile Responsiveness --- */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .content-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens and up */
+    }
+
+    .scholar-paths-section {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens and up */
+    }
+
+    footer .container {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens and up */
+    }
+
+    header .container {
+        flex-wrap: nowrap; /* Prevent wrapping in header on medium screens and up */
+    }
+
+    header nav ul {
+        space-x: 1.5rem; /* Maintain space-x-6 */
+    }
+
+    header .department-name {
+         margin-right: 1.5rem; /* mr-6 */
+    }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+    .hero-section h1 {
+        font-size: 3rem; /* text-5xl */
+    }
+}
