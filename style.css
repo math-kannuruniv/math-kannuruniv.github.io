@@ -56,6 +56,8 @@ h1, h2, h3 {
 header {
     padding-top: 1rem; /* py-4 */
     padding-bottom: 1rem; /* py-4 */
+    position: relative; /* Needed for z-index to work correctly on header contents */
+    z-index: 20; /* Give header a z-index higher than hero section */
 }
 
 header .container {
@@ -141,6 +143,7 @@ header .search-button {
     align-items: flex-end; /* Align items to the bottom */
     justify-content: flex-start; /* Align items to the left */
     padding: 1rem; /* Add padding for the text position */
+    z-index: 10; /* Give hero section a z-index */
 }
 
 /* Style for the department name in the hero section */
