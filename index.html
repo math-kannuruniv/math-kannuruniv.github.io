@@ -33,7 +33,8 @@
             max-width: 1200px; /* Max width similar to the IAS layout */
         }
         .hero-section {
-            background-image: url('https://placehold.co/1200x400/c0c0c0/000000?text=Placeholder+Image+for+Kannur+University'); /* Placeholder image */
+            /* Updated background-image URL to MathDepartment.jpg */
+            background-image: url('MathDepartment.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -45,6 +46,11 @@
         }
          .footer-nav-horizontal li {
             margin-bottom: 0 !important; /* Remove vertical margin */
+        }
+
+        /* Styles for the dropdown menu */
+        .dropdown:hover .dropdown-menu {
+            display: block;
         }
     </style>
 </head>
@@ -58,7 +64,15 @@
 
             <div class="flex items-center w-full md:w-auto justify-between"> <span class="text-lg mr-6">Department of Mathematical Sciences</span>
                 <nav class="hidden md:block"> <ul class="flex space-x-6 text-sm">
-                        <li><a href="#" class="hover:underline">ACTIVITIES</a></li>
+                        <li class="relative dropdown">
+                            <a href="#" class="hover:underline">ACTIVITIES</a>
+                            <ul class="dropdown-menu absolute hidden text-gray-800 pt-1 bg-white shadow-md rounded-md">
+                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Seminars</a></li>
+                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Named lectures</a></li>
+                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Programs</a></li>
+                                <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">Conferences & Workshops</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#" class="hover:underline">PEOPLE</a></li>
                         <li><a href="#" class="hover:underline">SERVICES</a></li>
                         <li><a href="#" class="hover:underline">RESOURCES</a></li>
