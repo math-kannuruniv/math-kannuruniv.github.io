@@ -1,16 +1,53 @@
-/* General Body Styles */
+/* CSS Reset/Normalization */
+/* A simple reset to neutralize some browser defaults */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
-    /* Applied Lora to body text */
-    font-family: 'Lora', serif;
-    background-color: #f3f4f6; /* bg-gray-100 */
     margin: 0;
     padding: 0;
+}
+
+/* Define CSS Variables (Design Tokens) */
+:root {
+    --color-primary-blue: #003366; /* Deep blue for header/footer */
+    --color-secondary-teal: #008080; /* Teal for buttons */
+    --color-accent-gold: #b8860b; /* Gold for potential accents */
+    --color-light-gray: #f0f0f0; /* Light gray for nav section */
+    --color-dark-gray: #374151; /* Dark gray text */
+    --color-medium-gray: #6b7280; /* Medium gray text */
+    --color-light-gray-bg: #f3f4f6; /* Light gray body background */
+    --color-white: #ffffff; /* White */
+    --color-hover-gray: #e5e7eb; /* Light gray hover background */
+    --color-red-600: #dc2626; /* Red for play button */
+    --color-gray-300: #d1d5db; /* Gray 300 for buttons */
+    --color-gray-400: #9ca3af; /* Gray 400 for button hover */
+
+    --font-family-heading: 'Playfair Display', serif;
+    --font-family-body: 'Lora', serif;
+
+    --spacing-unit: 1rem; /* Base spacing unit */
+    --spacing-small: calc(var(--spacing-unit) * 0.5); /* 0.5rem */
+    --spacing-medium: var(--spacing-unit); /* 1rem */
+    --spacing-large: calc(var(--spacing-unit) * 1.5); /* 1.5rem */
+    --spacing-xlarge: calc(var(--spacing-unit) * 2); /* 2rem */
+    --spacing-xxlarge: calc(var(--spacing-unit) * 3); /* 3rem */
+}
+
+
+/* General Body Styles */
+body {
+    font-family: var(--font-family-body); /* Apply Lora to body text */
+    background-color: var(--color-light-gray-bg); /* Use CSS variable */
     line-height: 1.6; /* Improve readability */
+    color: var(--color-dark-gray); /* Default text color */
 }
 
 /* Applied Playfair Display to headings */
 h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-family-heading);
+    color: var(--color-dark-gray); /* Default heading color */
 }
 
 
@@ -19,25 +56,24 @@ h1, h2, h3 {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* px-4 */
-    padding-right: 1rem; /* px-4 */
+    padding-left: var(--spacing-medium); /* Use CSS variable */
+    padding-right: var(--spacing-medium); /* Use CSS variable */
 }
 
 /* Custom colors based on IAS site */
 .ias-blue {
-    background-color: #003366; /* A deep blue similar to the IAS site */
-    color: white;
+    background-color: var(--color-primary-blue); /* Use CSS variable */
+    color: var(--color-white); /* Use CSS variable */
 }
 
 .ias-light-blue {
-     /* Changed background color to a softer gray */
-     background-color: #f0f0f0; /* Light gray for the navigation section */
+     background-color: var(--color-light-gray); /* Use CSS variable */
 }
 
 .ias-teal {
-    background-color: #008080; /* Teal color for search button */
-    color: white; /* Ensure text is white */
-    padding: 0.5rem 1rem; /* px-4 py-2 */
+    background-color: var(--color-secondary-teal); /* Use CSS variable */
+    color: var(--color-white); /* Ensure text is white */
+    padding: var(--spacing-small) var(--spacing-medium); /* Use CSS variables */
     border-radius: 0.375rem; /* rounded-md */
     transition: opacity 0.2s ease-in-out; /* Smooth hover effect */
     border: none; /* Remove default button border */
@@ -49,13 +85,13 @@ h1, h2, h3 {
 }
 
 .ias-gold {
-    color: #b8860b; /* Gold color for accents (currently not used in HTML, but kept for potential use) */
+    color: var(--color-accent-gold); /* Gold color for accents */
 }
 
 /* Header Styles */
 header {
-    padding-top: 1rem; /* py-4 */
-    padding-bottom: 1rem; /* py-4 */
+    padding-top: var(--spacing-medium); /* Use CSS variable */
+    padding-bottom: var(--spacing-medium); /* Use CSS variable */
     position: relative; /* Needed for z-index to work correctly on header contents */
     z-index: 20; /* Give header a z-index higher than hero section */
 }
@@ -73,21 +109,21 @@ header .header-left-group {
     align-items: center;
     flex-grow: 1; /* Allow this group to grow on small screens */
     flex-wrap: wrap; /* Allow wrapping within the group on small screens */
-    margin-bottom: 1rem; /* mb-4 on small screens */
+    margin-bottom: var(--spacing-medium); /* mb-4 on small screens */
 }
 
 header .logo-and-name {
     display: flex;
     align-items: center;
-    margin-right: 1.5rem; /* mr-6 */
+    margin-right: var(--spacing-large); /* mr-6 */
 }
 
 header .logo-placeholder {
-    width: 2.5rem; /* w-10 */
-    height: 2.5rem; /* h-10 */
-    background-color: white;
+    width: calc(var(--spacing-unit) * 2.5); /* w-10 */
+    height: calc(var(--spacing-unit) * 2.5); /* h-10 */
+    background-color: var(--color-white); /* Use CSS variable */
     border-radius: 9999px; /* rounded-full */
-    margin-right: 0.75rem; /* mr-3 */
+    margin-right: var(--spacing-small); /* mr-3 */
 }
 
 header .site-title {
@@ -97,7 +133,7 @@ header .site-title {
 
 header .department-name {
     font-size: 1.125rem; /* text-lg */
-    margin-right: 1.5rem; /* mr-6 */
+    margin-right: var(--spacing-large); /* mr-6 */
 }
 
 header nav ul {
@@ -106,11 +142,11 @@ header nav ul {
     padding: 0;
     margin: 0;
     /* Tailwind space-x-6 equivalent */
-    margin-left: -1.5rem;
+    margin-left: calc(var(--spacing-large) * -1);
 }
 
 header nav ul li {
-    padding-left: 1.5rem;
+    padding-left: var(--spacing-large);
 }
 
 
@@ -135,71 +171,66 @@ header .search-button {
     background-image: url('MathDepartment.jpg');
     background-size: cover;
     background-position: center;
-    color: white;
+    color: var(--color-white); /* Use CSS variable */
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add shadow for readability */
     position: relative; /* Needed for absolute positioning of text */
     height: 24rem; /* h-96 */
     display: flex; /* Use flex to contain the absolute positioned text */
     align-items: flex-end; /* Align items to the bottom */
     justify-content: flex-start; /* Align items to the left */
-    padding: 1rem; /* Add padding for the text position */
+    padding: var(--spacing-medium); /* Add padding for the text position, use CSS variable */
     z-index: 10; /* Give hero section a z-index */
 }
 
 /* Style for the department name in the hero section */
 .hero-dept-name {
-    /* Positioned relative to the flex container now */
-    /* Removed absolute positioning */
-    /* position: absolute; */
-    /* bottom: 1rem; */
-    /* left: 1rem; */
-    font-size: 2rem; /* Increased font size to 2rem */
+    font-size: var(--spacing-xlarge); /* Increased font size to 2rem, use CSS variable */
     font-weight: 600; /* Semi-bold */
-    color: white; /* Ensure text is white over the image */
+    color: var(--color-white); /* Ensure text is white over the image */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Add shadow for readability */
     z-index: 10; /* Ensure text is above the background image */
 }
 
 /* Main Content Area Styles */
 main {
-    padding-top: 2rem; /* py-8 */
-    padding-bottom: 2rem; /* py-8 */
+    padding-top: var(--spacing-xlarge); /* py-8, use CSS variable */
+    padding-bottom: var(--spacing-xlarge); /* py-8, use CSS variable */
 }
 
 .breadcrumb {
-    color: #6b7280; /* text-gray-600 */
+    color: var(--color-medium-gray); /* text-gray-600, use CSS variable */
     font-size: 0.875rem; /* text-sm */
-    margin-bottom: 2rem; /* mb-8 */
+    margin-bottom: var(--spacing-xlarge); /* mb-8, use CSS variable */
 }
 
 .content-grid {
     display: grid;
     grid-template-columns: 1fr; /* Single column by default */
-    gap: 2rem; /* gap-8 */
+    gap: var(--spacing-xlarge); /* gap-8, use CSS variable */
 }
 
 .content-grid h2 {
     font-size: 1.5rem; /* text-2xl */
     font-weight: 600; /* font-semibold */
-    margin-bottom: 1rem; /* mb-4 */
+    margin-bottom: var(--spacing-medium); /* mb-4, use CSS variable */
 }
 
 .content-grid h3 {
     font-size: 1.125rem; /* text-lg */
     font-weight: 500; /* font-medium */
-    margin-bottom: 0.5rem; /* mb-2 */
+    margin-bottom: var(--spacing-small); /* mb-2, use CSS variable */
 }
 
 .content-grid .space-y-6 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+    margin-top: calc(var(--spacing-large) * calc(1 - var(--tw-space-y-reverse))); /* space-y-6 */
+    margin-bottom: calc(var(--spacing-large) * var(--tw-space-y-reverse)); /* space-y-6 */
 }
 
 .content-grid .space-y-8 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+    margin-top: calc(var(--spacing-xlarge) * calc(1 - var(--tw-space-y-reverse))); /* space-y-8 */
+    margin-bottom: calc(var(--spacing-xlarge) * var(--tw-space-y-reverse)); /* space-y-8 */
 }
 
 
@@ -207,19 +238,19 @@ main {
     width: 100%;
     height: auto;
     border-radius: 0.375rem; /* rounded-md */
-    margin-bottom: 1rem; /* mb-4 */
+    margin-bottom: var(--spacing-medium); /* mb-4, use CSS variable */
 }
 
 .content-grid .text-gray-600 {
-    color: #6b7280;
+    color: var(--color-medium-gray); /* Use CSS variable */
 }
 
 .content-grid .text-gray-700 {
-    color: #4b5563;
+    color: var(--color-dark-gray); /* Use CSS variable */
 }
 
 .content-grid button {
-    padding: 0.5rem 1rem; /* px-4 py-2 */
+    padding: var(--spacing-small) var(--spacing-medium); /* px-4 py-2, use CSS variables */
     border-radius: 0.375rem; /* rounded-md */
     transition: background-color 0.2s ease-in-out;
     border: none; /* Remove default button border */
@@ -227,21 +258,21 @@ main {
 }
 
 .content-grid .bg-gray-300 {
-    background-color: #d1d5db;
-    color: #374151; /* text-gray-800 */
+    background-color: var(--color-gray-300); /* Use CSS variable */
+    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
 }
 
 .content-grid .bg-gray-300:hover {
-    background-color: #9ca3af; /* hover:bg-gray-400 */
+    background-color: var(--color-gray-400); /* hover:bg-gray-400, use CSS variable */
 }
 
 .content-grid .bg-yellow-600 {
-    background-color: #d97706;
-    color: white;
+    background-color: var(--color-yellow-600); /* Use CSS variable */
+    color: var(--color-white); /* Use CSS variable */
 }
 
 .content-grid .bg-yellow-600:hover {
-    background-color: #b45309; /* hover:bg-yellow-700 */
+    background-color: var(--color-yellow-700); /* hover:bg-yellow-700, use CSS variable */
 }
 
 .content-grid ul {
@@ -251,14 +282,22 @@ main {
 }
 
 .content-grid ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-small); /* space-y-2, use CSS variable */
 }
 
 .content-grid ul li a {
      text-decoration: none;
      color: inherit;
      transition: text-decoration 0.2s ease-in-out;
+     /* Added focus styles */
+     outline: none; /* Remove default outline */
 }
+
+.content-grid ul li a:focus {
+    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
+    outline-offset: 2px;
+}
+
 
 .content-grid ul li a:hover {
     text-decoration: underline;
@@ -267,10 +306,10 @@ main {
 
 /* Scholar Experience/Paths Section */
 .scholar-paths-section {
-    margin-top: 3rem; /* mt-12 */
+    margin-top: var(--spacing-xxlarge); /* mt-12, use CSS variable */
     display: grid;
     grid-template-columns: 1fr; /* Single column by default */
-    gap: 2rem; /* gap-8 */
+    gap: var(--spacing-xlarge); /* gap-8, use CSS variable */
     align-items: center;
 }
 
@@ -301,7 +340,7 @@ main {
 .play-button svg {
     width: 4rem; /* w-16 */
     height: 4rem; /* h-16 */
-    color: #dc2626; /* text-red-600 */
+    color: var(--color-red-600); /* text-red-600, use CSS variable */
     opacity: 0.75;
     cursor: pointer;
     transition: opacity 0.2s ease-in-out;
@@ -320,6 +359,10 @@ main {
 /* Horizontal Navigation Section Styles */
 .footer-nav-horizontal {
     /* Styles applied to the container div */
+    background-color: var(--color-light-gray); /* Use CSS variable */
+    padding-top: var(--spacing-medium); /* py-4, use CSS variable */
+    padding-bottom: var(--spacing-medium); /* py-4, use CSS variable */
+    margin-top: var(--spacing-xlarge); /* mt-8, use CSS variable */
 }
 
 .footer-nav-horizontal nav ul {
@@ -330,21 +373,28 @@ main {
     padding: 0;
     margin: 0;
     /* Tailwind space-x-4 equivalent for small screens */
-    margin-left: -1rem;
+    margin-left: calc(var(--spacing-medium) * -1);
 }
 
 .footer-nav-horizontal nav ul li {
     /* Tailwind space-x-4 equivalent for small screens */
-    padding-left: 1rem;
+    padding-left: var(--spacing-medium);
     /* Tailwind space-y-2 equivalent for small screens when wrapping */
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
 }
 
 .footer-nav-horizontal nav ul li a {
      text-decoration: none;
      color: inherit;
      transition: text-decoration 0.2s ease-in-out;
+     /* Added focus styles */
+     outline: none; /* Remove default outline */
+}
+
+.footer-nav-horizontal nav ul li a:focus {
+    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
+    outline-offset: 2px;
 }
 
 .footer-nav-horizontal nav ul li a:hover {
@@ -354,54 +404,64 @@ main {
 
 /* Footer Styles */
 footer {
-    padding-top: 2rem; /* py-8 */
-    padding-bottom: 2rem; /* py-8 */
+    background-color: var(--color-primary-blue); /* Use CSS variable */
+    color: var(--color-white); /* Use CSS variable */
+    padding-top: var(--spacing-xlarge); /* py-8, use CSS variable */
+    padding-bottom: var(--spacing-xlarge); /* py-8, use CSS variable */
     margin-top: 0; /* Adjusted top margin */
 }
 
 footer .container {
     display: grid;
     grid-template-columns: 1fr; /* Single column by default */
-    gap: 2rem; /* gap-8 */
+    gap: var(--spacing-xlarge); /* gap-8, use CSS variable */
     font-size: 0.875rem; /* text-sm */
 }
 
 footer .university-seal-placeholder {
-    width: 5rem; /* w-20 */
-    height: 5rem; /* h-20 */
-    background-color: white;
+    width: calc(var(--spacing-unit) * 5); /* w-20 */
+    height: calc(var(--spacing-unit) * 5); /* h-20 */
+    background-color: var(--color-white); /* Use CSS variable */
     border-radius: 9999px; /* rounded-full */
-    margin-bottom: 1rem; /* mb-4 */
+    margin-bottom: var(--spacing-medium); /* mb-4, use CSS variable */
 }
 
 footer h3 {
     font-weight: 600; /* font-semibold */
-    margin-bottom: 0.5rem; /* mb-2 */
+    margin-bottom: var(--spacing-small); /* mb-2, use CSS variable */
+    color: var(--color-white); /* Ensure footer headings are white */
 }
 
 footer p {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-small); /* Use CSS variable */
 }
 
 footer .mt-4 {
-    margin-top: 1rem;
+    margin-top: var(--spacing-medium); /* mt-4, use CSS variable */
 }
 
 footer nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    space-y: 0.5rem; /* space-y-2 */
+    /* space-y: 0.5rem; Remove this as it's not a standard CSS property */
 }
 
 footer nav ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-small); /* space-y-2, use CSS variable */
 }
 
 footer nav ul li a {
     text-decoration: none;
     color: inherit;
     transition: text-decoration 0.2s ease-in-out;
+     /* Added focus styles */
+     outline: none; /* Remove default outline */
+}
+
+footer nav ul li a:focus {
+    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
+    outline-offset: 2px;
 }
 
 footer nav ul li a:hover {
@@ -409,7 +469,7 @@ footer nav ul li a:hover {
 }
 
 footer button {
-    padding: 0.5rem 1rem; /* px-4 py-2 */
+    padding: var(--spacing-small) var(--spacing-medium); /* px-4 py-2, use CSS variables */
     border-radius: 0.375rem; /* rounded-md */
     transition: background-color 0.2s ease-in-out;
     border: none; /* Remove default button border */
@@ -417,32 +477,44 @@ footer button {
 }
 
 footer .bg-gray-300 {
-    background-color: #d1d5db;
-    color: #374151; /* text-gray-800 */
+    background-color: var(--color-gray-300); /* Use CSS variable */
+    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
 }
 
 footer .bg-gray-300:hover {
-    background-color: #9ca3af; /* hover:bg-gray-400 */
+    background-color: var(--color-gray-400); /* hover:bg-gray-400, use CSS variable */
 }
 
 footer .bg-yellow-600 {
-    background-color: #d97706;
-    color: white;
+    background-color: var(--color-yellow-600); /* Use CSS variable */
+    color: var(--color-white); /* Use CSS variable */
 }
 
 footer .bg-yellow-600:hover {
-    background-color: #b45309; /* hover:bg-yellow-700 */
+    background-color: var(--color-yellow-700); /* hover:bg-yellow-700, use CSS variable */
 }
 
 footer .social-icons {
     display: flex;
-    space-x: 1rem; /* space-x-4 */
+    /* space-x: 1rem; Remove this as it's not a standard CSS property */
     font-size: 1.25rem; /* text-xl */
 }
 
 footer .social-icons a {
     color: inherit;
     transition: opacity 0.2s ease-in-out;
+    margin-right: var(--spacing-medium); /* Add margin for spacing */
+     /* Added focus styles */
+     outline: none; /* Remove default outline */
+}
+
+footer .social-icons a:focus {
+    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
+    outline-offset: 2px;
+}
+
+footer .social-icons a:last-child {
+    margin-right: 0; /* Remove margin from the last icon */
 }
 
 footer .social-icons a:hover {
@@ -450,9 +522,9 @@ footer .social-icons a:hover {
 }
 
 .copyright {
-    margin-top: 2rem; /* mt-8 */
+    margin-top: var(--spacing-xlarge); /* mt-8, use CSS variable */
     text-align: center;
-    color: #9ca3af; /* text-gray-400 */
+    color: var(--color-gray-400); /* text-gray-400, use CSS variable */
     font-size: 0.75rem; /* text-xs */
 }
 
@@ -484,17 +556,17 @@ footer .social-icons a:hover {
     }
 
     header .logo-and-name {
-         margin-right: 1.5rem; /* mr-6 */
+         margin-right: var(--spacing-large); /* mr-6 */
     }
 
 
     header nav ul {
         /* Tailwind space-x-6 equivalent */
-        margin-left: -1.5rem;
+        margin-left: calc(var(--spacing-large) * -1);
     }
 
     header nav ul li {
-        padding-left: 1.5rem;
+        padding-left: var(--spacing-large);
     }
 
     header .department-name {
@@ -506,14 +578,14 @@ footer .social-icons a:hover {
     .footer-nav-horizontal nav ul {
         flex-wrap: nowrap; /* Prevent wrapping */
         /* Tailwind space-x-6 equivalent */
-        margin-left: -1.5rem;
+        margin-left: calc(var(--spacing-large) * -1);
         margin-top: 0; /* Remove vertical margin */
         margin-bottom: 0;
     }
 
     .footer-nav-horizontal nav ul li {
         /* Tailwind space-x-6 equivalent */
-        padding-left: 1.5rem;
+        padding-left: var(--spacing-large);
         margin-top: 0; /* Remove vertical margin */
         margin-bottom: 0;
     }
@@ -551,6 +623,9 @@ footer .social-icons a:hover {
     min-width: 160px; /* Minimum width for the dropdown */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add shadow */
     padding: 0; /* Remove default padding */
+    background-color: var(--color-white); /* Use CSS variable */
+    border-radius: 0.375rem; /* rounded-md */
+    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
 }
 
 .dropdown-menu li {
@@ -561,14 +636,41 @@ footer .social-icons a:hover {
 }
 
 .dropdown-menu a {
-    color: #374151; /* text-gray-800 */
+    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
     text-decoration: none;
     display: block;
-    padding: 0.5rem 1rem; /* px-4 py-2 */
+    padding: var(--spacing-small) var(--spacing-medium); /* px-4 py-2, use CSS variables */
     transition: background-color 0.2s ease-in-out;
+     /* Added focus styles */
+     outline: none; /* Remove default outline */
+}
+
+.dropdown-menu a:focus {
+    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
+    outline-offset: 2px;
 }
 
 .dropdown-menu a:hover {
-    background-color: #e5e7eb; /* hover:bg-gray-200 */
+    background-color: var(--color-hover-gray); /* hover:bg-gray-200, use CSS variable */
 }
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Accessibility: Focus Indicators */
+/* Apply focus styles to interactive elements */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--color-secondary-teal); /* Use a prominent color */
+  outline-offset: 2px; /* Add some space around the element */
+}
+
 
