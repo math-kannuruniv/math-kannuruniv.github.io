@@ -1,11 +1,18 @@
 /* General Body Styles */
 body {
-    font-family: 'Inter', sans-serif;
+    /* Applied Lora to body text */
+    font-family: 'Lora', serif;
     background-color: #f3f4f6; /* bg-gray-100 */
     margin: 0;
     padding: 0;
     line-height: 1.6; /* Improve readability */
 }
+
+/* Applied Playfair Display to headings */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
 
 /* Container for content width */
 .container {
@@ -23,7 +30,8 @@ body {
 }
 
 .ias-light-blue {
-     background-color: #e0f2f7; /* A very light blue for sections (currently not used in HTML, but kept for potential use) */
+     /* Changed background color to a softer gray */
+     background-color: #f0f0f0; /* Light gray for the navigation section */
 }
 
 .ias-teal {
@@ -32,6 +40,8 @@ body {
     padding: 0.5rem 1rem; /* px-4 py-2 */
     border-radius: 0.375rem; /* rounded-md */
     transition: opacity 0.2s ease-in-out; /* Smooth hover effect */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Indicate clickable */
 }
 
 .ias-teal:hover {
@@ -83,9 +93,14 @@ header nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    space-x: 1.5rem; /* space-x-6 */
-    font-size: 0.875rem; /* text-sm */
+    /* Tailwind space-x-6 equivalent */
+    margin-left: -1.5rem;
 }
+
+header nav ul li {
+    padding-left: 1.5rem;
+}
+
 
 header nav ul li a {
     text-decoration: none;
@@ -184,6 +199,8 @@ main {
     padding: 0.5rem 1rem; /* px-4 py-2 */
     border-radius: 0.375rem; /* rounded-md */
     transition: background-color 0.2s ease-in-out;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Indicate clickable */
 }
 
 .content-grid .bg-gray-300 {
@@ -277,12 +294,46 @@ main {
     border-radius: 0.375rem; /* rounded-md */
 }
 
+/* Horizontal Navigation Section Styles */
+.footer-nav-horizontal {
+    /* Styles applied to the container div */
+}
+
+.footer-nav-horizontal nav ul {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center; /* Center the horizontal list */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* Tailwind space-x-4 equivalent for small screens */
+    margin-left: -1rem;
+}
+
+.footer-nav-horizontal nav ul li {
+    /* Tailwind space-x-4 equivalent for small screens */
+    padding-left: 1rem;
+    /* Tailwind space-y-2 equivalent for small screens when wrapping */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-nav-horizontal nav ul li a {
+     text-decoration: none;
+     color: inherit;
+     transition: text-decoration 0.2s ease-in-out;
+}
+
+.footer-nav-horizontal nav ul li a:hover {
+    text-decoration: underline;
+}
+
 
 /* Footer Styles */
 footer {
     padding-top: 2rem; /* py-8 */
     padding-bottom: 2rem; /* py-8 */
-    margin-top: 3rem; /* mt-12 */
+    margin-top: 0; /* Adjusted top margin */
 }
 
 footer .container {
@@ -320,6 +371,10 @@ footer nav ul {
     space-y: 0.5rem; /* space-y-2 */
 }
 
+footer nav ul li {
+    margin-bottom: 0.5rem;
+}
+
 footer nav ul li a {
     text-decoration: none;
     color: inherit;
@@ -334,6 +389,8 @@ footer button {
     padding: 0.5rem 1rem; /* px-4 py-2 */
     border-radius: 0.375rem; /* rounded-md */
     transition: background-color 0.2s ease-in-out;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Indicate clickable */
 }
 
 footer .bg-gray-300 {
@@ -379,7 +436,7 @@ footer .social-icons a:hover {
 
 /* --- Mobile Responsiveness --- */
 
-/* Medium devices (tablets, 768px and up) */
+/* Medium devices (tables, 768px and up) */
 @media (min-width: 768px) {
     .content-grid {
         grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens and up */
@@ -398,11 +455,36 @@ footer .social-icons a:hover {
     }
 
     header nav ul {
-        space-x: 1.5rem; /* Maintain space-x-6 */
+        /* Tailwind space-x-6 equivalent */
+        margin-left: -1.5rem;
+    }
+
+    header nav ul li {
+        padding-left: 1.5rem;
     }
 
     header .department-name {
          margin-right: 1.5rem; /* mr-6 */
+    }
+
+    /* Horizontal footer nav on medium screens and up */
+    .footer-nav-horizontal nav ul {
+        flex-wrap: nowrap; /* Prevent wrapping */
+        /* Tailwind space-x-6 equivalent */
+        margin-left: -1.5rem;
+        margin-top: 0; /* Remove vertical margin */
+        margin-bottom: 0;
+    }
+
+    .footer-nav-horizontal nav ul li {
+        /* Tailwind space-x-6 equivalent */
+        padding-left: 1.5rem;
+        margin-top: 0; /* Remove vertical margin */
+        margin-bottom: 0;
+    }
+
+    .footer-nav-horizontal nav ul li:first-child {
+         padding-left: 0; /* Remove left padding for the first item */
     }
 }
 
