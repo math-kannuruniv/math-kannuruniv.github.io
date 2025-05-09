@@ -273,7 +273,7 @@ a:hover, a:focus-visible {
 }
 
 
-/* Navigation */
+/* Desktop Navigation */
 .main-nav ul {
     display: flex;
     list-style: none;
@@ -297,6 +297,7 @@ a:hover, a:focus-visible {
     text-decoration: underline;
 }
 
+/* Desktop Dropdown */
 .dropdown {
     position: relative;
 }
@@ -332,7 +333,8 @@ a:hover, a:focus-visible {
     text-decoration: none; /* Remove underline on dropdown hover */
 }
 
-/* Class to show dropdown menu - used by JS */
+/* Class to show desktop dropdown menu - used by JS and hover */
+.dropdown:hover .dropdown-menu,
 .dropdown-menu.show {
     display: block;
 }
@@ -369,14 +371,12 @@ a:hover, a:focus-visible {
     list-style: none;
     padding: 0;
     margin: 0;
-    /* Removed invalid space-y */
 }
 
 /* Apply margin-bottom to list items in mobile nav */
 .mobile-nav ul > li:not(:last-child) {
     margin-bottom: var(--spacing-2); /* Use spacing variable */
 }
-
 
 .mobile-nav a {
     color: inherit;
@@ -392,7 +392,10 @@ a:hover, a:focus-visible {
     text-decoration: underline;
 }
 
-.mobile-nav ul ul { /* Submenu styling */
+/* Mobile Dropdown Submenus */
+.mobile-nav ul ul {
+    /* Hidden by default */
+    display: none;
     padding-left: var(--spacing-4); /* Use spacing variable */
     margin-top: var(--spacing-1); /* Use spacing variable */
 }
@@ -400,6 +403,12 @@ a:hover, a:focus-visible {
 .mobile-nav ul ul a {
     font-size: var(--font-size-sm); /* Use font size variable */
 }
+
+/* Show mobile dropdown submenu when parent li has 'open' class (toggled by JS) */
+.mobile-dropdown.open > ul {
+    display: block;
+}
+
 
 /* Utility class to hide mobile menu - used by JS */
 .mobile-menu-hidden {
@@ -445,6 +454,7 @@ a:hover, a:focus-visible {
 
 /* Hero Section */
 .hero-section {
+    /* Updated path for background image */
     background-image: url('MathDepartment.jpg'); /* Ensure correct path */
     background-size: cover;
     background-position: center;
@@ -547,7 +557,6 @@ a:hover, a:focus-visible {
 
 .button-accent:hover,
 .button-accent:focus-visible {
-    /* Removed invalid darken() */
     background-color: #7d5a00; /* Manual darker shade */
     opacity: 0.9; /* Subtle opacity change */
 }
