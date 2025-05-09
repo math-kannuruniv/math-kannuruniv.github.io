@@ -25,7 +25,7 @@
             </div>
 
             <div class="header-right">
-                <nav class="main-nav hidden md:block" aria-label="Main Navigation">
+                <nav id="desktop-nav" class="main-nav hidden md:block" aria-label="Main Navigation">
                     <ul>
                         <li class="relative dropdown">
                             <a href="#" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
@@ -324,18 +324,25 @@
         // JavaScript for mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const desktopNav = document.getElementById('desktop-nav'); // Get desktop nav
 
         mobileMenuButton.addEventListener('click', () => {
             const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
             mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('mobile-menu-hidden'); // Use the utility class to hide/show
+            mobileMenu.classList.toggle('mobile-menu-hidden'); // Toggle visibility of mobile menu
+
+            // Close all dropdowns when mobile menu is toggled
+            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                openMenu.classList.remove('show');
+                openMenu.previousElementSibling.setAttribute('aria-expanded', 'false');
+            });
         });
 
         // Close mobile menu when a link is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenuButton.setAttribute('aria-expanded', 'false');
-                mobileMenu.classList.add('mobile-menu-hidden'); // Use the utility class to hide
+                mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
             });
         });
 
@@ -375,6 +382,18 @@
             });
         });
 
+        // Close mobile menu and dropdowns on window resize if switching to desktop view
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // md breakpoint
+                mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
+                mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
+                // Close all dropdowns
+                document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                    openMenu.classList.remove('show');
+                    openMenu.previousElementSibling.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
     </script>
 </body>
 </html>
