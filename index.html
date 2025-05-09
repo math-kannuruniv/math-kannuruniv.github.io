@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Official website of the Department of Mathematical Sciences at Kannur University">
     <title>Math Department | Kannur University</title> <link rel="stylesheet" href="style.css">
-    <link rel="preload" href="KannurUniversityLogo.png" as="image">
-    <link rel="preload" href="MathDepartment.jpg" as="image">
+    <link rel="preload" href="/images/KannurUniversityLogo.png" as="image">
+    <link rel="preload" href="/images/MathDepartment.jpg" as="image">
     <link rel="preload" href="https://fonts.gstatic.com/s/lora/v32/0QI-MX1D_JO_P-z_VA.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvEIDcmoIrZvjTeKhpO_mdGvIDP1tB.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -18,6 +18,8 @@
             .mobile-nav, .mobile-menu-button { display: none !important; }
             /* Ensure dropdowns are visible on hover without JS */
             .dropdown:hover .dropdown-menu { display: block; }
+             /* Ensure mobile nav submenus are visible without JS */
+            .mobile-nav ul ul { display: block !important; }
         </style>
     </noscript>
 </head>
@@ -28,7 +30,7 @@
         <div class="container site-header-inner">
             <div class="site-branding">
                 <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
-                    <img src="/images/KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
+                    <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
                     <span class="site-title">Kannur University</span>
                 </a>
                 <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block">Department of Mathematical Sciences</a>
@@ -93,41 +95,28 @@
         <div id="mobile-menu" class="mobile-nav mobile-menu-hidden container">
             <nav aria-label="Mobile Navigation">
                 <ul>
-                    <li>
-                        <a href="#">ACTIVITIES</a>
-                        <ul>
-                            <li><a href="#" class="text-sm">Seminars</a></li>
+                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a> <ul> <li><a href="#" class="text-sm">Seminars</a></li>
                             <li><a href="#" class="text-sm">Named lectures</a></li>
                             <li><a href="#" class="text-sm">Programs</a></li>
                             <li><a href="#" class="text-sm">Conferences & Workshops</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">PEOPLE</a>
-                        <ul>
-                            <li><a href="#" class="text-sm">Faculty</a></li>
+                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a> <ul> <li><a href="#" class="text-sm">Faculty</a></li>
                             <li><a href="#" class="text-sm">Research Scholars</a></li>
                             <li><a href="#" class="text-sm">Students</a></li>
                             <li><a href="#" class="text-sm">Staff</a></li>
                             <li><a href="#" class="text-sm">Alumni</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">SERVICES</a>
-                        <ul>
-                            <li><a href="https://hgcl.kannuruniversity.ac.in/" class="text-sm">Library</a></li>
+                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a> <ul> <li><a href="https://hgcl.kannuruniversity.ac.in/" class="text-sm">Library</a></li>
                             <li><a href="https://mail.google.com/" class="text-sm">Email</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">RESOURCES</a>
-                        <ul>
-                            <li><a href="#" class="text-sm">Video Lectures</a></li>
+                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a> <ul> <li><a href="#" class="text-sm">Video Lectures</a></li>
                             <li><a href="#" class="text-sm">Lecture notes</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">APPLY</a></li>
-                </ul>
+                    <li><a href="#">APPLY</a></li> </ul>
             </nav>
         </div>
     </header>
@@ -333,8 +322,8 @@
             mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded)); // Toggle aria-expanded attribute
             mobileMenu.classList.toggle('mobile-menu-hidden'); // Toggle visibility of mobile menu using CSS class
 
-            // Close all dropdowns when mobile menu is toggled
-            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+            // Close all desktop dropdowns when mobile menu is toggled
+            document.querySelectorAll('#desktop-nav .dropdown-menu.show').forEach(openMenu => {
                 openMenu.classList.remove('show');
                 // Find the parent dropdown link and update its aria-expanded state
                 const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
@@ -342,18 +331,38 @@
                     dropdownLink.setAttribute('aria-expanded', 'false');
                 }
             });
+
+            // Close all mobile dropdowns when mobile menu is toggled
+             document.querySelectorAll('#mobile-menu .mobile-dropdown.open').forEach(openDropdown => {
+                openDropdown.classList.remove('open');
+                 const dropdownLink = openDropdown.querySelector('a');
+                 if (dropdownLink) {
+                    dropdownLink.setAttribute('aria-expanded', 'false');
+                 }
+            });
         });
 
         // Close mobile menu when a link inside it is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
-                mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
+                // Only close the mobile menu if the clicked link is NOT a mobile dropdown toggle
+                if (!link.parentElement.classList.contains('mobile-dropdown')) {
+                    mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
+                    mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
+                     // Close all mobile dropdowns
+                     document.querySelectorAll('#mobile-menu .mobile-dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                         const dropdownLink = openDropdown.querySelector('a');
+                         if (dropdownLink) {
+                            dropdownLink.setAttribute('aria-expanded', 'false');
+                         }
+                    });
+                }
             });
         });
 
-        // Toggle dropdown on click for better mobile support and accessibility
-        document.querySelectorAll('.dropdown > a').forEach(link => {
+        // Toggle desktop dropdown on click for better mobile support and accessibility
+        document.querySelectorAll('#desktop-nav .dropdown > a').forEach(link => {
             link.addEventListener('click', function(event) {
                  // Prevent default link behavior only for # links or if it's a dropdown toggle
                 if (this.getAttribute('href') === '#' || this.getAttribute('href').startsWith('#') || this.parentElement.classList.contains('dropdown')) {
@@ -365,7 +374,7 @@
                 if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
                     const isShowing = dropdownMenu.classList.contains('show');
                     // Close other dropdowns before opening the clicked one
-                     document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                     document.querySelectorAll('#desktop-nav .dropdown-menu.show').forEach(openMenu => {
                         if (openMenu !== dropdownMenu) {
                             openMenu.classList.remove('show');
                              // Find the parent dropdown link and update its aria-expanded state
@@ -381,9 +390,39 @@
             });
         });
 
-         // Close dropdowns when clicking outside
+        // Toggle mobile dropdown on click
+        document.querySelectorAll('#mobile-menu .mobile-dropdown > a').forEach(link => {
+             link.addEventListener('click', function(event) {
+                 // Prevent default link behavior only for # links or if it's a dropdown toggle
+                if (this.getAttribute('href') === '#' || this.getAttribute('href').startsWith('#') || this.parentElement.classList.contains('mobile-dropdown')) {
+                     event.preventDefault();
+                }
+
+                const parentLi = this.parentElement;
+                const isOpening = !parentLi.classList.contains('open');
+
+                // Close other mobile dropdowns
+                document.querySelectorAll('#mobile-menu .mobile-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== parentLi) {
+                        openDropdown.classList.remove('open');
+                        const dropdownLink = openDropdown.querySelector('a');
+                         if (dropdownLink) {
+                            dropdownLink.setAttribute('aria-expanded', 'false');
+                         }
+                    }
+                });
+
+                // Toggle the clicked mobile dropdown
+                parentLi.classList.toggle('open', isOpening);
+                 this.setAttribute('aria-expanded', String(isOpening)); // Update aria-expanded
+            });
+        });
+
+
+         // Close dropdowns (both desktop and mobile) when clicking outside
         document.addEventListener('click', function(event) {
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
+            // Close desktop dropdowns
+            document.querySelectorAll('#desktop-nav .dropdown').forEach(dropdown => {
                 const dropdownMenu = dropdown.querySelector('.dropdown-menu');
                 const dropdownLink = dropdown.querySelector('.dropdown > a');
                 if (dropdownMenu && dropdownMenu.classList.contains('show') && !dropdown.contains(event.target)) {
@@ -393,21 +432,41 @@
                     }
                 }
             });
+
+             // Close mobile dropdowns
+            document.querySelectorAll('#mobile-menu .mobile-dropdown').forEach(dropdown => {
+                const dropdownMenu = dropdown.querySelector('ul'); // Mobile dropdown uses direct ul
+                const dropdownLink = dropdown.querySelector('a');
+                 // Check if the click is outside the mobile dropdown list item
+                if (dropdownMenu && dropdown.classList.contains('open') && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove('open');
+                     if (dropdownLink) {
+                        dropdownLink.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
         });
+
 
         // Close mobile menu and dropdowns on window resize if switching to desktop view
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) { // md breakpoint
                 mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
                 mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
-                // Close all dropdowns
+                // Close all dropdowns (desktop and mobile)
                 document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
                     openMenu.classList.remove('show');
-                     // Find the parent dropdown link and update its aria-expanded state
-                    const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
+                     const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
                     if (dropdownLink) {
                         dropdownLink.setAttribute('aria-expanded', 'false');
                     }
+                });
+                 document.querySelectorAll('.mobile-dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                     const dropdownLink = openDropdown.querySelector('a');
+                     if (dropdownLink) {
+                        dropdownLink.setAttribute('aria-expanded', 'false');
+                     }
                 });
             }
         });
