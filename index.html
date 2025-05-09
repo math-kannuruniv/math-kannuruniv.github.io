@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="preload" href="https://fonts.gstatic.com/s/lora/v32/0QI-MX1D_JO_P-z_VA.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvEIDcmoIrZvjTeKhpO_mdGvIDP1tB.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./images/KannurUniversityLogo.png" as="image">
 
 </head>
 <body>
@@ -65,7 +66,7 @@
                 </nav>
 
                 <button id="mobile-menu-button" class="mobile-menu-button md:hidden" aria-label="Toggle mobile menu" aria-controls="mobile-menu" aria-expanded="false">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
@@ -164,9 +165,7 @@
                             <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
                         </a>
                     </div>
-                    <a href="https://math-kannuruniv.github.io/" class="block mt-4">
-                        <button class="button button-secondary w-full md:w-auto">MORE EVENTS</button>
-                    </a>
+                    <a href="https://math-kannuruniv.github.io/" class="block mt-4 button button-secondary w-full md:w-auto">MORE EVENTS</a>
                 </div>
             </div>
 
@@ -177,9 +176,7 @@
                     <p class="text-gray-700 mb-4">
                         The Department offers M.Sc. Mathematics, Ph.D. programs, and various certificate courses focused on advanced mathematical techniques and applications.
                     </p>
-                    <a href="/programs" aria-label="Learn more about our programs">
-                        <button class="button button-accent w-full md:w-auto">READ MORE</button>
-                    </a>
+                    <a href="/programs" aria-label="Learn more about our programs" class="button button-accent w-full md:w-auto">READ MORE</a>
                 </div>
 
                 <div>
@@ -189,9 +186,7 @@
                     <p class="text-gray-700 mb-4">
                         The department celebrated National Mathematics Day with a series of lectures and workshops featuring prominent mathematicians from across the country.
                     </p>
-                    <a href="/highlights" aria-label="Read more about department highlights">
-                        <button class="button button-accent w-full md:w-auto">READ MORE</button>
-                    </a>
+                    <a href="/highlights" aria-label="Read more about department highlights" class="button button-accent w-full md:w-auto">READ MORE</a>
                 </div>
             </div>
 
@@ -224,7 +219,7 @@
                 <div class="video-thumbnail">
                      <img src="/api/placeholder/600/338" alt="Scholar Experience Video Thumbnail">
                     <button class="play-button" aria-label="Play video about scholar experience">
-                        <svg fill="currentColor" viewBox="0 0 20 20">
+                        <svg fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
@@ -271,16 +266,12 @@
             <div>
                 <h3>SUPPORT</h3>
                 <p class="mb-4">Help our scientists and scholars continue their field-shaping work.</p>
-                <a href="/donate" aria-label="Make a donation">
-                    <button class="button button-accent w-full md:w-auto">GIVE NOW</button>
-                </a>
+                <a href="/donate" aria-label="Make a donation" class="button button-accent w-full md:w-auto">GIVE NOW</a>
             </div>
 
             <div>
                 <h3>CONNECT</h3>
-                 <a href="/newsletter" aria-label="Sign up for newsletter">
-                    <button class="button button-secondary mb-4 w-full md:w-auto">ENEWS SIGNUP</button>
-                </a>
+                 <a href="/newsletter" aria-label="Sign up for newsletter" class="button button-secondary mb-4 w-full md:w-auto">ENEWS SIGNUP</a>
                 <div class="flex space-x-4 text-xl social-links">
                     <a href="https://facebook.com" aria-label="Visit our Facebook page">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -319,6 +310,16 @@
             <p>&copy; 2025 Department of Mathematical Sciences, Kannur University. All rights reserved.</p>
         </div>
     </footer>
+
+    <noscript>
+        <style>
+            /* Show desktop nav and hide mobile nav when JS is disabled */
+            .main-nav { display: block !important; }
+            .mobile-nav, .mobile-menu-button { display: none !important; }
+            /* Ensure dropdowns are visible on hover without JS */
+            .dropdown:hover .dropdown-menu { display: block; }
+        </style>
+        </noscript>
 
     <script>
         // JavaScript for mobile menu and dropdown toggling
