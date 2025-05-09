@@ -456,7 +456,7 @@ a:hover, a:focus-visible {
 /* Hero Section */
 .hero-section {
     /* Updated path for background image */
-    background-image: url('/images/MathDepartment.jpg'); /* Ensure correct path */
+    background-image: url('MathDepartment.jpg'); /* Ensure correct path */
     background-size: cover;
     background-position: center;
     color: var(--white);
