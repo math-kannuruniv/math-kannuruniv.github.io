@@ -37,7 +37,7 @@
                             </ul>
                         </li>
                         <li class="relative dropdown">
-                            <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a>
+                             <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a>
                             <ul class="dropdown-menu" aria-label="People submenu">
                                 <li><a href="#">Faculty</a></li>
                                 <li><a href="#">Research Scholars</a></li>
@@ -47,14 +47,14 @@
                             </ul>
                         </li>
                         <li class="relative dropdown">
-                            <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a>
+                             <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a>
                             <ul class="dropdown-menu" aria-label="Services submenu">
                                 <li><a href="https://hgcl.kannuruniversity.ac.in/">Library</a></li>
                                 <li><a href="https://mail.google.com/">Email</a></li>
                             </ul>
                         </li>
                         <li class="relative dropdown">
-                            <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a>
+                             <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a>
                             <ul class="dropdown-menu" aria-label="Resources submenu">
                                 <li><a href="#">Video Lectures</a></li>
                                 <li><a href="#">Lecture notes</a></li>
@@ -321,14 +321,16 @@
     </footer>
 
     <script>
-        // JavaScript for mobile menu toggle
+        // JavaScript for mobile menu and dropdown toggling
+
+        // Get the mobile menu button and the mobile menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
         // Add event listener to the mobile menu button
         mobileMenuButton.addEventListener('click', () => {
             const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded); // Toggle aria-expanded attribute
+            mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded)); // Toggle aria-expanded attribute
             mobileMenu.classList.toggle('mobile-menu-hidden'); // Toggle visibility of mobile menu using CSS class
 
             // Close all dropdowns when mobile menu is toggled
@@ -374,7 +376,7 @@
                         }
                     });
                     dropdownMenu.classList.toggle('show', !isShowing); // Toggle based on current state
-                    this.setAttribute('aria-expanded', !isShowing); // Update aria-expanded attribute
+                    this.setAttribute('aria-expanded', String(!isShowing)); // Update aria-expanded attribute
                 }
             });
         });
