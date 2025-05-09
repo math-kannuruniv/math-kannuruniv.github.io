@@ -394,7 +394,7 @@ a:hover, a:focus-visible {
 
 /* Mobile Dropdown Submenus */
 .mobile-nav ul ul {
-    /* Hidden by default */
+    /* Hidden by default - Explicitly set */
     display: none;
     padding-left: var(--spacing-4); /* Use spacing variable */
     margin-top: var(--spacing-1); /* Use spacing variable */
@@ -455,7 +455,7 @@ a:hover, a:focus-visible {
 /* Hero Section */
 .hero-section {
     /* Updated path for background image */
-    background-image: url('MathDepartment.jpg'); /* Ensure correct path */
+    background-image: url('/images/MathDepartment.jpg'); /* Ensure correct path */
     background-size: cover;
     background-position: center;
     color: var(--white);
