@@ -15,71 +15,69 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header class="site-header">
-        <div class="container">
-            <div class="flex items-center flex-grow md:flex-grow-0 flex-wrap md:flex-nowrap mb-4 md:mb-0">
-                <div class="flex items-center mr-6 site-logo">
-                    <a href="https://www.kannuruniversity.ac.in/en/" class="flex items-center text-xl font-bold hover:underline">
-                        <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="w-10 h-10 rounded-full mr-3">
-                        <span class="site-title">Kannur University</span>
-                    </a>
-                </div>
-
-                <div class="flex items-center">
-                    <a href="https://math-kannuruniv.github.io/" class="dept-title mr-6 hidden md:block hover:underline">Department of Mathematical Sciences</a>
-                    <nav class="main-nav hidden md:block" aria-label="Main Navigation">
-                        <ul>
-                            <li class="relative dropdown">
-                                <a href="#" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
-                                <ul class="dropdown-menu" aria-label="Activities submenu">
-                                    <li><a href="#">Seminars</a></li>
-                                    <li><a href="#">Named lectures</a></li>
-                                    <li><a href="#">Programs</a></li>
-                                    <li><a href="#">Conferences & Workshops</a></li>
-                                </ul>
-                            </li>
-                            <li class="relative dropdown">
-                                <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a>
-                                <ul class="dropdown-menu" aria-label="People submenu">
-                                    <li><a href="#">Faculty</a></li>
-                                    <li><a href="#">Research Scholars</a></li>
-                                    <li><a href="#">Students</a></li>
-                                    <li><a href="#">Staff</a></li>
-                                    <li><a href="#">Alumni</a></li>
-                                </ul>
-                            </li>
-                            <li class="relative dropdown">
-                                <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a>
-                                <ul class="dropdown-menu" aria-label="Services submenu">
-                                    <li><a href="https://hgcl.kannuruniversity.ac.in/">Library</a></li>
-                                    <li><a href="https://mail.google.com/">Email</a></li>
-                                </ul>
-                            </li>
-                            <li class="relative dropdown">
-                                <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a>
-                                <ul class="dropdown-menu" aria-label="Resources submenu">
-                                    <li><a href="#">Video Lectures</a></li>
-                                    <li><a href="#">Lecture notes</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">APPLY</a></li>
-                        </ul>
-                    </nav>
-                </div>
+        <div class="container site-header-inner">
+            <div class="site-branding">
+                <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
+                    <img src="./images/KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
+                    <span class="site-title">Kannur University</span>
+                </a>
+                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block">Department of Mathematical Sciences</a>
             </div>
 
-            <button id="mobile-menu-button" class="mobile-menu-button md:hidden mr-2" aria-label="Toggle mobile menu" aria-expanded="false">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <div class="header-right">
+                <nav class="main-nav hidden md:block" aria-label="Main Navigation">
+                    <ul>
+                        <li class="relative dropdown">
+                            <a href="#" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
+                            <ul class="dropdown-menu" aria-label="Activities submenu">
+                                <li><a href="#">Seminars</a></li>
+                                <li><a href="#">Named lectures</a></li>
+                                <li><a href="#">Programs</a></li>
+                                <li><a href="#">Conferences & Workshops</a></li>
+                            </ul>
+                        </li>
+                        <li class="relative dropdown">
+                            <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a>
+                            <ul class="dropdown-menu" aria-label="People submenu">
+                                <li><a href="#">Faculty</a></li>
+                                <li><a href="#">Research Scholars</a></li>
+                                <li><a href="#">Students</a></li>
+                                <li><a href="#">Staff</a></li>
+                                <li><a href="#">Alumni</a></li>
+                            </ul>
+                        </li>
+                        <li class="relative dropdown">
+                            <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a>
+                            <ul class="dropdown-menu" aria-label="Services submenu">
+                                <li><a href="https://hgcl.kannuruniversity.ac.in/">Library</a></li>
+                                <li><a href="https://mail.google.com/">Email</a></li>
+                            </ul>
+                        </li>
+                        <li class="relative dropdown">
+                            <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a>
+                            <ul class="dropdown-menu" aria-label="Resources submenu">
+                                <li><a href="#">Video Lectures</a></li>
+                                <li><a href="#">Lecture notes</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">APPLY</a></li>
+                    </ul>
+                </nav>
 
-            <form action="/search" method="get" class="search-form">
-                <input type="text" name="q" placeholder="Search..." class="hidden md:block" aria-label="Search">
-                <button type="submit" class="ias-teal-bg button" aria-label="Search">
-                    <span class="hidden md:inline">SEARCH</span>
-                    <span class="md:hidden">Q</span>
+                <button id="mobile-menu-button" class="mobile-menu-button md:hidden" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
-            </form>
+
+                <form action="/search" method="get" class="search-form">
+                    <input type="text" name="q" placeholder="Search..." class="hidden md:block" aria-label="Search">
+                    <button type="submit" class="ias-teal-bg button" aria-label="Search">
+                        <span class="hidden md:inline">SEARCH</span>
+                        <span class="md:hidden">Q</span>
+                    </button>
+                </form>
+            </div>
         </div>
 
         <div id="mobile-menu" class="mobile-nav mobile-menu-hidden container">
@@ -145,13 +143,13 @@
                             <p class="text-sm text-gray-700">Summer Workshop in Mathematics</p>
                         </a>
                     </div>
-                    <!--<div class="event-card">
+                    <div class="event-card">
                         <a href="https://math-kannuruniv.github.io/events/2025-05-Anand">
                             <h3 class="text-lg font-medium event-title">Lecture by Anandavardhanan U K</h3>
                             <p class="text-sm text-gray-600">May 10, 2025 | 11:00 am</p>
                             <p class="text-sm text-gray-700">Affiliation: IIT Bombay</p>
                         </a>
-                    </div> -->
+                    </div>
                     <div class="event-card">
                         <a href="https://math-kannuruniv.github.io/events/2025-05-nands">
                             <h3 class="text-lg font-medium event-title">Lecture by A K Nandakumaran</h3>
