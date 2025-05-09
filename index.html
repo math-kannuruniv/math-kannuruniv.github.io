@@ -64,7 +64,7 @@
                     </ul>
                 </nav>
 
-                <button id="mobile-menu-button" class="mobile-menu-button md:hidden" aria-label="Toggle mobile menu" aria-expanded="false">
+                <button id="mobile-menu-button" class="mobile-menu-button md:hidden" aria-label="Toggle mobile menu" aria-controls="mobile-menu" aria-expanded="false">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -324,50 +324,58 @@
         // JavaScript for mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const desktopNav = document.getElementById('desktop-nav'); // Get desktop nav
 
+        // Add event listener to the mobile menu button
         mobileMenuButton.addEventListener('click', () => {
             const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('mobile-menu-hidden'); // Toggle visibility of mobile menu
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded); // Toggle aria-expanded attribute
+            mobileMenu.classList.toggle('mobile-menu-hidden'); // Toggle visibility of mobile menu using CSS class
 
             // Close all dropdowns when mobile menu is toggled
             document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
                 openMenu.classList.remove('show');
-                openMenu.previousElementSibling.setAttribute('aria-expanded', 'false');
+                // Find the parent dropdown link and update its aria-expanded state
+                const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
+                if (dropdownLink) {
+                    dropdownLink.setAttribute('aria-expanded', 'false');
+                }
             });
         });
 
-        // Close mobile menu when a link is clicked
+        // Close mobile menu when a link inside it is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
                 mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
             });
         });
 
-        // Toggle dropdown on click for better mobile support (optional, can be combined with hover)
+        // Toggle dropdown on click for better mobile support and accessibility
         document.querySelectorAll('.dropdown > a').forEach(link => {
             link.addEventListener('click', function(event) {
-                 // Check if the link has a hash and is not just '#'
-                if (this.getAttribute('href') === '#' || this.getAttribute('href').startsWith('#')) {
-                     event.preventDefault(); // Prevent default link behavior only for # links
+                 // Prevent default link behavior only for # links or if it's a dropdown toggle
+                if (this.getAttribute('href') === '#' || this.getAttribute('href').startsWith('#') || this.parentElement.classList.contains('dropdown')) {
+                     event.preventDefault();
                 }
 
-                // Toggle dropdown visibility
+                // Toggle dropdown visibility using the .show class
                 const dropdownMenu = this.nextElementSibling;
                 if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
-                    dropdownMenu.classList.toggle('show'); // Use the .show class
-                    this.setAttribute('aria-expanded', dropdownMenu.classList.contains('show') ? 'true' : 'false');
+                    const isShowing = dropdownMenu.classList.contains('show');
+                    // Close other dropdowns before opening the clicked one
+                     document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                        if (openMenu !== dropdownMenu) {
+                            openMenu.classList.remove('show');
+                             // Find the parent dropdown link and update its aria-expanded state
+                            const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
+                            if (dropdownLink) {
+                                dropdownLink.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                    dropdownMenu.classList.toggle('show', !isShowing); // Toggle based on current state
+                    this.setAttribute('aria-expanded', !isShowing); // Update aria-expanded attribute
                 }
-
-                // Close other dropdowns
-                document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
-                    if (openMenu !== dropdownMenu) {
-                        openMenu.classList.remove('show');
-                        openMenu.previousElementSibling.setAttribute('aria-expanded', 'false');
-                    }
-                });
             });
         });
 
@@ -375,9 +383,12 @@
         document.addEventListener('click', function(event) {
             document.querySelectorAll('.dropdown').forEach(dropdown => {
                 const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                const dropdownLink = dropdown.querySelector('.dropdown > a');
                 if (dropdownMenu && dropdownMenu.classList.contains('show') && !dropdown.contains(event.target)) {
                     dropdownMenu.classList.remove('show');
-                    dropdown.querySelector('.dropdown > a').setAttribute('aria-expanded', 'false');
+                    if (dropdownLink) {
+                         dropdownLink.setAttribute('aria-expanded', 'false');
+                    }
                 }
             });
         });
@@ -390,7 +401,11 @@
                 // Close all dropdowns
                 document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
                     openMenu.classList.remove('show');
-                    openMenu.previousElementSibling.setAttribute('aria-expanded', 'false');
+                     // Find the parent dropdown link and update its aria-expanded state
+                    const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
+                    if (dropdownLink) {
+                        dropdownLink.setAttribute('aria-expanded', 'false');
+                    }
                 });
             }
         });
