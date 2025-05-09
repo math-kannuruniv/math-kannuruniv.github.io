@@ -1,322 +1,610 @@
-/* CSS Reset/Normalization */
-/* A simple reset to neutralize some browser defaults */
-*, *::before, *::after {
-    box-sizing: border-box;
+/* ==========================================================================
+   TABLE OF CONTENTS
+   1. CSS Variables (Custom Properties)
+   2. Base Styles
+   3. Typography
+   4. Layout Components
+   5. Color Themes
+   6. Components
+   7. Utilities
+   8. Media Queries
+   9. Accessibility
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CSS Variables (Custom Properties)
+   ========================================================================== */
+:root {
+    /* Colors */
+    --ias-blue: #003366; /* Deep blue */
+    --ias-light-blue: #f0f0f0; /* Light gray */
+    --ias-teal: #008080; /* Teal */
+    --ias-gold: #8a6100; /* Darker gold for better contrast (WCAG AA) */
+    --white: #ffffff;
+    --black: #000000;
+    --gray-100: #f7f7f7; /* Lightest gray */
+    --gray-200: #e5e7eb; /* Lighter gray */
+    --gray-300: #d1d5db; /* Light gray */
+    --gray-800: #1f2937; /* Dark gray */
+    --red-600: #dc2626; /* For video play button */
+
+    /* Typography */
+    --font-primary: 'Lora', Georgia, serif;
+    --font-heading: 'Playfair Display', 'Times New Roman', serif;
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem;    /* 16px */
+    --font-size-lg: 1.125rem;  /* 18px */
+    --font-size-xl: 1.25rem;  /* 20px */
+    --font-size-2xl: 1.5rem;  /* 24px */
+    --font-size-3xl: 1.875rem; /* 30px */
+    --font-size-4xl: 2.25rem; /* 36px */
+
+    /* Spacing Scale (based on Tailwind defaults) */
+    --spacing-0: 0;
+    --spacing-px: 1px;
+    --spacing-0-5: 0.125rem; /* 2px */
+    --spacing-1: 0.25rem;   /* 4px */
+    --spacing-1-5: 0.375rem; /* 6px */
+    --spacing-2: 0.5rem;    /* 8px */
+    --spacing-2-5: 0.625rem; /* 10px */
+    --spacing-3: 0.75rem;   /* 12px */
+    --spacing-3-5: 0.875rem; /* 14px */
+    --spacing-4: 1rem;      /* 16px */
+    --spacing-5: 1.25rem;   /* 20px */
+    --spacing-6: 1.5rem;    /* 24px */
+    --spacing-7: 1.75rem;   /* 28px */
+    --spacing-8: 2rem;      /* 32px */
+    --spacing-9: 2.25rem;   /* 36px */
+    --spacing-10: 2.5rem;   /* 40px */
+    --spacing-11: 2.75rem;  /* 44px */
+    --spacing-12: 3rem;     /* 48px */
+    --spacing-14: 3.5rem;   /* 56px */
+    --spacing-16: 4rem;     /* 64px */
+    --spacing-20: 5rem;     /* 80px */
+    --spacing-24: 6rem;     /* 96px */
+    --spacing-28: 7rem;     /* 112px */
+    --spacing-32: 8rem;     /* 128px */
+    --spacing-36: 9rem;     /* 144px */
+    --spacing-40: 10rem;    /* 160px */
+    --spacing-44: 11rem;    /* 176px */
+    --spacing-48: 12rem;    /* 192px */
+    --spacing-52: 13rem;    /* 208px */
+    --spacing-56: 14rem;    /* 224px */
+    --spacing-60: 15rem;    /* 240px */
+    --spacing-64: 16rem;    /* 256px */
+    --spacing-72: 18rem;    /* 288px */
+    --spacing-80: 20rem;    /* 320px */
+    --spacing-96: 24rem;    /* 384px */
+
+    /* Layout */
+    --container-max-width: 1200px;
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 1rem;
+    --border-radius-full: 9999px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-medium: 0.3s ease-in-out;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-text: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    /* Z-index Scale */
+    --z-base: 1;
+    --z-dropdown: 10;
+    --z-sticky: 100;
+    --z-fixed: 1000;
+    --z-modal: 10000;
 }
 
-body {
+/* ==========================================================================
+   2. Base Styles
+   ========================================================================== */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Define CSS Variables (Design Tokens) */
-:root {
-    --color-primary-blue: #003366; /* Deep blue for header/footer */
-    --color-secondary-teal: #008080; /* Teal for buttons */
-    --color-accent-gold: #b8860b; /* Gold for potential accents */
-    --color-light-gray: #f0f0f0; /* Light gray for nav section */
-    --color-dark-gray: #374151; /* Dark gray text */
-    --color-medium-gray: #6b7280; /* Medium gray text */
-    --color-light-gray-bg: #f3f4f6; /* Light gray body background */
-    --color-white: #ffffff; /* White */
-    --color-hover-gray: #e5e7eb; /* Light gray hover background */
-    --color-red-600: #dc2626; /* Red for play button */
-    --color-gray-300: #d1d5db; /* Gray 300 for buttons */
-    --color-gray-400: #9ca3af; /* Gray 400 for button hover */
-
-    --font-family-heading: 'Playfair Display', serif;
-    --font-family-body: 'Lora', serif;
-
-    --spacing-unit: 1rem; /* Base spacing unit */
-    --spacing-small: calc(var(--spacing-unit) * 0.5); /* 0.5rem */
-    --spacing-medium: var(--spacing-unit); /* 1rem */
-    --spacing-large: calc(var(--spacing-unit) * 1.5); /* 1.5rem */
-    --spacing-xlarge: calc(var(--spacing-unit) * 2); /* 2rem */
-    --spacing-xxlarge: calc(var(--spacing-unit) * 3); /* 3rem */
+html {
+    scroll-behavior: smooth;
+    font-size: 100%; /* Base font size */
 }
 
-
-/* General Body Styles */
 body {
-    font-family: var(--font-family-body); /* Apply Lora to body text */
-    background-color: var(--color-light-gray-bg); /* Use CSS variable */
-    line-height: 1.6; /* Improve readability */
-    color: var(--color-dark-gray); /* Default text color */
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--gray-800);
+    background-color: var(--gray-100); /* Use gray-100 from variables */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Applied Playfair Display to headings */
-h1, h2, h3 {
-    font-family: var(--font-family-heading);
-    color: var(--color-dark-gray); /* Default heading color */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Basic button reset */
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 
-/* Container for content width */
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+}
+
+h1 {
+    font-size: var(--font-size-4xl);
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+}
+
+h3 {
+    font-size: var(--font-size-2xl);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+a {
+    color: var(--ias-blue);
+    text-decoration: none; /* Remove default underline */
+    transition: color var(--transition-fast), text-decoration var(--transition-fast);
+}
+
+a:hover, a:focus-visible {
+    color: var(--ias-teal);
+    text-decoration: underline; /* Add underline on hover/focus */
+}
+
+/* ==========================================================================
+   4. Layout Components
+   ========================================================================== */
 .container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--spacing-medium); /* Use CSS variable */
-    padding-right: var(--spacing-medium); /* Use CSS variable */
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
 }
 
-/* Custom colors based on IAS site */
-.ias-blue {
-    background-color: var(--color-primary-blue); /* Use CSS variable */
-    color: var(--color-white); /* Use CSS variable */
+/* ==========================================================================
+   5. Color Themes
+   ========================================================================== */
+.ias-blue-bg {
+    background-color: var(--ias-blue);
+    color: var(--white);
 }
 
-.ias-light-blue {
-     background-color: var(--color-light-gray); /* Use CSS variable */
+.ias-light-blue-bg {
+    background-color: var(--ias-light-blue);
 }
 
-.ias-teal {
-    background-color: var(--color-secondary-teal); /* Use CSS variable */
-    color: var(--color-white); /* Ensure text is white */
-    padding: var(--spacing-small) var(--spacing-medium); /* Use CSS variables */
-    border-radius: 0.375rem; /* rounded-md */
-    transition: opacity 0.2s ease-in-out; /* Smooth hover effect */
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Indicate clickable */
+.ias-teal-bg {
+    background-color: var(--ias-teal);
+    color: var(--white);
 }
 
-.ias-teal:hover {
-    opacity: 0.9;
+.ias-gold-text {
+    color: var(--ias-gold);
 }
 
-.ias-gold {
-    color: var(--color-accent-gold); /* Gold color for accents */
+/* ==========================================================================
+   6. Components
+   ========================================================================== */
+/* Header */
+.site-header {
+    background-color: var(--ias-blue); /* Use color variable */
+    color: var(--white); /* Use color variable */
+    padding: var(--spacing-md) 0;
 }
 
-/* Header Styles */
-header {
-    padding-top: var(--spacing-medium); /* Use CSS variable */
-    padding-bottom: var(--spacing-medium); /* Use CSS variable */
-    position: relative; /* Needed for z-index to work correctly on header contents */
-    z-index: 20; /* Give header a z-index higher than hero section */
-}
-
-header .container {
+.site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-/* Style for the left-aligned group in the header */
-header .header-left-group {
-    display: flex;
-    align-items: center;
-    flex-grow: 1; /* Allow this group to grow on small screens */
-    flex-wrap: wrap; /* Allow wrapping within the group on small screens */
-    margin-bottom: var(--spacing-medium); /* mb-4 on small screens */
+.site-logo img {
+    width: var(--spacing-10); /* Use spacing variable */
+    height: var(--spacing-10); /* Use spacing variable */
+    border-radius: var(--border-radius-full); /* Use border radius variable */
+    margin-right: var(--spacing-3); /* Use spacing variable */
 }
 
-header .logo-and-name {
-    display: flex;
-    align-items: center;
-    margin-right: var(--spacing-large); /* mr-6 */
+.site-title {
+    font-size: var(--font-size-xl); /* Use font size variable */
+    font-weight: 700;
 }
 
-header .logo-placeholder {
-    width: calc(var(--spacing-unit) * 2.5); /* w-10 */
-    height: calc(var(--spacing-unit) * 2.5); /* h-10 */
-    background-color: var(--color-white); /* Use CSS variable */
-    border-radius: 9999px; /* rounded-full */
-    margin-right: var(--spacing-small); /* mr-3 */
+.dept-title {
+    font-size: var(--font-size-lg); /* Use font size variable */
+    margin-right: var(--spacing-6); /* Use spacing variable */
 }
 
-header .site-title {
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 700; /* font-bold */
-}
-
-header .department-name {
-    font-size: 1.125rem; /* text-lg */
-    margin-right: var(--spacing-large); /* mr-6 */
-}
-
-header nav ul {
+/* Navigation */
+.main-nav ul {
     display: flex;
     list-style: none;
-    padding: 0;
-    margin: 0;
-    /* Tailwind space-x-6 equivalent */
-    margin-left: calc(var(--spacing-large) * -1);
+    gap: var(--spacing-6); /* Use spacing variable */
+    font-size: var(--font-size-sm); /* Use font size variable */
 }
 
-header nav ul li {
-    padding-left: var(--spacing-large);
-}
-
-
-header nav ul li a {
+.main-nav a {
+    color: inherit; /* Inherit color from parent (white) */
     text-decoration: none;
-    color: inherit; /* Inherit color from parent (ias-blue) */
-    transition: text-decoration 0.2s ease-in-out;
+    transition: opacity var(--transition-fast); /* Subtle hover effect */
 }
 
-header nav ul li a:hover {
+.main-nav a:hover,
+.main-nav a:focus-visible {
+    opacity: 0.8;
     text-decoration: underline;
 }
 
-header .search-button {
-     /* Removed ml-6 as flex justify-between handles spacing */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background-color: var(--white); /* Use color variable */
+    box-shadow: var(--shadow-md); /* Use shadow variable */
+    z-index: var(--z-dropdown); /* Use z-index variable */
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+    overflow: hidden;
+    padding: var(--spacing-1) 0; /* Add padding */
+}
+
+.dropdown-menu a {
+    color: var(--gray-800); /* Use color variable */
+    padding: var(--spacing-2) var(--spacing-4); /* Use spacing variables */
+    display: block;
+    text-decoration: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:focus-visible {
+    background-color: var(--gray-200); /* Use color variable */
+    color: var(--ias-blue); /* Change text color on hover */
+    text-decoration: none; /* Remove underline on dropdown hover */
+}
+
+/* Class to show dropdown menu */
+.dropdown-menu.show {
+    display: block;
 }
 
 
-/* Hero Section Styles */
+/* Mobile Menu Button */
+.mobile-menu-button {
+    background-color: var(--ias-teal); /* Use color variable */
+    color: var(--white); /* Use color variable */
+    padding: var(--spacing-2) var(--spacing-3); /* Use spacing variables */
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+    transition: opacity var(--transition-fast);
+}
+
+.mobile-menu-button:hover,
+.mobile-menu-button:focus-visible {
+    opacity: 0.9;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    background-color: var(--gray-800); /* Use color variable */
+    color: var(--white); /* Use color variable */
+    padding: var(--spacing-md) var(--spacing-md); /* Use spacing variable */
+    margin-top: var(--spacing-2); /* Use spacing variable */
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+}
+
+.mobile-nav ul {
+    list-style: none;
+    space-y: var(--spacing-2); /* Use spacing variable */
+}
+
+.mobile-nav a {
+    color: inherit;
+    display: block;
+    padding: var(--spacing-1) 0;
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus-visible {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.mobile-nav ul ul { /* Submenu styling */
+    padding-left: var(--spacing-4); /* Use spacing variable */
+    margin-top: var(--spacing-1); /* Use spacing variable */
+}
+
+.mobile-nav ul ul a {
+    font-size: var(--font-size-sm); /* Use font size variable */
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+}
+
+.search-form input[type="text"] {
+    padding: var(--spacing-2) var(--spacing-3); /* Use spacing variables */
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md); /* Use border radius variable */
+    border: 0;
+    outline: none;
+}
+
+.search-form button[type="submit"] {
+    background-color: var(--ias-teal); /* Use color variable */
+    color: var(--white); /* Use color variable */
+    padding: var(--spacing-2) var(--spacing-4); /* Use spacing variables */
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+    transition: opacity var(--transition-fast);
+}
+
+.search-form button[type="submit"]:hover,
+.search-form button[type="submit"]:focus-visible {
+    opacity: 0.9;
+}
+
+/* Adjust search button radius when input is visible */
+.search-form input[type="text"]:not(.hidden) + button[type="submit"] {
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+}
+
+
+/* Hero Section */
 .hero-section {
-    /* Updated background-image URL to MathDepartment.jpg */
-    background-image: url('MathDepartment.jpg');
+    background-image: url('./images/MathDepartment.jpg'); /* Move to images folder */
     background-size: cover;
     background-position: center;
-    color: var(--color-white); /* Use CSS variable */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add shadow for readability */
-    position: relative; /* Needed for absolute positioning of text */
-    height: 24rem; /* h-96 */
-    display: flex; /* Use flex to contain the absolute positioned text */
-    align-items: flex-end; /* Align items to the bottom */
-    justify-content: flex-start; /* Align items to the left */
-    padding: var(--spacing-medium); /* Add padding for the text position, use CSS variable */
-    z-index: 10; /* Give hero section a z-index */
+    color: var(--white);
+    text-shadow: var(--shadow-text);
+    position: relative;
+    min-height: 60vh; /* Ensure minimum height */
+    display: flex;
+    align-items: flex-end; /* Align text to the bottom */
+    padding: var(--spacing-xl); /* Use spacing variable */
 }
 
-/* Style for the department name in the hero section */
 .hero-dept-name {
-    font-size: var(--spacing-xlarge); /* Increased font size to 2rem, use CSS variable */
-    font-weight: 600; /* Semi-bold */
-    color: var(--color-white); /* Ensure text is white over the image */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Add shadow for readability */
-    z-index: 10; /* Ensure text is above the background image */
+    font-size: var(--font-size-4xl); /* Use font size variable */
+    font-weight: 600;
+    max-width: 80%; /* Prevent text from running too wide */
+    /* Position relative to the flex container */
+    position: static;
+    bottom: auto;
+    left: auto;
 }
 
-/* Main Content Area Styles */
-main {
-    padding-top: var(--spacing-xlarge); /* py-8, use CSS variable */
-    padding-bottom: var(--spacing-xlarge); /* py-8, use CSS variable */
+
+/* Main Content */
+.main-content {
+    padding-top: var(--spacing-8); /* Use spacing variable */
+    padding-bottom: var(--spacing-8); /* Use spacing variable */
 }
 
-.breadcrumb {
-    color: var(--color-medium-gray); /* text-gray-600, use CSS variable */
-    font-size: 0.875rem; /* text-sm */
-    margin-bottom: var(--spacing-xlarge); /* mb-8, use CSS variable */
+/* Event Cards */
+.event-card {
+    padding: var(--spacing-sm) 0; /* Use spacing variable */
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+    transition: background-color var(--transition-fast);
+    cursor: pointer;
+    border-left: 3px solid transparent; /* For hover effect */
 }
 
-.content-grid {
+.event-card:hover, .event-card:focus-within {
+    background-color: var(--gray-200); /* Use color variable */
+    border-left-color: var(--ias-blue); /* Add left border on hover */
+}
+
+.event-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md); /* Use spacing variables */
+}
+
+.event-card:hover .event-title,
+.event-card a:focus-visible .event-title {
+    color: var(--ias-blue); /* Use color variable */
+    text-decoration: underline; /* Add underline on hover/focus */
+}
+
+.event-card p {
+    margin-bottom: var(--spacing-sm); /* Smaller margin for text within card */
+}
+
+
+/* Buttons */
+.button {
+    display: inline-block; /* Make it behave like a button */
+    padding: var(--spacing-2) var(--spacing-4); /* Use spacing variables */
+    border: none;
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+    cursor: pointer;
+    transition: background-color var(--transition-fast), opacity var(--transition-fast);
+    text-decoration: none; /* Ensure no underline on button links */
+    text-align: center; /* Center text */
+}
+
+.button-primary {
+    background-color: var(--ias-blue); /* Use color variable */
+    color: var(--white); /* Use color variable */
+}
+
+.button-primary:hover,
+.button-primary:focus-visible {
+    background-color: var(--ias-teal); /* Use color variable */
+    opacity: 1; /* Ensure full opacity */
+}
+
+.button-secondary {
+    background-color: var(--gray-300); /* Use color variable */
+    color: var(--gray-800); /* Use color variable */
+}
+
+.button-secondary:hover,
+.button-secondary:focus-visible {
+    background-color: var(--gray-400); /* Slightly darker gray on hover */
+    opacity: 1; /* Ensure full opacity */
+}
+
+.button-accent {
+    background-color: var(--ias-gold); /* Use color variable */
+    color: var(--white); /* Use color variable */
+}
+
+.button-accent:hover,
+.button-accent:focus-visible {
+    background-color: darken(var(--ias-gold), 10%); /* Darken gold on hover (requires preprocessor or JS) */
+    opacity: 0.9; /* Subtle opacity change */
+}
+
+/* Fallback for darken if no preprocessor */
+.button-accent:hover {
+    background-color: #7d5a00; /* Manual darker shade */
+}
+
+
+/* Footer */
+.site-footer {
+    background-color: var(--ias-blue); /* Use color variable */
+    color: var(--white); /* Use color variable */
+    padding: var(--spacing-8) 0; /* Use spacing variable */
+    font-size: var(--font-size-sm); /* Use font size variable */
+}
+
+.site-footer .container {
     display: grid;
-    grid-template-columns: 1fr; /* Single column by default */
-    gap: var(--spacing-xlarge); /* gap-8, use CSS variable */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-8); /* Use spacing variable */
 }
 
-.content-grid h2 {
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: 600; /* font-semibold */
-    margin-bottom: var(--spacing-medium); /* mb-4, use CSS variable */
+.site-footer h3 {
+    font-size: var(--font-size-lg); /* Use font size variable */
+    margin-bottom: var(--spacing-md); /* Use spacing variable */
+    font-weight: 600;
 }
 
-.content-grid h3 {
-    font-size: 1.125rem; /* text-lg */
-    font-weight: 500; /* font-medium */
-    margin-bottom: var(--spacing-small); /* mb-2, use CSS variable */
+.site-footer address {
+    font-style: normal; /* Remove italic */
 }
 
-.content-grid .space-y-6 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(var(--spacing-large) * calc(1 - var(--tw-space-y-reverse))); /* space-y-6 */
-    margin-bottom: calc(var(--spacing-large) * var(--tw-space-y-reverse)); /* space-y-6 */
+.site-footer address p {
+    margin-bottom: var(--spacing-xs); /* Smaller margin for address lines */
 }
 
-.content-grid .space-y-8 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(var(--spacing-xlarge) * calc(1 - var(--tw-space-y-reverse))); /* space-y-8 */
-    margin-bottom: calc(var(--spacing-xlarge) * var(--tw-space-y-reverse)); /* space-y-8 */
+.site-footer address p:last-child {
+    margin-bottom: 0;
 }
 
-
-.content-grid img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.375rem; /* rounded-md */
-    margin-bottom: var(--spacing-medium); /* mb-4, use CSS variable */
+.site-footer a {
+    color: var(--white); /* Ensure footer links are white */
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
 }
 
-.content-grid .text-gray-600 {
-    color: var(--color-medium-gray); /* Use CSS variable */
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
-.content-grid .text-gray-700 {
-    color: var(--color-dark-gray); /* Use CSS variable */
-}
-
-.content-grid button {
-    padding: var(--spacing-small) var(--spacing-medium); /* px-4 py-2, use CSS variables */
-    border-radius: 0.375rem; /* rounded-md */
-    transition: background-color 0.2s ease-in-out;
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Indicate clickable */
-}
-
-.content-grid .bg-gray-300 {
-    background-color: var(--color-gray-300); /* Use CSS variable */
-    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
-}
-
-.content-grid .bg-gray-300:hover {
-    background-color: var(--color-gray-400); /* hover:bg-gray-400, use CSS variable */
-}
-
-.content-grid .bg-yellow-600 {
-    background-color: var(--color-yellow-600); /* Use CSS variable */
-    color: var(--color-white); /* Use CSS variable */
-}
-
-.content-grid .bg-yellow-600:hover {
-    background-color: var(--color-yellow-700); /* hover:bg-yellow-700, use CSS variable */
-}
-
-.content-grid ul {
+.site-footer ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
-.content-grid ul li {
-    margin-bottom: var(--spacing-small); /* space-y-2, use CSS variable */
+.site-footer ul li {
+    margin-bottom: var(--spacing-2); /* Use spacing variable */
 }
 
-.content-grid ul li a {
-     text-decoration: none;
-     color: inherit;
-     transition: text-decoration 0.2s ease-in-out;
-     /* Added focus styles */
-     outline: none; /* Remove default outline */
+.site-footer .social-links a {
+    display: inline-block;
+    margin-right: var(--spacing-4); /* Use spacing variable */
+    font-size: var(--font-size-xl); /* Use font size variable */
 }
 
-.content-grid ul li a:focus {
-    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
-    outline-offset: 2px;
+.site-footer .social-links a:last-child {
+    margin-right: 0;
+}
+
+.site-footer .copyright {
+    margin-top: var(--spacing-8); /* Use spacing variable */
+    text-align: center;
+    color: var(--gray-400); /* Use color variable */
 }
 
 
-.content-grid ul li a:hover {
+/* Footer Navigation Section */
+.footer-nav-section {
+    background-color: var(--ias-light-blue); /* Use color variable */
+    padding: var(--spacing-4) 0; /* Use spacing variable */
+}
+
+.footer-nav-horizontal ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    gap: var(--spacing-lg); /* Use spacing variable */
+    padding: 0;
+}
+
+.footer-nav-horizontal a {
+    color: var(--gray-800); /* Use color variable */
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.footer-nav-horizontal a:hover,
+.footer-nav-horizontal a:focus-visible {
+    opacity: 0.8;
     text-decoration: underline;
 }
 
 
-/* Scholar Experience/Paths Section */
-.scholar-paths-section {
-    margin-top: var(--spacing-xxlarge); /* mt-12, use CSS variable */
-    display: grid;
-    grid-template-columns: 1fr; /* Single column by default */
-    gap: var(--spacing-xlarge); /* gap-8, use CSS variable */
-    align-items: center;
-}
-
+/* Video Thumbnail with Play Button */
 .video-thumbnail {
     position: relative;
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: var(--border-radius-md); /* Use border radius variable */
+    overflow: hidden; /* Hide overflow from rounded corners */
 }
 
 .video-thumbnail img {
@@ -326,351 +614,421 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.375rem; /* rounded-md */
 }
 
-.play-button {
+.video-thumbnail .play-button {
     position: absolute;
-    inset: 0;
+    inset: 0; /* Cover the entire area */
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+    transition: background-color var(--transition-fast);
 }
 
-.play-button svg {
-    width: 4rem; /* w-16 */
-    height: 4rem; /* h-16 */
-    color: var(--color-red-600); /* text-red-600, use CSS variable */
+.video-thumbnail .play-button:hover,
+.video-thumbnail .play-button:focus-visible {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay on hover */
+}
+
+.video-thumbnail .play-button svg {
+    width: var(--spacing-12); /* Use spacing variable */
+    height: var(--spacing-12); /* Use spacing variable */
+    color: var(--red-600); /* Use color variable */
     opacity: 0.75;
-    cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity var(--transition-fast);
 }
 
-.play-button svg:hover {
+.video-thumbnail .play-button:hover svg,
+.video-thumbnail .play-button:focus-visible svg {
     opacity: 1;
 }
 
-.paths-graphic img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.375rem; /* rounded-md */
-}
 
-/* Horizontal Navigation Section Styles */
-.footer-nav-horizontal {
-    /* Styles applied to the container div */
-    background-color: var(--color-light-gray); /* Use CSS variable */
-    padding-top: var(--spacing-medium); /* py-4, use CSS variable */
-    padding-bottom: var(--spacing-medium); /* py-4, use CSS variable */
-    margin-top: var(--spacing-xlarge); /* mt-8, use CSS variable */
-}
-
-.footer-nav-horizontal nav ul {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    justify-content: center; /* Center the horizontal list */
-    list-style: none;
+/* ==========================================================================
+   7. Utilities
+   ========================================================================== */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
     padding: 0;
-    margin: 0;
-    /* Tailwind space-x-4 equivalent for small screens */
-    margin-left: calc(var(--spacing-medium) * -1);
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
-.footer-nav-horizontal nav ul li {
-    /* Tailwind space-x-4 equivalent for small screens */
-    padding-left: var(--spacing-medium);
-    /* Tailwind space-y-2 equivalent for small screens when wrapping */
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-small);
+.hidden {
+    display: none !important; /* Use !important for utility */
 }
 
-.footer-nav-horizontal nav ul li a {
-     text-decoration: none;
-     color: inherit;
-     transition: text-decoration 0.2s ease-in-out;
-     /* Added focus styles */
-     outline: none; /* Remove default outline */
+.flex {
+    display: flex;
 }
 
-.footer-nav-horizontal nav ul li a:focus {
-    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
-    outline-offset: 2px;
+.items-center {
+    align-items: center;
 }
 
-.footer-nav-horizontal nav ul li a:hover {
+.justify-between {
+    justify-content: space-between;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.mb-4 {
+    margin-bottom: var(--spacing-4);
+}
+
+.mr-6 {
+    margin-right: var(--spacing-6);
+}
+
+.px-3 {
+    padding-left: var(--spacing-3);
+    padding-right: var(--spacing-3);
+}
+
+.py-1 {
+    padding-top: var(--spacing-1);
+    padding-bottom: var(--spacing-1);
+}
+
+.rounded-md {
+    border-radius: var(--border-radius-md);
+}
+
+.hover\:underline:hover {
     text-decoration: underline;
 }
 
-
-/* Footer Styles */
-footer {
-    background-color: var(--color-primary-blue); /* Use CSS variable */
-    color: var(--color-white); /* Use CSS variable */
-    padding-top: var(--spacing-xlarge); /* py-8, use CSS variable */
-    padding-bottom: var(--spacing-xlarge); /* py-8, use CSS variable */
-    margin-top: 0; /* Adjusted top margin */
+.hover\:opacity-90:hover {
+    opacity: 0.9;
 }
 
-footer .container {
+.space-x-6 > *:not([hidden]) ~ *:not([hidden]) {
+    margin-right: 0;
+    margin-left: var(--spacing-6);
+}
+
+.space-y-2 > *:not([hidden]) ~ *:not([hidden]) {
+    margin-bottom: 0;
+    margin-top: var(--spacing-2);
+}
+
+.grid {
     display: grid;
-    grid-template-columns: 1fr; /* Single column by default */
-    gap: var(--spacing-xlarge); /* gap-8, use CSS variable */
-    font-size: 0.875rem; /* text-sm */
 }
 
-footer .university-seal-placeholder {
-    width: calc(var(--spacing-unit) * 5); /* w-20 */
-    height: calc(var(--spacing-unit) * 5); /* h-20 */
-    background-color: var(--color-white); /* Use CSS variable */
-    border-radius: 9999px; /* rounded-full */
-    margin-bottom: var(--spacing-medium); /* mb-4, use CSS variable */
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-footer h3 {
-    font-weight: 600; /* font-semibold */
-    margin-bottom: var(--spacing-small); /* mb-2, use CSS variable */
-    color: var(--color-white); /* Ensure footer headings are white */
+.gap-8 {
+    gap: var(--spacing-8);
 }
 
-footer p {
-    margin-bottom: var(--spacing-small); /* Use CSS variable */
+.max-w-sm {
+    max-width: 24rem; /* Tailwind default sm */
 }
 
-footer .mt-4 {
-    margin-top: var(--spacing-medium); /* mt-4, use CSS variable */
+.w-full {
+    width: 100%;
 }
 
-footer nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    /* space-y: 0.5rem; Remove this as it's not a standard CSS property */
+.h-auto {
+    height: auto;
 }
 
-footer nav ul li {
-    margin-bottom: var(--spacing-small); /* space-y-2, use CSS variable */
+.mb-2 {
+    margin-bottom: var(--spacing-2);
 }
 
-footer nav ul li a {
-    text-decoration: none;
-    color: inherit;
-    transition: text-decoration 0.2s ease-in-out;
-     /* Added focus styles */
-     outline: none; /* Remove default outline */
+.mb-4 {
+    margin-bottom: var(--spacing-4);
 }
 
-footer nav ul li a:focus {
-    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
-    outline-offset: 2px;
+.mt-4 {
+    margin-top: var(--spacing-4);
 }
 
-footer nav ul li a:hover {
-    text-decoration: underline;
+.mt-8 {
+    margin-top: var(--spacing-8);
 }
 
-footer button {
-    padding: var(--spacing-small) var(--spacing-medium); /* px-4 py-2, use CSS variables */
-    border-radius: 0.375rem; /* rounded-md */
-    transition: background-color 0.2s ease-in-out;
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Indicate clickable */
+.py-4 {
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
 }
 
-footer .bg-gray-300 {
-    background-color: var(--color-gray-300); /* Use CSS variable */
-    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
-}
-
-footer .bg-gray-300:hover {
-    background-color: var(--color-gray-400); /* hover:bg-gray-400, use CSS variable */
-}
-
-footer .bg-yellow-600 {
-    background-color: var(--color-yellow-600); /* Use CSS variable */
-    color: var(--color-white); /* Use CSS variable */
-}
-
-footer .bg-yellow-600:hover {
-    background-color: var(--color-yellow-700); /* hover:bg-yellow-700, use CSS variable */
-}
-
-footer .social-icons {
-    display: flex;
-    /* space-x: 1rem; Remove this as it's not a standard CSS property */
-    font-size: 1.25rem; /* text-xl */
-}
-
-footer .social-icons a {
-    color: inherit;
-    transition: opacity 0.2s ease-in-out;
-    margin-right: var(--spacing-medium); /* Add margin for spacing */
-     /* Added focus styles */
-     outline: none; /* Remove default outline */
-}
-
-footer .social-icons a:focus {
-    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
-    outline-offset: 2px;
-}
-
-footer .social-icons a:last-child {
-    margin-right: 0; /* Remove margin from the last icon */
-}
-
-footer .social-icons a:hover {
-    opacity: 0.75;
-}
-
-.copyright {
-    margin-top: var(--spacing-xlarge); /* mt-8, use CSS variable */
-    text-align: center;
-    color: var(--color-gray-400); /* text-gray-400, use CSS variable */
-    font-size: 0.75rem; /* text-xs */
+.px-4 {
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
 }
 
 
-/* --- Mobile Responsiveness --- */
+/* ==========================================================================
+   8. Media Queries
+   ========================================================================== */
 
-/* Medium devices (tables, 768px and up) */
+/* Medium screens and up (md) */
 @media (min-width: 768px) {
-    .content-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens and up */
+    .md\:flex-nowrap {
+        flex-wrap: nowrap;
     }
 
-    .scholar-paths-section {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens and up */
+    .md\:flex-grow-0 {
+        flex-grow: 0;
     }
 
-    footer .container {
-        grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens and up */
+    .md\:block {
+        display: block;
     }
 
-    header .container {
-        flex-wrap: nowrap; /* Prevent wrapping in header on medium screens and up */
+    .md\:hidden {
+        display: none;
     }
 
-    header .header-left-group {
-        flex-grow: 0; /* Prevent growth on medium screens and up */
-        flex-wrap: nowrap; /* Prevent wrapping within the group */
-        margin-bottom: 0; /* Remove margin bottom */
+    .md\:rounded-l-none {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
     }
 
-    header .logo-and-name {
-         margin-right: var(--spacing-large); /* mr-6 */
+    .md\:col-span-1 {
+        grid-column: span 1 / span 1;
     }
 
-
-    header nav ul {
-        /* Tailwind space-x-6 equivalent */
-        margin-left: calc(var(--spacing-large) * -1);
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    header nav ul li {
-        padding-left: var(--spacing-large);
+     .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    header .department-name {
-         display: block; /* Show department name in header on medium screens and up */
+    .md\:w-auto {
+        width: auto;
     }
 
+    .md\:space-x-6 > *:not([hidden]) ~ *:not([hidden]) {
+        margin-right: 0;
+        margin-left: var(--spacing-6);
+    }
 
-    /* Horizontal footer nav on medium screens and up */
-    .footer-nav-horizontal nav ul {
-        flex-wrap: nowrap; /* Prevent wrapping */
-        /* Tailwind space-x-6 equivalent */
-        margin-left: calc(var(--spacing-large) * -1);
-        margin-top: 0; /* Remove vertical margin */
+    .md\:space-y-0 > *:not([hidden]) ~ *:not([hidden]) {
+        margin-top: 0;
         margin-bottom: 0;
     }
 
-    .footer-nav-horizontal nav ul li {
-        /* Tailwind space-x-6 equivalent */
-        padding-left: var(--spacing-large);
-        margin-top: 0; /* Remove vertical margin */
-        margin-bottom: 0;
+     .md\:h-16 {
+        height: var(--spacing-16);
     }
 
-    .footer-nav-horizontal nav ul li:first-child {
-         padding-left: 0; /* Remove left padding for the first item */
+     .md\:w-16 {
+        width: var(--spacing-16);
     }
 
-    /* Adjust hero text size for medium screens and up */
-    .hero-section h1 {
-        font-size: 3rem; /* text-5xl */
+    /* Revert mobile nav hidden on medium+ screens */
+    .mobile-menu-hidden {
+        display: none !important;
+    }
+}
+
+/* Large screens and up (lg) */
+@media (min-width: 1024px) {
+     html {
+        font-size: 100%; /* Keep base font size */
+    }
+
+    .container {
+        padding: 0 var(--spacing-lg); /* Increase container padding on larger screens */
+    }
+
+    .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .hero-section {
+         min-height: 70vh; /* Taller hero on large screens */
+         padding: var(--spacing-2xl);
     }
 
      .hero-dept-name {
-        font-size: 2rem; /* Maintain font size on medium screens and up */
+        font-size: var(--font-size-4xl); /* Maintain large font size */
     }
 }
 
-/* Large devices (desktops, 1024px and up) */
-@media (min-width: 1024px) {
-    .hero-section h1 {
-        font-size: 3rem; /* text-5xl */
+
+/* Extra large screens and up (xl) */
+@media (min-width: 1280px) {
+    .container {
+        padding: 0 var(--spacing-xl); /* Further increase container padding */
     }
 }
 
-/* Styles for the dropdown menu */
-.dropdown {
-    position: relative;
-    display: inline-block; /* Or block, depending on desired layout */
+
+@media (max-width: 767px) { /* Styles for screens smaller than md */
+    html {
+        font-size: 95%; /* Slightly reduce base font size on smaller screens */
+    }
+
+    .hero-dept-name {
+        font-size: var(--font-size-3xl); /* Use font size variable */
+    }
+
+    .hero-section {
+        min-height: 40vh; /* Shorter hero on small screens */
+        padding: var(--spacing-lg); /* Use spacing variable */
+    }
+
+    .site-header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-logo {
+        margin-bottom: var(--spacing-4); /* Add space below logo */
+    }
+
+    .search-form {
+        width: 100%; /* Full width search form */
+        margin-top: var(--spacing-4); /* Add space above search */
+    }
+
+    .search-form input[type="text"] {
+        flex-grow: 1; /* Allow input to grow */
+    }
+
+    .footer-nav-horizontal ul {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md); /* Use spacing variable */
+    }
+
+    .mobile-menu-hidden {
+        display: none;
+    }
 }
 
-.dropdown-menu {
+@media (max-width: 480px) { /* Styles for extra small screens */
+    html {
+        font-size: 90%;
+    }
+
+    .hero-dept-name {
+        font-size: var(--font-size-2xl); /* Use font size variable */
+    }
+
+    .site-logo img {
+        width: var(--spacing-8);
+        height: var(--spacing-8);
+    }
+
+    .site-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .dept-title {
+        font-size: var(--font-size-base);
+    }
+}
+
+
+/* ==========================================================================
+   9. Accessibility
+   ========================================================================== */
+/* Use focus-visible for better keyboard navigation indication */
+:focus-visible {
+    outline: 3px solid var(--ias-teal); /* Use color variable */
+    outline-offset: 3px;
+}
+
+/* Remove default outline for mouse users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+.skip-link {
     position: absolute;
-    z-index: 1000; /* Ensure dropdown is above other content */
-    min-width: 160px; /* Minimum width for the dropdown */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add shadow */
-    padding: 0; /* Remove default padding */
-    background-color: var(--color-white); /* Use CSS variable */
-    border-radius: 0.375rem; /* rounded-md */
-    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
+    top: -40px; /* Off-screen by default */
+    left: 0;
+    background: var(--ias-blue); /* Use color variable */
+    color: var(--white); /* Use color variable */
+    padding: var(--spacing-sm) var(--spacing-md); /* Use spacing variables */
+    z-index: var(--z-fixed); /* Use z-index variable */
+    transition: top var(--transition-fast);
 }
 
-.dropdown-menu li {
-    /* Remove default list item styling */
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.skip-link:focus {
+    top: 0; /* Bring into view on focus */
 }
 
-.dropdown-menu a {
-    color: var(--color-dark-gray); /* text-gray-800, use CSS variable */
-    text-decoration: none;
-    display: block;
-    padding: var(--spacing-small) var(--spacing-medium); /* px-4 py-2, use CSS variables */
-    transition: background-color 0.2s ease-in-out;
-     /* Added focus styles */
-     outline: none; /* Remove default outline */
-}
-
-.dropdown-menu a:focus {
-    outline: 2px solid var(--color-secondary-teal); /* Add focus outline */
-    outline-offset: 2px;
-}
-
-.dropdown-menu a:hover {
-    background-color: var(--color-hover-gray); /* hover:bg-gray-200, use CSS variable */
-}
-
-/* Accessibility: Reduced Motion */
+/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
-/* Accessibility: Focus Indicators */
-/* Apply focus styles to interactive elements */
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid var(--color-secondary-teal); /* Use a prominent color */
-  outline-offset: 2px; /* Add some space around the element */
+/* Print styles */
+@media print {
+    .hero-section {
+        background-image: none;
+        color: var(--black); /* Ensure text is black for printing */
+        text-shadow: none;
+    }
+
+    a {
+        text-decoration: underline;
+        color: var(--black); /* Ensure links are black for printing */
+    }
+
+    /* Hide elements not needed for print */
+    .site-header,
+    .footer-nav-section,
+    .site-footer,
+    .mobile-menu-button,
+    .search-form {
+        display: none !important;
+    }
+
+    /* Ensure main content is visible */
+    .main-content {
+        display: block !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: var(--spacing-md) !important;
+    }
+
+    /* Adjust grid layout for print */
+    .main-content .grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    img {
+        max-width: 50% !important; /* Reduce image size for print */
+        margin: 0 auto !important; /* Center images */
+    }
+
+    h1, h2, h3 {
+        page-break-after: avoid; /* Avoid breaking headings across pages */
+    }
+
+    p {
+        orphans: 3; /* Prevent single lines at the bottom of a page */
+        widows: 3; /* Prevent single lines at the top of a page */
+    }
 }
-
-
