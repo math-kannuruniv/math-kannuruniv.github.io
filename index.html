@@ -14,6 +14,7 @@
 
     <noscript>
         <style>
+            /* Styles for when JavaScript is disabled */
             /* Show desktop nav and hide mobile nav elements */
             .main-nav { display: block !important; }
             .mobile-nav, .mobile-menu-button { display: none !important; }
@@ -35,13 +36,16 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header class="site-header">
-        <div class="container site-header-inner flex items-center justify-between"> <div class="site-branding flex items-center"> <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-2">
+        <div class="container site-header-inner flex items-center justify-between">
+            <div class="site-branding flex items-center">
+                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block mr-4">Department of Mathematical Sciences</a> <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-4">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
                     <span class="site-title">Kannur University</span>
                 </a>
-                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block ml-4">Department of Mathematical Sciences</a> </div>
+            </div>
 
-            <div class="header-right flex items-center"> <nav id="desktop-nav" class="main-nav" aria-label="Main Navigation">
+            <div class="header-right flex items-center">
+                <nav id="desktop-nav" class="main-nav" aria-label="Main Navigation">
                     <ul>
                         <li class="relative dropdown">
                             <a href="#" role="button" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
@@ -189,7 +193,7 @@
                             Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
                         </p>
                     </div>
-                    <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" onclick="event.preventDefault(); event.stopPropagation(); this.closest('article').querySelector('.msc-description-extra').classList.toggle('hidden'); this.textContent = this.closest('article').querySelector('.msc-description-extra').classList.contains('hidden') ? 'READ MORE' : 'READ LESS';">
+                    <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" onclick="event.preventDefault(); event.stopPropagation(); this.closest('a').querySelector('.msc-description-extra').classList.toggle('hidden'); this.textContent = this.closest('a').querySelector('.msc-description-extra').classList.contains('hidden') ? 'READ MORE' : 'READ LESS';">
                         READ MORE
                     </button>
                     </a>
