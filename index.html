@@ -355,16 +355,15 @@
 
         /* Desktop Navigation */
         .main-nav {
-             /* Removed max-width: fit-content; to allow flex to manage width */
-             /* Adjusted gap on ul instead */
+             /* Allow flex to manage width, but control inner spacing */
         }
 
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: var(--spacing-4); /* Increased gap for more space between items */
-            padding: 0; /* Ensure no default padding */
-            margin: 0; /* Ensure no default margin */
+            gap: var(--spacing-3); /* Reduced gap for more compact navigation */
+            padding: 0;
+            margin: 0;
         }
 
         .main-nav a { /* Applies to top-level links */
@@ -375,7 +374,7 @@
             font-size: var(--font-size-sm);
             font-weight: 500;
             display: block;
-            white-space: nowrap; /* Prevent wrapping */
+            white-space: nowrap;
             transition: background-color var(--transition-fast), color var(--transition-fast);
         }
 
@@ -527,7 +526,7 @@
             color: var(--white);
             padding: var(--spacing-16) 0;
             text-align: center;
-            min-height: 500px; /* Increased height for more image visibility */
+            min-height: 300px; /* Reduced height for less image visibility */
         }
 
         .hero-dept-name {
@@ -555,14 +554,14 @@
             }
              /* Adjust padding for symmetry */
             .main-content > .grid > div:nth-child(1) {
-                padding-right: var(--spacing-4); /* Increased padding on the right of the first column */
+                padding-right: var(--spacing-3); /* Adjusted padding */
             }
              .main-content > .grid > div:nth-child(2) {
-                 padding-left: var(--spacing-4); /* Increased padding on the left of the second column */
-                 padding-right: var(--spacing-4); /* Increased padding on the right of the second column */
+                 padding-left: var(--spacing-3); /* Adjusted padding */
+                 padding-right: var(--spacing-3); /* Adjusted padding */
              }
              .main-content > .grid > div:nth-child(3) {
-                 padding-left: var(--spacing-4); /* Increased padding on the left of the third column */
+                 padding-left: var(--spacing-3); /* Adjusted padding */
              }
         }
 
@@ -736,7 +735,7 @@
                 font-size: 3.5rem;
             }
             /* Adjusted gap for desktop nav items */
-            .main-nav ul { gap: var(--spacing-4); }
+            .main-nav ul { gap: var(--spacing-3); } /* Reduced gap */
         }
 
         /* Large screens (desktops) */
@@ -896,7 +895,7 @@
                             <li><a href="https://math-kannuruniv.github.io/people/researchscholars" class="text-sm">Research Scholars</a></li>
                             <li><a href="https://math-kannuruniv.github.io/people/students" class="text-sm">Students</a></li>
                             <li><a href="https://math-kannuruniv.github.io/people/staff" class="text-sm">Staff</a></li>
-                            <li><a href="https://math-kannuruniv.github.io/people/alumni" class="text-sm">Alumni</a></li>
+                            <li><a href="https://math-kannuruniv.github.io/people/alumni">Alumni</a></li>
                         </ul>
                     </li>
                     <li class="mobile-dropdown">
@@ -1046,9 +1045,9 @@
                     <ul>
                         <li><a href="https://www.kannuruniversity.ac.in/en/" target="_blank" rel="noopener noreferrer">Kannur University</a></li>
                         <li><a href="https://www.kannuruniversity.ac.in/en/administration/statutory-bodies/syndicate/" target="_blank" rel="noopener noreferrer">Syndicate</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/administration/statutory-bodies/academic-council/" target="_blank" rel="noopener noreferrer">Academic Council</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/iqac/" target="_blank" rel="noopener noreferrer">IQAC</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/rti/" target="_blank" rel="noopener noreferrer">RTI</a></li>
+                        <li><a href="https://www.kannuruniv.ac.in/en/administration/statutory-bodies/academic-council/" target="_blank" rel="noopener noreferrer">Academic Council</a></li>
+                        <li><a href="https://www.kannuruniv.ac.in/en/iqac/" target="_blank" rel="noopener noreferrer">IQAC</a></li>
+                        <li><a href="https://www.kannuruniv.ac.in/en/rti/" target="_blank" rel="noopener noreferrer">RTI</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
