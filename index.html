@@ -197,17 +197,27 @@
             margin-bottom: var(--spacing-4); /* Consistent paragraph spacing */
         }
 
+        /* General link styles */
         a {
             color: var(--ias-blue);
-            text-decoration: none;
+            text-decoration: none; /* Remove default underline */
             transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
         }
 
+        /* Add underline back only on hover/focus for general links */
         a:hover, a:focus-visible {
             color: var(--ias-teal);
             text-decoration: underline;
             text-decoration-color: var(--ias-teal);
         }
+
+        /* Ensure links inside content cards do NOT get an underline on hover/focus */
+        .content-card a,
+        .content-card a:hover,
+        .content-card a:focus-visible {
+             text-decoration: none;
+        }
+
 
         /* ==========================================================================
            4. Layout Components
@@ -407,13 +417,6 @@
             pointer-events: none;
         }
 
-        .main-nav .dropdown-menu.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
         .main-nav .dropdown-menu li a {
             padding: var(--spacing-2) var(--spacing-4);
             display: block;
@@ -584,8 +587,11 @@
         .event-card:hover {
             box-shadow: var(--shadow-md);
         }
-        .event-card a { text-decoration: none; color: inherit; }
-        .event-card a:hover .event-title { color: var(--ias-teal); }
+        /* Keep text inside event cards from being underlined */
+        .event-card h3,
+        .event-card p {
+            text-decoration: none; /* Ensure text inside is not underlined */
+        }
 
         .event-title {
             font-size: var(--font-size-lg);
@@ -1027,7 +1033,9 @@
             </div>
 
             <div class="md:col-span-1">
-                 <h2 class="text-2xl font-heading mb-6">Programmes</h2> <div class="space-y-8"> <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                 <h2 class="text-2xl font-heading mb-6">Programmes</h2> <div class="space-y-8">
+                     <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                         <img src="MSc_Programme.png" alt="Illustration related to MSc Mathematics Programme" class="mb-4 rounded-md">
                         <h3 class="text-xl font-semibold">M.Sc. Mathematics Programme</h3> <p class="text-sm text-gray-700 mt-2">
                             The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
                         </p>
