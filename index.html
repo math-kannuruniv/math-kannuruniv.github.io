@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Official website of the Department of Mathematical Sciences at Kannur University">
     <title>Math Department | Kannur University</title>
+    <link rel="icon" type="image/png" href="KannurUniversityLogo.png">
     <link rel="preload" href="KannurUniversityLogo.png" as="image">
     <link rel="preload" href="MathDepartment.jpg" as="image">
+    <link rel="preload" href="MSc_Programme1.png" as="image">
+    <link rel="preload" href="MSc_Programme2.png" as="image">
+    <link rel="preload" href="MSc_Programme3.png" as="image">
+    <link rel="preload" href="MSc_Programme4.png" as="image">
+
     <link rel="preload" href="https://fonts.gstatic.com/s/lora/v32/0QI-MX1D_JO_P-z_VA.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvEIDcmoIrZvjTeKhpO_mdGvIDP1tB.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -33,6 +39,10 @@
             /* .read-more-button { display: none !important; } *//* Removed button, no need to hide */
             /* Ensure column separators are visible without JS if needed */
              /* Removed border-r rule */
+
+             /* Slideshow fallback for No-JS - show first image */
+             .slideshow-container .msc-slide { display: none; }
+             .slideshow-container .msc-slide:first-child { display: block; opacity: 1; }
         </style>
     </noscript>
     <style>
@@ -697,47 +707,33 @@
         }
         .news-item h3 { font-size: var(--font-size-xl); }
 
-        /* Style for the MSc image container to show only a portion */
-         .msc-image-container {
-             width: 100%; /* Take full width of parent */
-             height: 200px; /* Fixed height to show only a portion */
-             overflow: hidden; /* Hide the overflowing parts of the image */
-             margin-bottom: 1rem; /* Space below the image */
-             border-radius: 0.25rem; /* Match card border-radius */
-             /* Added gradient overlay */
-             position: relative; /* Needed for absolute positioning of pseudo-element */
-         }
+        /* Slideshow Container */
+        .slideshow-container {
+            position: relative;
+            width: 100%; /* Take full width of parent */
+            height: 200px; /* Fixed height for the slideshow */
+            overflow: hidden; /* Hide overflowing images */
+            margin-bottom: var(--spacing-4); /* Space below the slideshow */
+            border-radius: var(--border-radius-md); /* Rounded corners */
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
+        }
 
-         .msc-image-container::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,51,102,0.5) 100%); /* Gradient from transparent to dark blue */
-             z-index: 1; /* Ensure gradient is above the image */
-         }
+        /* Individual Slideshow Images */
+        .slideshow-container .msc-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+            object-position: center; /* Center the image */
+            opacity: 0; /* Hidden by default */
+            transition: opacity 1s ease-in-out; /* Fade transition */
+        }
 
-
-         .msc-image-container img {
-             display: block; /* Remove extra space below image */
-             width: 100%; /* Ensure image covers the width */
-             height: auto; /* Maintain aspect ratio */
-             object-fit: cover; /* Cover the container while maintaining aspect ratio */
-             object-position: center; /* Center the image within the container */
-             position: relative; /* Needed for z-index to be below gradient */
-             z-index: 0;
-         }
-
-        /* Styling for the MSc Programme image */
-        .msc-programme-image {
-             margin-bottom: var(--spacing-4); /* Space below the image */
-             border-radius: var(--border-radius-md); /* Rounded corners */
-             box-shadow: var(--shadow-sm); /* Subtle shadow */
-             /* Optional: Add a subtle filter or opacity if needed for blending */
-             /* filter: brightness(0.9); */
-             /* opacity: 0.95; */
+        /* Style for the active slide */
+        .slideshow-container .msc-slide.active {
+            opacity: 1; /* Show the active slide */
         }
 
 
@@ -1114,22 +1110,7 @@
 
             <div class="md:col-span-1">
                  <h2 class="text-2xl font-heading mb-6">Programmes</h2> <div class="space-y-8">
-                     <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                         <img src="MSc_Programme.png" alt="Illustration related to MSc Mathematics Programme" class="msc-programme-image">
-                        <h3 class="text-xl font-semibold">M.Sc. Mathematics Programme</h3> <p class="text-sm text-gray-700 mt-2">
-                            The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
-                        </p>
-                        <div class="collapsible-extra hidden">
-                            <p class="text-sm text-gray-700 mt-2">
-                                It is designed to provide students with an advanced understanding of various branches of pure and applied mathematics. The curriculum focuses on developing advanced knowledge in areas such as algebraic structures, real and complex analysis, topology, functional analysis, differential equations, and more. The program aims to enhance mathematical reasoning, problem-solving skills, and the ability to construct rigorous mathematical proofs.
-                            </p>
-                             <p class="text-sm text-gray-700 mt-2">
-                                Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
-                            </p>
-                        </div>
-                        </a>
-
-                    <a href="https://math-kannuruniv.github.io/programmes/phd" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                     <a href="https://math-kannuruniv.github.io/programmes/phd" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
                          <h3 class="text-xl font-semibold">Doctoral Programme (Ph.D.)</h3> <p class="text-sm text-gray-700 mt-2">
                              The Department of Mathematical Sciences at Kannur University offers a Doctoral Programme (Ph.D.) for students interested in pursuing advanced research in various areas of mathematics.
                          </p>
@@ -1142,6 +1123,26 @@
                              </p>
                          </div>
                          </a>
+
+                     <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                         <div class="slideshow-container">
+                             <img class="msc-slide" src="MSc_Programme1.png" alt="MSc Programme Slide 1">
+                             <img class="msc-slide" src="MSc_Programme2.png" alt="MSc Programme Slide 2">
+                             <img class="msc-slide" src="MSc_Programme3.png" alt="MSc Programme Slide 3">
+                             <img class="msc-slide" src="MSc_Programme4.png" alt="MSc Programme Slide 4">
+                         </div>
+                        <h3 class="text-xl font-semibold">M.Sc. Mathematics Programme</h3> <p class="text-sm text-gray-700 mt-2">
+                            The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
+                        </p>
+                        <div class="collapsible-extra hidden">
+                            <p class="text-sm text-gray-700 mt-2">
+                                It is designed to provide students with an advanced understanding of various branches of pure and applied mathematics. The curriculum focuses on developing advanced knowledge in areas such as algebraic structures, real and complex analysis, topology, functional analysis, differential equations, and more. The program aims to enhance mathematical reasoning, problem-solving skills, and the ability to construct rigorous mathematical proofs.
+                            </p>
+                             <p class="text-sm text-gray-700 mt-2">
+                                Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
+                            </p>
+                        </div>
+                        </a>
                  </div>
             </div>
 
@@ -1353,6 +1354,58 @@
                  });
             }
         });
+
+        // --- MSc Slideshow Script ---
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.msc-slide');
+        const slideshowContainer = document.querySelector('.slideshow-container');
+
+        function showSlides() {
+            if (slides.length === 0) return; // Exit if no slides found
+
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Increment slide index, reset if needed
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+
+            // Show the current slide
+            slides[slideIndex - 1].classList.add('active');
+
+            // Call showSlides again after 3 seconds (3000 milliseconds)
+            // Use setTimeout for sequential calls
+            setTimeout(showSlides, 3000);
+        }
+
+        // Start the slideshow when the page loads
+        window.onload = function() {
+             // Initial display of the first slide before the loop starts
+             if (slides.length > 0) {
+                 slides[0].classList.add('active');
+                 slideIndex = 0; // Reset index for the first call to showSlides
+                 setTimeout(showSlides, 3000); // Start the loop after initial display
+             }
+
+             // Initialize other scripts if needed
+             // For example, mobile menu initialization could go here if not already done by direct script placement
+        };
+
+        // Ensure the slideshow starts even if window.onload was already set by another script
+        if (document.readyState === 'complete') {
+             // If the page is already loaded, manually trigger the slideshow start
+             if (slides.length > 0 && !slides[0].classList.contains('active')) {
+                 slides[0].classList.add('active');
+                 slideIndex = 0;
+                 setTimeout(showSlides, 3000);
+             }
+        }
+
+
     </script>
 </body>
 </html>
