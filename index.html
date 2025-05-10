@@ -1379,9 +1379,9 @@
             // Show the current slide
             slides[slideIndex - 1].classList.add('active');
 
-            // Call showSlides again after 3 seconds (3000 milliseconds)
+            // Call showSlides again after 7 seconds (7000 milliseconds)
             // Use setTimeout for sequential calls
-            setTimeout(showSlides, 3000);
+            setTimeout(showSlides, 7000);
         }
 
         // Start the slideshow when the page loads
@@ -1390,7 +1390,7 @@
              if (slides.length > 0) {
                  slides[0].classList.add('active');
                  slideIndex = 0; // Reset index for the first call to showSlides
-                 setTimeout(showSlides, 3000); // Start the loop after initial display
+                 setTimeout(showSlides, 7000); // Start the loop after initial display
              }
 
              // Initialize other scripts if needed
@@ -1403,7 +1403,7 @@
              if (slides.length > 0 && !slides[0].classList.contains('active')) {
                  slides[0].classList.add('active');
                  slideIndex = 0;
-                 setTimeout(showSlides, 3000);
+                 setTimeout(showSlides, 7000);
              }
         }
 
