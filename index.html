@@ -42,28 +42,26 @@
             .main-content > .grid > div:nth-child(2) {
                 border-right: 1px solid #e5e7eb; /* mild gray border */
             }
-             /* Add some padding to the right of bordered columns to prevent content touching the border */
-            .main-content > .grid > div:nth-child(1),
-            .main-content > .grid > div:nth-child(2) {
-                padding-right: 1rem; /* Adjust as needed */
+             /* Adjust padding for symmetry */
+            .main-content > .grid > div:nth-child(1) {
+                padding-right: 0.5rem; /* Less padding on the right of the first column */
             }
-             /* Add some padding to the left of the second and third columns */
-             .main-content > .grid > div:nth-child(2),
+             .main-content > .grid > div:nth-child(2) {
+                 padding-left: 0.5rem; /* Less padding on the left of the second column */
+                 padding-right: 0.5rem; /* Less padding on the right of the second column */
+             }
              .main-content > .grid > div:nth-child(3) {
-                 padding-left: 1rem; /* Adjust as needed */
+                 padding-left: 0.5rem; /* Less padding on the left of the third column */
              }
         }
 
          /* Adjust spacing for the site branding elements */
         .site-branding .site-logo-link {
-            padding: 0.5rem 1rem; /* Adjust padding around logo */
+            padding: 0.5rem 0.5rem; /* Reduced padding around logo */
         }
 
-        /* Removed .site-branding .site-title-link styling as it's moved to footer */
-
          .site-branding .dept-title {
-             /* Removed mr-4 */
-             margin-left: 1rem; /* Space after logo */
+             margin-left: 0.5rem; /* Reduced space after logo */
              margin-right: 1rem; /* Space before menu */
          }
 
@@ -72,10 +70,11 @@
              align-items: center;
          }
 
-         /* Adjust main navigation alignment */
+         /* Adjust main navigation alignment and width */
          .site-header-inner .main-nav {
              margin-left: auto; /* Push nav and search to the right */
              margin-right: 1rem; /* Space before search */
+             /* max-width: 70%; /* Optional: Limit max width of the nav if needed */
          }
 
          .site-header-inner .header-right {
@@ -221,6 +220,24 @@
              background-color: #006666; /* Darker teal on hover */
          }
 
+         /* Style for the MSc image container to show only a portion */
+         .msc-image-container {
+             width: 100%; /* Take full width of parent */
+             height: 200px; /* Fixed height to show only a portion */
+             overflow: hidden; /* Hide the overflowing parts of the image */
+             margin-bottom: 1rem; /* Space below the image */
+             border-radius: 0.25rem; /* Match card border-radius */
+         }
+
+         .msc-image-container img {
+             display: block; /* Remove extra space below image */
+             width: 100%; /* Ensure image covers the width */
+             height: auto; /* Maintain aspect ratio */
+             object-fit: cover; /* Cover the container while maintaining aspect ratio */
+             object-position: center; /* Center the image within the container */
+         }
+
+
     </style>
 </head>
 <body>
@@ -230,9 +247,9 @@
         <div class="container site-header-inner flex justify-between items-center py-4">
             <div class="site-branding flex items-center">
                 <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
-                    <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img h-12"> </a>
-                <div class="flex flex-col ml-4">
-                    <a href="https://math-kannuruniv.github.io/" class="dept-title ias-blue-text text-sm">DEPARTMENT OF MATHEMATICAL SCIENCES</a>
+                    <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img h-12">
+                </a>
+                <div class="flex flex-col ml-2"> <a href="https://math-kannuruniv.github.io/" class="dept-title ias-blue-text text-sm">DEPARTMENT OF MATHEMATICAL SCIENCES</a>
                 </div>
             </div>
 
@@ -367,7 +384,7 @@
                      <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
                          <h3 class="text-lg font-medium text-ias-blue">Research Areas</h3>
                          <p class="text-sm text-gray-700 mt-2">Information about the research areas within the department...</p>
-                         <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">LEARN MORE</a>
+                         <a href="https://math-kannuruniv.github.io/research" class="text-ias-teal hover:underline font-medium mt-3 inline-block">LEARN MORE</a>
                      </div>
                       <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
                          <h3 class="text-lg font-medium text-ias-blue">Publications</h3>
@@ -379,7 +396,9 @@
 
             <div class="md:col-span-1">
                  <h2 class="text-2xl font-heading text-ias-blue mb-6">Programmes</h2> <div class="space-y-8"> <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                        <img src="https://placehold.co/600x400/EBF4FA/003366?text=MSc+Mathematics" alt="MSc Mathematics Program illustration" class="mb-4 rounded w-full">
+                        <div class="msc-image-container">
+                            <img src="MSc_Image.jpg" alt="MSc Mathematics Program illustration">
+                        </div>
                         <h3 class="text-xl font-semibold text-ias-blue">M.Sc. Mathematics Programme</h3>
                         <p class="text-sm text-gray-700 mt-2">
                             The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
