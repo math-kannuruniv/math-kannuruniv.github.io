@@ -11,6 +11,7 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/lora/v32/0QI-MX1D_JO_P-z_VA.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvEIDcmoIrZvjTeKhpO_mdGvIDP1tB.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <noscript>
         <style>
@@ -29,23 +30,78 @@
              /* Ensure full content is visible if JS is disabled */
             .collapsible-extra { display: block !important; } /* Use a generic class for collapsible sections */
             .read-more-button { display: none !important; }
+            /* Ensure column separators are visible without JS if needed */
+             .border-r { border-right-width: 1px !important; }
         </style>
     </noscript>
+    <style>
+        /* Custom styles for column separators */
+        /* Apply right border to the first two columns on medium screens and up */
+        @media (min-width: 768px) {
+            .main-content > .grid > div:nth-child(1),
+            .main-content > .grid > div:nth-child(2) {
+                border-right: 1px solid #e5e7eb; /* mild gray border */
+            }
+             /* Add some padding to the right of bordered columns to prevent content touching the border */
+            .main-content > .grid > div:nth-child(1),
+            .main-content > .grid > div:nth-child(2) {
+                padding-right: 1rem; /* Adjust as needed */
+            }
+             /* Add some padding to the left of the second and third columns */
+             .main-content > .grid > div:nth-child(2),
+             .main-content > .grid > div:nth-child(3) {
+                 padding-left: 1rem; /* Adjust as needed */
+             }
+        }
+
+         /* Adjust spacing for the site branding elements */
+        .site-branding .site-logo-link {
+            padding: 0.5rem 1rem; /* Adjust padding around logo */
+        }
+
+        .site-branding .site-title-link {
+             /* Removed ml-4 mr-4 */
+             margin-left: 1rem; /* Space after logo */
+             margin-right: 1rem; /* Space before dept title */
+        }
+
+         .site-branding .dept-title {
+             /* Removed mr-4 */
+             margin-right: 1rem; /* Space before menu */
+         }
+
+         /* Ensure nav items are aligned and spaced */
+         .site-header-inner {
+             align-items: center;
+         }
+
+         .site-header-inner .main-nav {
+             margin-left: auto; /* Push nav and search to the right */
+         }
+
+         .site-header-inner .header-right {
+             display: flex;
+             align-items: center;
+         }
+
+         .site-header-inner .header-right .search-form {
+             margin-left: 1rem; /* Space between nav and search */
+         }
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header class="site-header">
-        <div class="container site-header-inner flex items-center justify-between">
+        <div class="container site-header-inner flex justify-between">
             <div class="site-branding flex items-center">
-                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block mr-4">Department of Mathematical Sciences</a>
-                <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-4">
+                <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
                 </a>
-                <a href="https://www.kannuruniversity.ac.in/en/" class="site-title-link ml-4 mr-4 text-white">
+                <a href="https://www.kannuruniversity.ac.in/en/" class="site-title-link text-white">
                     <span class="site-title">Kannur University</span>
                 </a>
-            </div>
+                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block text-white">Department of Mathematical Sciences</a> </div>
 
             <div class="header-right flex items-center">
                 <nav id="desktop-nav" class="main-nav" aria-label="Main Navigation">
@@ -159,13 +215,80 @@
     </header>
 
     <section class="hero-section relative" aria-label="Department Header Image" style="background-image: url('MathDepartment.jpg'); background-size: cover; background-position: center; min-height: 400px;">
-        <div class="container absolute inset-0 flex items-center justify-center">
-             <h1 class="text-4xl md:text-6xl font-bold text-white text-center drop-shadow-lg">Department of Mathematical Sciences</h1>
-        </div>
+        <div class="container absolute bottom-0 left-0 p-4"> <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">Department of Mathematical Sciences</h1> </div>
     </section>
 
     <main id="main-content" class="main-content container">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="md:col-span-1">
+                <section class="news-announcements space-y-4">
+                    <h2 class="text-2xl font-heading text-ias-blue mb-6">News and Announcements</h2>
+                    <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
+                        <h3 class="text-lg font-medium text-ias-blue">Latest News Item Title</h3>
+                        <p class="text-sm text-gray-700 mt-2">Brief summary of the latest news or announcement...</p>
+                        <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">READ MORE</a>
+                    </div>
+                     <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
+                        <h3 class="text-lg font-medium text-ias-blue">Another Announcement</h3>
+                        <p class="text-sm text-gray-700 mt-2">Brief summary of another announcement...</p>
+                        <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">READ MORE</a>
+                    </div>
+                    </section>
+
+                <section class="research-section space-y-4 mt-8"> <h2 class="text-2xl font-heading text-ias-blue mb-6">Research</h2>
+                     <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
+                         <h3 class="text-lg font-medium text-ias-blue">Research Areas</h3>
+                         <p class="text-sm text-gray-700 mt-2">Information about the research areas within the department...</p>
+                         <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">LEARN MORE</a>
+                     </div>
+                      <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
+                         <h3 class="text-lg font-medium text-ias-blue">Publications</h3>
+                         <p class="text-sm text-gray-700 mt-2">Details about recent publications by faculty and scholars...</p>
+                         <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">VIEW PUBLICATIONS</a>
+                     </div>
+                     </section>
+            </div>
+
+            <div class="md:col-span-1">
+                 <h2 class="text-2xl font-heading text-ias-blue mb-6">Programmes</h2> <div class="space-y-8"> <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                        <img src="https://placehold.co/600x400/EBF4FA/003366?text=MSc+Mathematics" alt="MSc Mathematics Program illustration" class="mb-4 rounded w-full">
+                        <h3 class="text-xl font-semibold text-ias-blue">M.Sc. Mathematics Programme</h3>
+                        <p class="text-sm text-gray-700 mt-2">
+                            The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
+                        </p>
+                        <div class="collapsible-extra hidden">
+                            <p class="text-sm text-gray-700 mt-2">
+                                It is designed to provide students with an advanced understanding of various branches of pure and applied mathematics. The curriculum focuses on developing advanced knowledge in areas such as algebraic structures, real and complex analysis, topology, functional analysis, differential equations, and more. The program aims to enhance mathematical reasoning, problem-solving skills, and the ability to construct rigorous mathematical proofs.
+                            </p>
+                             <p class="text-sm text-gray-700 mt-2">
+                                Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
+                            </p>
+                        </div>
+                        <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="msc-collapsible-extra">
+                            READ MORE
+                        </button>
+                    </a>
+
+                    <a href="https://math-kannuruniv.github.io/programmes/phd" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                         <h3 class="text-xl font-semibold text-ias-blue">Doctoral Programme (Ph.D.)</h3>
+                         <p class="text-sm text-gray-700 mt-2">
+                             The Department of Mathematical Sciences at Kannur University offers a Doctoral Programme (Ph.D.) for students interested in pursuing advanced research in various areas of mathematics.
+                         </p>
+                         <div class="collapsible-extra hidden">
+                             <p class="text-sm text-gray-700 mt-2">
+                                The program provides a stimulating environment for in-depth study and original research under the guidance of experienced faculty members. Research areas may include pure mathematics, applied mathematics, and interdisciplinary fields.
+                             </p>
+                             <p class="text-sm text-gray-700 mt-2">
+                                 The program involves rigorous coursework and significant independent research culminating in a dissertation.
+                             </p>
+                         </div>
+                         <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="phd-collapsible-extra">
+                            READ MORE
+                        </button>
+                    </a>
+                 </div>
+            </div>
 
             <div class="md:col-span-1">
                 <h2 class="text-2xl font-heading text-ias-blue mb-6">Events and Activities</h2>
@@ -196,77 +319,6 @@
                         <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
                     </a>
                 </div>
-            </div>
-
-            <div class="md:col-span-1 space-y-8">
-                <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                    <img src="https://placehold.co/600x400/EBF4FA/003366?text=MSc+Mathematics" alt="MSc Mathematics Program illustration" class="mb-4 rounded w-full">
-                    <h3 class="text-xl font-semibold text-ias-blue">M.Sc. Mathematics Programme</h3>
-                    <p class="text-sm text-gray-700 mt-2">
-                        The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters. It is designed to provide students with an advanced understanding of various branches of pure and applied mathematics.
-                    </p>
-                    <div class="collapsible-extra hidden">
-                        <p class="text-sm text-gray-700 mt-2">
-                            The curriculum focuses on developing advanced knowledge in areas such as algebraic structures, real and complex analysis, topology, functional analysis, differential equations, and more. The program aims to enhance mathematical reasoning, problem-solving skills, and the ability to construct rigorous mathematical proofs.
-                        </p>
-                         <p class="text-sm text-gray-700 mt-2">
-                            Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
-                        </p>
-                    </div>
-                    <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="msc-collapsible-extra">
-                        READ MORE
-                    </button>
-                </a>
-
-                <a href="https://math-kannuruniv.github.io/programmes/phd" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                     <h3 class="text-xl font-semibold text-ias-blue">Doctoral Programme (Ph.D.)</h3>
-                     <p class="text-sm text-gray-700 mt-2">
-                         The Department of Mathematical Sciences at Kannur University offers a Doctoral Programme (Ph.D.) for students interested in pursuing advanced research in various areas of mathematics.
-                     </p>
-                     <div class="collapsible-extra hidden">
-                         <p class="text-sm text-gray-700 mt-2">
-                            The program provides a stimulating environment for in-depth study and original research under the guidance of experienced faculty members. Research areas may include pure mathematics, applied mathematics, and interdisciplinary fields.
-                         </p>
-                         <p class="text-sm text-gray-700 mt-2">
-                             The program involves rigorous coursework and significant independent research culminating in a dissertation.
-                         </p>
-                     </div>
-                     <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="phd-collapsible-extra">
-                        READ MORE
-                    </button>
-                </a>
-
-            </div>
-
-            <div class="md:col-span-1 space-y-8">
-                <section class="applications-section p-4 border border-gray-200 rounded-md shadow-sm">
-                    <h2 class="text-xl font-semibold text-ias-blue mb-4">Applications</h2>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="#" class="text-ias-blue hover:text-ias-teal font-medium">Memberships and How to Apply</a>
-                            <p class="text-sm text-gray-600">Deadline December 1</p>
-                        </li>
-                        <li>
-                            <a href="#" class="text-ias-blue hover:text-ias-teal font-medium">Women+ and Mathematics</a>
-                            <p class="text-sm text-gray-600">Deadline February 14</p>
-                        </li>
-                        <li>
-                            <a href="#" class="text-ias-blue hover:text-ias-teal font-medium">Summer Collaborators Program</a>
-                            <p class="text-sm text-gray-600">Deadline December 1</p>
-                        </li>
-                    </ul>
-                </section>
-
-                <section class="nsf-section p-4 border border-gray-200 rounded-md shadow-sm">
-                    <h3 class="text-xl font-semibold text-ias-blue mb-3">NSF</h3>
-                    <p class="text-sm text-gray-700 mb-4">
-                        The School of Mathematics wishes to acknowledge and thank the National Science Foundation for their generous support of the School's programs each year.
-                    </p>
-                    <img src="https://placehold.co/150x50/CCCCCC/003366?text=NSF+Logo" alt="NSF Logo" class="mb-4">
-                    <h4 class="text-md font-medium text-ias-blue mt-1">Mathematics Institutes</h4>
-                    <a href="#" class="text-ias-teal hover:underline block mt-1">NSF PRIMES</a>
-                    <img src="https://placehold.co/100x40/CCCCCC/003366?text=INSE+Logo" alt="INSE Logo (Placeholder)" class="mt-3">
-                </section>
             </div>
         </div>
     </main>
