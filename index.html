@@ -14,7 +14,6 @@
 
     <noscript>
         <style>
-            /* Styles for when JavaScript is disabled */
             /* Show desktop nav and hide mobile nav elements */
             .main-nav { display: block !important; }
             .mobile-nav, .mobile-menu-button { display: none !important; }
@@ -33,17 +32,13 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header class="site-header">
-        <div class="container site-header-inner">
-            <div class="site-branding">
-                <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
+        <div class="container site-header-inner flex items-center justify-between"> <div class="site-branding flex items-center"> <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-2">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
                     <span class="site-title">Kannur University</span>
                 </a>
-                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block">Department of Mathematical Sciences</a>
-            </div>
+                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block ml-4">Department of Mathematical Sciences</a> </div>
 
-            <div class="header-right">
-                <nav id="desktop-nav" class="main-nav hidden md:block" aria-label="Main Navigation">
+            <div class="header-right flex items-center"> <nav id="desktop-nav" class="main-nav" aria-label="Main Navigation">
                     <ul>
                         <li class="relative dropdown">
                             <a href="#" role="button" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
@@ -82,18 +77,14 @@
                     </ul>
                 </nav>
 
-                <button id="mobile-menu-button" class="mobile-menu-button md:hidden" aria-label="Toggle mobile menu" aria-controls="mobile-menu" aria-expanded="false">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <button id="mobile-menu-button" class="mobile-menu-button md:hidden ml-4" aria-label="Toggle mobile menu" aria-controls="mobile-menu" aria-expanded="false"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
 
-                <form action="/search" method="get" class="search-form">
-                    <input type="text" name="q" placeholder="Search..." class="hidden md:block" aria-label="Search">
+                <form action="/search" method="get" class="search-form ml-4 hidden md:block"> <input type="text" name="q" placeholder="Search..." aria-label="Search">
                     <button type="submit" class="ias-teal-bg button" aria-label="Search">
-                        <span class="hidden md:inline">SEARCH</span>
-                        <span class="md:hidden">Q</span>
-                    </button>
+                        <span>SEARCH</span> </button>
                 </form>
             </div>
         </div>
@@ -140,20 +131,16 @@
         </div>
     </header>
 
-    <section class="hero-section" aria-label="Department Header Image">
-        <div class="container">
-            <div class="hero-dept-name">
-                 Department of Mathematical Sciences
-            </div>
-        </div>
-    </section>
+    <section class="hero-section relative" aria-label="Department Header Image" style="background-image: url('MathDepartment.jpg'); background-size: cover; background-position: center; min-height: 400px;">
+        </section>
 
     <main id="main-content" class="main-content container">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <div class="md:col-span-1">
                 <h2 class="text-2xl font-heading text-ias-blue mb-6">Events and Activities</h2>
-                <div class="space-y-4"> <div class="event-card">
+                <div class="space-y-4">
+                    <div class="event-card">
                         <a href="https://swim-ksom.github.io/2025/">
                             <h3 class="text-lg font-medium event-title">SWIM@KSoM 2025</h3>
                             <p class="text-sm text-gray-600">May 05, 2025 - May 09, 2025</p>
@@ -174,7 +161,8 @@
                             <p class="text-sm text-gray-700">Affiliation: IISc Bangalore</p>
                         </a>
                     </div>
-                     <div class="event-card"> <a href="https://math-kannuruniv.github.io/events/2025-05-jaydeb">
+                     <div class="event-card">
+                         <a href="https://math-kannuruniv.github.io/events/2025-05-jaydeb">
                             <h3 class="text-lg font-medium event-title">Lecture by Jaydeb Sarkar</h3>
                             <p class="text-sm text-gray-600">May 27, 2025 | 2:00 pm</p>
                             <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
@@ -246,8 +234,12 @@
                 <div class="footer-contact">
                     <h4>Contact Us</h4>
                     <p>Department of Mathematical Sciences</p>
-                    <p>Kannur University, Thavakkara</p>
-                    <p>Kannur, Kerala, India - 670002</p>
+                    <p>Mangattuparamba Campus</p>
+                    <p>Mangattuparamba P.O</p>
+                    <p>Kannur District</p>
+                    <p>Kerala</p>
+                    <p>India</p>
+                    <p>Pin : 670567</p>
                     <p>Email: math@kannuruniv.ac.in</p>
                 </div>
                 <div class="footer-links">
@@ -284,8 +276,8 @@
             mobileMenuButton.addEventListener('click', () => {
                 const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('mobile-menu-hidden'); 
-                mobileMenu.classList.toggle('mobile-menu-visible'); 
+                mobileMenu.classList.toggle('mobile-menu-hidden');
+                mobileMenu.classList.toggle('mobile-menu-visible');
 
                 if (mainContent) {
                     mainContent.setAttribute('aria-hidden', String(!isExpanded));
@@ -297,11 +289,11 @@
         const desktopDropdownLinks = document.querySelectorAll('#desktop-nav .dropdown > a');
 
         desktopDropdownLinks.forEach(link => {
-            const dropdownMenu = link.nextElementSibling; 
+            const dropdownMenu = link.nextElementSibling;
 
             if (dropdownMenu) {
                 link.addEventListener('click', function(event) {
-                    event.preventDefault(); 
+                    event.preventDefault();
                     const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
                     document.querySelectorAll('#desktop-nav .dropdown-menu.show').forEach(openMenu => {
@@ -315,7 +307,7 @@
                     });
 
                     this.setAttribute('aria-expanded', String(!isExpanded));
-                    dropdownMenu.classList.toggle('show', !isExpanded); 
+                    dropdownMenu.classList.toggle('show', !isExpanded);
                 });
 
                 const focusableElements = Array.from(dropdownMenu.querySelectorAll('a'));
@@ -332,14 +324,14 @@
                     if (event.key === 'Escape') {
                         link.setAttribute('aria-expanded', 'false');
                         dropdownMenu.classList.remove('show');
-                        link.focus(); 
+                        link.focus();
                     }
                 });
                 dropdownMenu.addEventListener('keydown', (event) => {
                      if (event.key === 'Escape') {
                         link.setAttribute('aria-expanded', 'false');
                         dropdownMenu.classList.remove('show');
-                        link.focus(); 
+                        link.focus();
                     }
                 });
             }
@@ -350,13 +342,13 @@
 
         mobileDropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', function(event) {
-                event.preventDefault(); 
-                const currentDropdownLI = this.parentElement; 
+                event.preventDefault();
+                const currentDropdownLI = this.parentElement;
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
                 document.querySelectorAll('.mobile-nav .mobile-dropdown.open').forEach(openDropdownLI => {
                     if (openDropdownLI !== currentDropdownLI) {
-                        openDropdownLI.classList.remove('open'); 
+                        openDropdownLI.classList.remove('open');
                         const link = openDropdownLI.querySelector('a');
                         if (link) link.setAttribute('aria-expanded', 'false');
                     }
@@ -381,7 +373,7 @@
 
             if (mobileMenu && mobileMenu.classList.contains('mobile-menu-visible') &&
                 !mobileMenu.contains(event.target) && mobileMenuButton && !mobileMenuButton.contains(event.target)) {
-                mobileMenuButton.click(); 
+                mobileMenuButton.click();
             }
         });
 
