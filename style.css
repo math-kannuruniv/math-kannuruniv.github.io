@@ -303,7 +303,7 @@ a:hover, a:focus-visible {
 }
 
 .dropdown-menu {
-    display: none; /* Hidden by default */
+    display: none; /* Hidden by default - This is the rule that hides the sub-menus */
     position: absolute;
     top: 100%;
     left: 0;
@@ -401,11 +401,6 @@ a:hover, a:focus-visible {
     margin-top: var(--spacing-1); /* Use spacing variable */
 }
 
-.mobile-nav ul ul a {
-    font-size: var(--font-size-sm); /* Use font size variable */
-}
-
-/* Show mobile dropdown submenu when parent has 'open' class */
 .mobile-nav .mobile-dropdown.open > ul {
     display: block;
 }
