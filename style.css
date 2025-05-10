@@ -6,6 +6,11 @@
    4. Layout Components
    5. Color Themes
    6. Components
+       6.1 Header
+       6.2 Navigation (Desktop & Mobile)
+       6.3 Hero Section
+       6.4 Main Content (Cards, Prose, News)
+       6.5 Footer
    7. Utilities
    8. Media Queries
    9. Accessibility
@@ -17,23 +22,26 @@
 :root {
     /* Colors */
     --ias-blue: #003366; /* Deep blue */
-    --ias-light-blue: #f0f0f0; /* Light gray */
-    --ias-teal: #008080; /* Teal */
-    --ias-gold: #8a6100; /* Darker gold for better contrast (WCAG AA) */
+    --ias-light-blue: #f0f0f0; /* Light gray for backgrounds */
+    --ias-teal: #008080; /* Teal for accents and hover states */
+    --ias-gold: #8a6100; /* Darker gold for text, WCAG AA on white */
     --white: #ffffff;
     --black: #000000;
-    --gray-100: #f7f7f7; /* Lightest gray */
-    --gray-200: #e5e7eb; /* Lighter gray */
-    --gray-300: #d1d5db; /* Light gray */
-    --gray-400: #9ca3af; /* Medium gray */
-    --gray-600: #4b5563; /* Darker gray */
-    --gray-700: #374151; /* Even darker gray */
-    --gray-800: #1f2937; /* Dark gray */
-    --red-600: #dc2626; /* For video play button */
+    --gray-100: #f8f9fa; /* Slightly off-white for body background */
+    --gray-200: #e9ecef; /* Light gray for borders, dividers */
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd; /* Medium gray for secondary text */
+    --gray-600: #6c757d; /* Darker gray for text */
+    --gray-700: #495057; /* Even darker gray */
+    --gray-800: #343a40; /* Primary text color */
+    --gray-900: #212529; /* Very dark gray / soft black */
+    --red-600: #dc2626;
 
     /* Typography */
     --font-primary: 'Lora', Georgia, serif;
     --font-heading: 'Playfair Display', 'Times New Roman', serif;
+    --font-size-xs: 0.75rem;   /* 12px */
     --font-size-sm: 0.875rem; /* 14px */
     --font-size-base: 1rem;    /* 16px */
     --font-size-lg: 1.125rem;  /* 18px */
@@ -42,7 +50,7 @@
     --font-size-3xl: 1.875rem; /* 30px */
     --font-size-4xl: 2.25rem; /* 36px */
 
-    /* Spacing Scale (based on Tailwind defaults) */
+    /* Spacing Scale (based on 4px grid) */
     --spacing-0: 0;
     --spacing-px: 1px;
     --spacing-0-5: 0.125rem; /* 2px */
@@ -55,59 +63,46 @@
     --spacing-4: 1rem;      /* 16px */
     --spacing-5: 1.25rem;   /* 20px */
     --spacing-6: 1.5rem;    /* 24px */
-    --spacing-7: 1.75rem;   /* 28px */
     --spacing-8: 2rem;      /* 32px */
-    --spacing-9: 2.25rem;   /* 36px */
     --spacing-10: 2.5rem;   /* 40px */
-    --spacing-11: 2.75rem;  /* 44px */
     --spacing-12: 3rem;     /* 48px */
-    --spacing-14: 3.5rem;   /* 56px */
     --spacing-16: 4rem;     /* 64px */
     --spacing-20: 5rem;     /* 80px */
     --spacing-24: 6rem;     /* 96px */
-    --spacing-28: 7rem;     /* 112px */
-    --spacing-32: 8rem;     /* 128px */
-    --spacing-36: 9rem;     /* 144px */
-    --spacing-40: 10rem;    /* 160px */
-    --spacing-44: 11rem;    /* 176px */
-    --spacing-48: 12rem;    /* 192px */
-    --spacing-52: 13rem;    /* 208px */
-    --spacing-56: 14rem;    /* 224px */
-    --spacing-60: 15rem;    /* 240px */
-    --spacing-64: 16rem;    /* 256px */
-    --spacing-72: 18rem;    /* 288px */
-    --spacing-80: 20rem;    /* 320px */
-    --spacing-96: 24rem;    /* 384px */
 
     /* Layout */
     --container-max-width: 1200px;
-    --border-radius-sm: 0.25rem;
-    --border-radius-md: 0.5rem;
-    --border-radius-lg: 1rem;
+    --border-radius-sm: 0.25rem; /* 4px */
+    --border-radius-md: 0.5rem;  /* 8px */
+    --border-radius-lg: 1rem;    /* 16px */
     --border-radius-full: 9999px;
 
     /* Transitions */
-    --transition-fast: 0.2s ease-in-out;
+    --transition-fast: 0.15s ease-in-out;
     --transition-medium: 0.3s ease-in-out;
 
     /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --shadow-text: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-text: 1px 1px 3px rgba(0, 0, 0, 0.3);
 
     /* Z-index Scale */
     --z-base: 1;
-    --z-dropdown: 10;
-    --z-sticky: 100;
-    --z-fixed: 1000;
-    --z-modal: 10000;
+    --z-dropdown: 1000; /* Ensure dropdowns are above other content */
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-tooltip: 1070;
 }
 
 /* ==========================================================================
    2. Base Styles
    ========================================================================== */
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -115,25 +110,25 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 100%; /* Base font size */
+    font-size: 100%; /* Base font size for rem calculation */
+    line-height: 1.5; /* Default line height */
 }
 
 body {
     font-family: var(--font-primary);
-    line-height: 1.6;
     color: var(--gray-800);
-    background-color: var(--gray-100); /* Use gray-100 from variables */
+    background-color: var(--gray-100);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
 
-img {
+img, svg, video, canvas, audio, iframe, embed, object {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Basic button reset */
 button {
     background: none;
     color: inherit;
@@ -144,42 +139,38 @@ button {
     outline: inherit;
 }
 
-
 /* ==========================================================================
    3. Typography
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: var(--spacing-md);
+    font-weight: 700; /* Bolder headings */
+    line-height: 1.3; /* Tighter line height for headings */
+    margin-bottom: var(--spacing-4); /* Default bottom margin for headings */
+    color: var(--ias-blue); /* Default heading color */
 }
 
-h1 {
-    font-size: var(--font-size-4xl);
-}
-
-h2 {
-    font-size: var(--font-size-3xl);
-}
-
-h3 {
-    font-size: var(--font-size-2xl);
-}
+h1 { font-size: var(--font-size-4xl); } /* ~36px */
+h2 { font-size: var(--font-size-3xl); } /* ~30px */
+h3 { font-size: var(--font-size-2xl); } /* ~24px */
+h4 { font-size: var(--font-size-xl); }  /* ~20px */
+h5 { font-size: var(--font-size-lg); }  /* ~18px */
+h6 { font-size: var(--font-size-base); }/* ~16px */
 
 p {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-4); /* Consistent paragraph spacing */
 }
 
 a {
     color: var(--ias-blue);
-    text-decoration: none; /* Remove default underline */
-    transition: color var(--transition-fast), text-decoration var(--transition-fast);
+    text-decoration: none;
+    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
 }
 
 a:hover, a:focus-visible {
     color: var(--ias-teal);
-    text-decoration: underline; /* Add underline on hover/focus */
+    text-decoration: underline;
+    text-decoration-color: var(--ias-teal);
 }
 
 /* ==========================================================================
@@ -188,662 +179,463 @@ a:hover, a:focus-visible {
 .container {
     width: 100%;
     max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-4);  /* Default horizontal padding */
+    padding-right: var(--spacing-4);
 }
 
+/* Grid utilities (simple version, can be expanded) */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.gap-8 { gap: var(--spacing-8); }
+
+
 /* ==========================================================================
-   5. Color Themes
+   5. Color Themes & Backgrounds
    ========================================================================== */
 .ias-blue-bg {
     background-color: var(--ias-blue);
     color: var(--white);
 }
+.ias-blue-bg a { color: var(--gray-200); } /* Lighter links on dark blue bg */
+.ias-blue-bg a:hover, .ias-blue-bg a:focus-visible { color: var(--white); text-decoration-color: var(--white); }
+
 
 .ias-light-blue-bg {
     background-color: var(--ias-light-blue);
+    color: var(--gray-800);
 }
 
 .ias-teal-bg {
     background-color: var(--ias-teal);
     color: var(--white);
 }
+.ias-teal-bg:hover { background-color: #006666; } /* Darken teal on hover for buttons */
 
-.ias-gold-text {
-    color: var(--ias-gold);
-}
+
+.ias-gold-text { color: var(--ias-gold); }
 
 /* ==========================================================================
    6. Components
    ========================================================================== */
-/* Header */
+
+/* --------------------------------------------------------------------------
+   6.1 Header
+   -------------------------------------------------------------------------- */
 .site-header {
-    background-color: var(--ias-blue); /* Use color variable */
-    color: var(--white); /* Use color variable */
-    padding: var(--spacing-md) 0;
+    background-color: var(--ias-blue);
+    color: var(--white);
+    padding: var(--spacing-5) 0; /* MODIFIED: Increased padding for better proportion */
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: var(--z-sticky);
+    box-shadow: var(--shadow-md);
 }
 
 .site-header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap; /* Allow wrapping for smaller viewports if needed */
 }
 
 .site-branding {
     display: flex;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping for logo and titles */
-    margin-right: var(--spacing-6); /* Add space between branding and right section */
+    gap: var(--spacing-3); /* Space between logo and titles */
 }
 
 .site-logo-link {
      display: flex;
      align-items: center;
-     text-decoration: none; /* Remove underline from logo link */
+     text-decoration: none;
      color: inherit;
-     margin-right: var(--spacing-6); /* Space between logo and university title */
+}
+.site-logo-link:hover, .site-logo-link:focus-visible {
+    text-decoration: none; /* No underline for logo link */
+    opacity: 0.9;
 }
 
 .site-logo-img {
-    width: var(--spacing-10); /* Use spacing variable */
-    height: var(--spacing-10); /* Use spacing variable */
-    border-radius: var(--border-radius-full); /* Use border radius variable */
-    margin-right: var(--spacing-3); /* Use spacing variable */
+    width: var(--spacing-12);  /* MODIFIED: Increased logo size */
+    height: var(--spacing-12); /* MODIFIED: Increased logo size */
+    border-radius: var(--border-radius-full);
+    background-color: var(--white); /* Add a white background if logo is transparent */
+    padding: var(--spacing-0-5); /* Small padding if logo needs breathing room */
 }
 
 .site-title {
-    font-size: var(--font-size-xl); /* Use font size variable */
+    font-size: var(--font-size-xl);
     font-weight: 700;
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
 }
 
 .dept-title {
-    font-size: var(--font-size-lg); /* Use font size variable */
-    white-space: nowrap; /* Prevent wrapping */
+    font-size: var(--font-size-lg);
+    white-space: nowrap;
+    color: var(--gray-300); /* Subtler color for department title */
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    /* Allows the right section to take up remaining space and wrap */
-    flex-grow: 1;
-    justify-content: flex-end; /* Align items to the right */
-    gap: var(--spacing-4); /* Add space between nav/button and search */
+    gap: var(--spacing-3); /* Gap between nav, search, mobile button */
 }
 
+/* Search Form in Header */
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form input[type="text"] {
+    padding: var(--spacing-2) var(--spacing-3);
+    border: 1px solid var(--gray-400);
+    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    background-color: var(--white);
+    color: var(--gray-800);
+    max-width: 150px; /* Limit width */
+    transition: border-color var(--transition-fast);
+}
+.search-form input[type="text"]:focus {
+    border-color: var(--ias-teal);
+    outline: none;
+}
+
+.search-form button {
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    line-height: 1.21; /* To match input height */
+}
+
+
+/* --------------------------------------------------------------------------
+   6.2 Navigation (Desktop & Mobile)
+   -------------------------------------------------------------------------- */
 
 /* Desktop Navigation */
 .main-nav ul {
     display: flex;
     list-style: none;
-    gap: var(--spacing-6); /* Use spacing variable */
-    font-size: var(--font-size-sm); /* Use font size variable */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    gap: var(--spacing-1); /* Reduced gap for tighter nav */
 }
 
-.main-nav a {
-    color: inherit; /* Inherit color from parent (white) */
+.main-nav a { /* Applies to top-level links */
+    color: var(--white);
     text-decoration: none;
-    transition: opacity var(--transition-fast); /* Subtle hover effect */
-    display: block; /* Make links block for padding/hover area */
-    padding: var(--spacing-2) var(--spacing-3); /* Add padding to nav links */
-}
-
-.main-nav a:hover,
-.main-nav a:focus-visible {
-    opacity: 0.8;
-    text-decoration: underline;
-}
-
-/* Desktop Dropdown */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    /* --- Rule to hide desktop dropdown menus by default --- */
-    display: none; /* Hidden by default */
-
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 200px;
-    background-color: var(--white); /* Use color variable */
-    box-shadow: var(--shadow-md); /* Use shadow variable */
-    z-index: var(--z-dropdown); /* Use z-index variable */
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    overflow: hidden;
-    padding: var(--spacing-1) 0; /* Add padding */
-    list-style: none; /* Remove list style from dropdown */
-    margin: 0; /* Remove default margin */
-}
-
-.dropdown-menu a {
-    color: var(--gray-800); /* Use color variable */
-    padding: var(--spacing-2) var(--spacing-4); /* Use spacing variables */
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
     display: block;
-    text-decoration: none;
     transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.dropdown-menu a:hover,
-.dropdown-menu a:focus-visible {
-    background-color: var(--gray-200); /* Use color variable */
-    color: var(--ias-blue); /* Change text color on hover */
-    text-decoration: none; /* Remove underline on dropdown hover */
+.main-nav a:hover,
+.main-nav a:focus-visible,
+.main-nav li.relative.dropdown > a[aria-expanded="true"] { /* Highlight active dropdown toggle */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    text-decoration: none;
 }
 
-/* --- Rules to show desktop dropdown menu on interaction --- */
-.dropdown:hover > .dropdown-menu, /* Show on hover */
-.dropdown:focus-within > .dropdown-menu, /* Show when focus is inside the dropdown */
-.dropdown-menu.show { /* Show when .show class is added by JavaScript */
+/* Desktop Dropdown Menu */
+.main-nav .dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + var(--spacing-1)); /* Position below parent with a small gap */
+    background-color: var(--ias-blue); /* Consistent with header */
+    color: var(--white);
+    min-width: 220px;
+    z-index: var(--z-dropdown);
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+    padding: var(--spacing-2) 0; /* Vertical padding for the menu itself */
+    box-shadow: var(--shadow-lg);
+    opacity: 0; /* CORRECTED: Hidden by default */
+    visibility: hidden; /* CORRECTED: Hidden by default */
+    transform: translateY(var(--spacing-2)); /* Start slightly lower for animation */
+    transition: opacity var(--transition-medium) ease-out,
+                visibility var(--transition-medium) ease-out, /* Ensure visibility is transitioned */
+                transform var(--transition-medium) ease-out;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.main-nav .dropdown-menu.show {
+    opacity: 1; /* CORRECTED: Show */
+    visibility: visible; /* CORRECTED: Show */
+    transform: translateY(0);
+    pointer-events: auto; /* Allow interaction when shown */
+}
+
+.main-nav .dropdown-menu li a {
+    padding: var(--spacing-2) var(--spacing-4); /* Padding for dropdown items */
     display: block;
+    color: var(--white);
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+    font-weight: normal; /* Normal weight for dropdown items */
+    border-radius: 0; /* No border radius for individual items */
 }
 
+.main-nav .dropdown-menu li a:hover,
+.main-nav .dropdown-menu li a:focus-visible {
+    background-color: var(--ias-teal);
+    color: var(--white);
+}
 
 /* Mobile Menu Button */
 .mobile-menu-button {
-    background-color: var(--ias-teal); /* Use color variable */
-    color: var(--white); /* Use color variable */
-    padding: var(--spacing-2) var(--spacing-3); /* Use spacing variables */
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    transition: opacity var(--transition-fast);
-    /* Ensure button is visible on small screens and hidden on medium+ */
-    display: block; /* Default to block for mobile */
+    color: var(--white);
+    padding: var(--spacing-2);
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-fast);
+}
+.mobile-menu-button:hover, .mobile-menu-button:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.mobile-menu-button svg {
+    width: var(--spacing-6); /* 24px */
+    height: var(--spacing-6); /* 24px */
 }
 
-.mobile-menu-button:hover,
-.mobile-menu-button:focus-visible {
-    opacity: 0.9;
-}
 
-/* Mobile Navigation */
+/* Mobile Navigation Panel */
 .mobile-nav {
-    background-color: var(--gray-800); /* Use color variable */
-    color: var(--white); /* Use color variable */
-    padding: var(--spacing-md); /* Use spacing variable */
-    margin-top: var(--spacing-2); /* Use spacing variable */
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    /* Hidden by default, toggled by JS */
+    background-color: var(--ias-blue); /* Match header */
+    color: var(--white);
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+    border-top: 1px solid var(--ias-teal); /* Separator from header */
+    box-shadow: var(--shadow-md);
+}
+
+.mobile-nav.mobile-menu-hidden {
     display: none;
+}
+.mobile-nav.mobile-menu-visible {
+    display: block;
 }
 
 .mobile-nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
-
-/* Apply margin-bottom to list items in mobile nav */
-.mobile-nav ul > li:not(:last-child) {
-    margin-bottom: var(--spacing-2); /* Use spacing variable */
-}
-
-.mobile-nav a {
-    color: inherit;
+.mobile-nav ul li a { /* Top level mobile nav links */
     display: block;
-    padding: var(--spacing-1) 0;
+    padding: var(--spacing-3) var(--spacing-4);
+    color: var(--white);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    transition: background-color var(--transition-fast);
+}
+.mobile-nav ul li:last-child a {
+    border-bottom: none;
+}
+.mobile-nav ul li a:hover,
+.mobile-nav ul li a:focus-visible {
+    background-color: var(--ias-teal);
     text-decoration: none;
-    transition: opacity var(--transition-fast);
 }
 
-.mobile-nav a:hover,
-.mobile-nav a:focus-visible {
-    opacity: 0.8;
-    text-decoration: underline;
+/* Mobile Navigation Dropdowns */
+.mobile-nav .mobile-dropdown > a {
+    display: flex; /* Allows for an icon/arrow if added */
+    justify-content: space-between;
+    align-items: center;
+}
+/* Add an indicator for dropdowns (optional, requires adding span/svg in HTML) */
+/* .mobile-nav .mobile-dropdown > a::after { content: ' ▼'; font-size: 0.8em; } */
+/* .mobile-nav .mobile-dropdown.open > a::after { content: ' ▲'; } */
+
+
+.mobile-nav .mobile-dropdown > ul {
+    display: none; /* CORRECTED: Hidden by default */
+    list-style: none;
+    padding-left: 0; /* No extra indent, items will be indented */
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker bg for submenu */
+    margin-top: 0; /* Remove margin */
 }
 
-/* Mobile Dropdown Submenus */
-.mobile-nav ul ul {
-    /* Hidden by default - Explicitly set */
-    display: none;
-    padding-left: var(--spacing-4); /* Use spacing variable */
-    margin-top: var(--spacing-1); /* Use spacing variable */
-}
-
-.mobile-nav ul ul a {
-    font-size: var(--font-size-sm); /* Use font size variable */
-}
-
-/* Show mobile dropdown submenu when parent has 'open' class */
 .mobile-nav .mobile-dropdown.open > ul {
-    display: block;
+    display: block; /* CORRECTED: Show when parent li has .open */
+}
+
+.mobile-nav .mobile-dropdown ul li a {
+    padding: var(--spacing-2-5) var(--spacing-4) var(--spacing-2-5) var(--spacing-8); /* Indent submenu items */
+    font-size: var(--font-size-sm);
+    font-weight: normal;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Fainter separator for sub-items */
+}
+.mobile-nav .mobile-dropdown ul li:last-child a {
+    border-bottom: none;
 }
 
 
-/* Utility class to hide mobile menu - used by JS */
-.mobile-menu-hidden {
-    display: none;
-}
-
-
-/* Search Form */
-.search-form {
-    display: flex;
-    /* Allow search form to take up space on small screens */
-    flex-grow: 1;
-}
-
-.search-form input[type="text"] {
-    padding: var(--spacing-2) var(--spacing-3); /* Use spacing variables */
-    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md); /* Use border radius variable */
-    border: 0;
-    outline: none;
-    /* Allow input to grow */
-    flex-grow: 1;
-}
-
-.search-form button[type="submit"] {
-    background-color: var(--ias-teal); /* Use color variable */
-    color: var(--white); /* Use color variable */
-    padding: var(--spacing-2) var(--spacing-4); /* Use spacing variables */
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    transition: opacity var(--transition-fast);
-}
-
-.search-form button[type="submit"]:hover,
-.search-form button[type="submit"]:focus-visible {
-    opacity: 0.9;
-}
-
-/* Adjust search button radius when input is visible */
-.search-form input[type="text"]:not(.hidden) + button[type="submit"] {
-     border-top-left-radius: 0;
-     border-bottom-left-radius: 0;
-}
-
-
-/* Hero Section */
+/* --------------------------------------------------------------------------
+   6.3 Hero Section
+   -------------------------------------------------------------------------- */
 .hero-section {
-    /* Updated path for background image */
-    background-image: url('MathDepartment.jpg'); /* Ensure correct path */
+    background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('MathDepartment.jpg');
     background-size: cover;
     background-position: center;
     color: var(--white);
-    text-shadow: var(--shadow-text);
-    position: relative;
-    min-height: 60vh; /* Ensure minimum height */
-    display: flex;
-    align-items: flex-end; /* Align text to the bottom */
-    padding: var(--spacing-xl); /* Use spacing variable */
+    padding: var(--spacing-16) 0; /* Generous padding */
+    text-align: center;
 }
 
 .hero-dept-name {
-    font-size: var(--font-size-4xl); /* Use font size variable */
-    font-weight: 600;
-    max-width: 80%; /* Prevent text from running too wide */
-    /* Position relative to the flex container */
-    position: static;
-    bottom: auto;
-    left: auto;
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    text-shadow: var(--shadow-text);
 }
 
 
-/* Main Content */
+/* --------------------------------------------------------------------------
+   6.4 Main Content
+   -------------------------------------------------------------------------- */
 .main-content {
-    padding-top: var(--spacing-8); /* Use spacing variable */
-    padding-bottom: var(--spacing-8); /* Use spacing variable */
+    padding-top: var(--spacing-8);
+    padding-bottom: var(--spacing-8);
 }
 
 /* Event Cards */
 .event-card {
-    padding: var(--spacing-sm) 0; /* Use spacing variable */
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    transition: background-color var(--transition-fast);
-    cursor: pointer;
-    border-left: 3px solid transparent; /* For hover effect */
+    background-color: var(--white);
+    padding: var(--spacing-4);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-medium);
+    margin-bottom: var(--spacing-4); /* Space between cards */
 }
-
-.event-card:hover, .event-card:focus-within {
-    background-color: var(--gray-200); /* Use color variable */
-    border-left-color: var(--ias-blue); /* Add left border on hover */
+.event-card:hover {
+    box-shadow: var(--shadow-md);
 }
+.event-card a { text-decoration: none; color: inherit; }
+.event-card a:hover .event-title { color: var(--ias-teal); }
 
-.event-card a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    padding: var(--spacing-sm) var(--spacing-md); /* Use spacing variables */
+.event-title {
+    font-size: var(--font-size-lg); /* Slightly smaller for card titles */
+    color: var(--ias-blue);
+    margin-bottom: var(--spacing-1);
 }
-
-.event-card:hover .event-title,
-.event-card a:focus-visible .event-title {
-    color: var(--ias-blue); /* Use color variable */
-    text-decoration: underline; /* Add underline on hover/focus */
-}
-
 .event-card p {
-    margin-bottom: var(--spacing-sm); /* Smaller margin for text within card */
+    margin-bottom: var(--spacing-1);
+    font-size: var(--font-size-sm);
 }
+.event-card .text-gray-600 { color: var(--gray-600); }
+.event-card .text-gray-700 { color: var(--gray-700); }
 
+/* Prose for article content */
+.prose h2 { margin-top: var(--spacing-8); }
+.prose p { line-height: 1.7; font-size: var(--font-size-base); }
+.prose a { text-decoration: underline; }
+.prose a:hover { color: var(--ias-teal); }
 
-/* Buttons */
-.button {
-    display: inline-block; /* Make it behave like a button */
-    padding: var(--spacing-2) var(--spacing-4); /* Use spacing variables */
-    border: none;
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    cursor: pointer;
-    transition: background-color var(--transition-fast), opacity var(--transition-fast);
-    text-decoration: none; /* Ensure no underline on button links */
-    text-align: center; /* Center text */
+/* News Items */
+.news-item {
+    background-color: var(--white);
+    border: 1px solid var(--gray-200);
 }
-
-.button-primary {
-    background-color: var(--ias-blue); /* Use color variable */
-    color: var(--white); /* Use color variable */
-}
-
-.button-primary:hover,
-.button-primary:focus-visible {
-    background-color: var(--ias-teal); /* Use color variable */
-    opacity: 1; /* Ensure full opacity */
-}
-
-.button-secondary {
-    background-color: var(--gray-300); /* Use color variable */
-    color: var(--gray-800); /* Use color variable */
-}
-
-.button-secondary:hover,
-.button-secondary:focus-visible {
-    background-color: var(--gray-400); /* Slightly darker gray on hover */
-    opacity: 1; /* Ensure full opacity */
-}
-
-.button-accent {
-    background-color: var(--ias-gold); /* Use color variable */
-    color: var(--white); /* Use color variable */
-}
-
-.button-accent:hover,
-.button-accent:focus-visible {
-    background-color: #7d5a00; /* Manual darker shade */
-    opacity: 0.9; /* Subtle opacity change */
-}
+.news-item h3 { font-size: var(--font-size-xl); }
 
 
-/* Footer */
+/* --------------------------------------------------------------------------
+   6.5 Footer
+   -------------------------------------------------------------------------- */
 .site-footer {
-    background-color: var(--ias-blue); /* Use color variable */
-    color: var(--white); /* Use color variable */
-    padding: var(--spacing-8) 0; /* Use spacing variable */
-    font-size: var(--font-size-sm); /* Use font size variable */
+    padding: var(--spacing-8) 0;
+    font-size: var(--font-size-sm);
 }
 
-.site-footer .container {
+.footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-    gap: var(--spacing-8); /* Use spacing variable */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
 }
 
-.site-footer h3 {
-    font-size: var(--font-size-lg); /* Use font size variable */
-    margin-bottom: var(--spacing-md); /* Use spacing variable */
-    font-weight: 600;
+.site-footer h4 {
+    font-family: var(--font-heading); /* Use heading font for footer titles */
+    font-size: var(--font-size-lg);
+    color: var(--gray-300); /* Lighter color for titles on dark bg */
+    margin-bottom: var(--spacing-3);
 }
 
-.site-footer address {
-    font-style: normal; /* Remove italic */
+.site-footer p, .site-footer ul li {
+    margin-bottom: var(--spacing-2);
 }
 
-.site-footer address p {
-    margin-bottom: var(--spacing-xs); /* Smaller margin for address lines */
-}
-
-.site-footer address p:last-child {
-    margin-bottom: 0;
-}
-
-.site-footer a {
-    color: var(--white); /* Ensure footer links are white */
-    text-decoration: none;
-    transition: opacity var(--transition-fast);
-}
-
-.site-footer a:hover,
-.site-footer a:focus-visible {
-    opacity: 0.8;
-    text-decoration: underline;
-}
-
-.site-footer ul {
+.footer-links ul {
     list-style: none;
-    padding: 0;
 }
 
-.site-footer ul li {
-    margin-bottom: var(--spacing-2); /* Use spacing variable */
-}
-
-.site-footer .social-links a {
-    display: inline-block;
-    margin-right: var(--spacing-4); /* Use spacing variable */
-    font-size: var(--font-size-xl); /* Use font size variable */
-}
-
-.site-footer .social-links a:last-child {
-    margin-right: 0;
-}
-
-.site-footer .copyright {
-    margin-top: var(--spacing-8); /* Use spacing variable */
+.footer-bottom {
     text-align: center;
-    color: var(--gray-400); /* Use color variable */
-}
-
-
-/* Footer Navigation Section */
-.footer-nav-section {
-    background-color: var(--ias-light-blue); /* Use color variable */
-    padding: var(--spacing-4) 0; /* Use spacing variable */
-}
-
-.footer-nav-horizontal ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-    gap: var(--spacing-4); /* Reduced gap for less clutter */
-    padding: 0;
-    margin: 0; /* Ensure no default margin */
-}
-
-.footer-nav-horizontal li {
-     /* Add some padding to list items for better click/tap area */
-    padding: var(--spacing-1) var(--spacing-2);
-}
-
-.footer-nav-horizontal a {
-    color: var(--gray-800); /* Use color variable */
-    text-decoration: none;
-    transition: opacity var(--transition-fast);
-    font-size: var(--font-size-sm); /* Use small font size */
-}
-
-.footer-nav-horizontal a:hover,
-.footer-nav-horizontal a:focus-visible {
-    opacity: 0.8;
-    text-decoration: underline;
-}
-
-
-/* Video Thumbnail with Play Button */
-.video-thumbnail {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    border-radius: var(--border-radius-md); /* Use border radius variable */
-    overflow: hidden; /* Hide overflow from rounded corners */
-}
-
-.video-thumbnail img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.video-thumbnail .play-button {
-    position: absolute;
-    inset: 0; /* Cover the entire area */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
-    transition: background-color var(--transition-fast);
-}
-
-.video-thumbnail .play-button:hover,
-.video-thumbnail .play-button:focus-visible {
-    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay on hover */
-}
-
-.video-thumbnail .play-button svg {
-    width: var(--spacing-12); /* Use spacing variable */
-    height: var(--spacing-12); /* Use spacing variable */
-    color: var(--red-600); /* Use color variable */
-    opacity: 0.75;
-    transition: opacity var(--transition-fast);
-}
-
-.video-thumbnail .play-button:hover svg,
-.video-thumbnail .play-button:focus-visible svg {
-    opacity: 1;
+    padding-top: var(--spacing-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border on dark bg */
+    color: var(--gray-400); /* Lighter text for copyright */
 }
 
 
 /* ==========================================================================
    7. Utilities
    ========================================================================== */
-.visually-hidden {
+.skip-link {
     position: absolute;
+    left: -9999px; /* Send off-screen */
+    top: auto;
     width: 1px;
     height: 1px;
-    padding: 0;
-    margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+    z-index: -999; /* Ensure it's not accidentally visible */
+    background-color: var(--ias-teal);
+    color: var(--white);
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
 }
-
-.hidden {
-    display: none !important; /* Use !important for utility */
-}
-
-.flex {
-    display: flex;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.flex-wrap {
-    flex-wrap: wrap;
-}
-
-.flex-grow {
-    flex-grow: 1;
-}
-
-.mb-4 {
-    margin-bottom: var(--spacing-4);
-}
-
-.mr-6 {
-    margin-right: var(--spacing-6);
-}
-
-.px-3 {
-    padding-left: var(--spacing-3);
-    padding-right: var(--spacing-3);
-}
-
-.py-1 {
-    padding-top: var(--spacing-1);
-    padding-bottom: var(--spacing-1);
-}
-
-.rounded-md {
-    border-radius: var(--border-radius-md);
-}
-
-.hover\:underline:hover {
-    text-decoration: underline;
-}
-
-.hover\:opacity-90:hover {
-    opacity: 0.9;
-}
-
-.space-x-6 > *:not([hidden]) ~ *:not([hidden]) {
-    margin-right: 0;
-    margin-left: var(--spacing-6);
-}
-
-.space-y-2 > *:not([hidden]) ~ *:not([hidden]) {
-    margin-bottom: 0;
-    margin-top: var(--spacing-2);
-}
-
-.grid {
-    display: grid;
-}
-
-.grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.gap-8 {
-    gap: var(--spacing-8);
-}
-
-.max-w-sm {
-    max-width: 24rem; /* Tailwind default sm */
-}
-
-.w-full {
-    width: 100%;
-}
-
-.h-auto {
+.skip-link:focus {
+    left: var(--spacing-4);
+    top: var(--spacing-4);
+    width: auto;
     height: auto;
+    overflow: auto;
+    z-index: var(--z-modal); /* Ensure it's on top when focused */
 }
 
-.mb-2 {
-    margin-bottom: var(--spacing-2);
-}
+.hidden { display: none !important; } /* Tailwind-like hidden */
+.relative { position: relative; } /* Tailwind-like relative */
+.text-sm { font-size: var(--font-size-sm); }
+.text-lg { font-size: var(--font-size-lg); }
+.font-medium { font-weight: 500; }
+.space-y-2 > * + * { margin-top: var(--spacing-2); } /* Tailwind-like space-y */
+.space-y-4 > * + * { margin-top: var(--spacing-4); }
+.mt-8 { margin-top: var(--spacing-8); }
+.p-4 { padding: var(--spacing-4); }
+.border { border-width: 1px; }
+.border-gray-200 { border-color: var(--gray-200); }
+.rounded-md { border-radius: var(--border-radius-md); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.transition-shadow { transition-property: box-shadow; transition-timing-function: ease-in-out; transition-duration: var(--transition-medium); }
 
-.mb-4 {
-    margin-bottom: var(--spacing-4);
-}
 
-.mt-4 {
-    margin-top: var(--spacing-4);
-}
-
-.mt-8 {
-    margin-top: var(--spacing-8);
-}
-
-.py-4 {
-    padding-top: var(--spacing-4);
-    padding-bottom: var(--spacing-4);
-}
-
-.px-4 {
-    padding-left: var(--spacing-4);
-    padding-right: var(--spacing-4);
+/* Basic button styling (can be extended) */
+.button {
+    display: inline-block;
+    padding: var(--spacing-2-5) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    cursor: pointer;
 }
 
 
@@ -851,281 +643,90 @@ a:hover, a:focus-visible {
    8. Media Queries
    ========================================================================== */
 
-/* Medium screens and up (md) */
-@media (min-width: 768px) {
-    .md\:flex-nowrap {
-        flex-wrap: nowrap;
-    }
-
-    .md\:flex-grow-0 {
-        flex-grow: 0;
-    }
-
-    .md\:block {
-        display: block;
-    }
-
-    .md\:hidden {
-        display: none;
-    }
-
-    .md\:rounded-l-none {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    .md\:col-span-1 {
-        grid-column: span 1 / span 1;
-    }
-
-    .md\:grid-cols-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-     .md\:grid-cols-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .md\:w-auto {
-        width: auto;
-    }
-
-    .md\:space-x-6 > *:not([hidden]) ~ *:not([hidden]) {
-        margin-right: 0;
-        margin-left: var(--spacing-6);
-    }
-
-    .md\:space-y-0 > *:not([hidden]) ~ *:not([hidden]) {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-     .md\:h-16 {
-        height: var(--spacing-16);
-    }
-
-     .md\:w-16 {
-        width: var(--spacing-16);
-    }
-
-    /* Hide mobile menu and button on medium+ screens */
-    .mobile-nav,
-    .mobile-menu-button {
-        display: none !important;
-    }
-
-    /* Ensure desktop nav is block on medium+ screens */
-    .main-nav {
-        display: block !important;
-    }
-}
-
-/* Large screens and up (lg) */
-@media (min-width: 1024px) {
-     html {
-        font-size: 100%; /* Keep base font size */
-    }
-
-    .container {
-        padding: 0 var(--spacing-lg); /* Increase container padding on larger screens */
-    }
-
-    .lg\:grid-cols-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .hero-section {
-         min-height: 70vh; /* Taller hero on large screens */
-         padding: var(--spacing-2xl);
-    }
-
-     .hero-dept-name {
-        font-size: var(--font-size-4xl); /* Maintain large font size */
-    }
-}
-
-
-/* Extra large screens and up (xl) */
-@media (min-width: 1280px) {
-    .container {
-        padding: 0 var(--spacing-xl); /* Further increase container padding */
-    }
-}
-
-
-@media (max-width: 767px) { /* Styles for screens smaller than md */
-    html {
-        font-size: 95%; /* Slightly reduce base font size on smaller screens */
-    }
+/* Medium screens and up (tablets, small desktops) */
+@media (min-width: 768px) { /* md breakpoint */
+    .md\:block { display: block !important; }
+    .md\:hidden { display: none !important; }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .md\:col-span-1 { grid-column: span 1 / span 1; }
+    .md\:col-span-2 { grid-column: span 2 / span 2; }
 
     .hero-dept-name {
-        font-size: var(--font-size-3xl); /* Use font size variable */
+        font-size: 3.5rem; /* Larger hero text on bigger screens */
     }
-
-    .hero-section {
-        min-height: 40vh; /* Shorter hero on small screens */
-        padding: var(--spacing-lg); /* Use spacing variable */
-    }
-
-    .site-header-inner { /* Adjust header layout on small screens */
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-4); /* Add space between branding and right section */
-    }
-
-    .site-branding {
-         margin-right: 0; /* Remove margin on small screens */
-         width: 100%; /* Take full width */
-         justify-content: space-between; /* Space out logo and dept title */
-    }
-
-    .site-logo-link {
-         margin-right: var(--spacing-4); /* Adjust space between logo and university title */
-    }
-
-    .header-right {
-        width: 100%; /* Take full width */
-        justify-content: space-between; /* Space out button and search */
-        gap: var(--spacing-4); /* Add space between button and search */
-    }
-
-    .main-nav { /* Hide desktop nav on small screens */
-        display: none;
-    }
-
-    /* Ensure mobile menu is block when not hidden */
-    .mobile-nav:not(.mobile-menu-hidden) {
-        display: block;
-    }
-
-    .footer-nav-horizontal ul {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-md); /* Use spacing variable */
-    }
+    .main-nav ul { gap: var(--spacing-3); } /* Slightly more space for desktop nav items */
 }
 
-@media (max-width: 480px) { /* Styles for extra small screens */
-    html {
-        font-size: 90%;
-    }
-
-    .hero-dept-name {
-        font-size: var(--font-size-2xl); /* Use font size variable */
-    }
-
-    .site-logo-img {
-        width: var(--spacing-8);
-        height: var(--spacing-8);
-    }
-
-    .site-title {
-        font-size: var(--font-size-lg);
-    }
-
-    .dept-title {
-        font-size: var(--font-size-base);
-    }
-
-    .site-branding {
-        flex-direction: column; /* Stack logo and titles */
-        align-items: flex-start;
-        gap: var(--spacing-2); /* Add space between stacked items */
-    }
-
-    .site-logo-link {
-         margin-right: 0; /* Remove margin when stacked */
-    }
+/* Large screens (desktops) */
+@media (min-width: 1024px) { /* lg breakpoint */
+    .lg\:text-4xl { font-size: var(--font-size-4xl); }
 }
 
 
 /* ==========================================================================
-   9. Accessibility
+   9. Accessibility & Print
    ========================================================================== */
-/* Use focus-visible for better keyboard navigation indication */
-:focus-visible {
-    outline: 3px solid var(--ias-teal); /* Use color variable */
-    outline-offset: 3px;
+/* Focus visible polyfill or ensure outlines are clear */
+*:focus-visible {
+    outline: 2px solid var(--ias-teal);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.3); /* Softer glow for focus */
 }
-
-/* Remove default outline for mouse users */
-:focus:not(:focus-visible) {
+/* Remove default outline if using custom focus-visible */
+*:focus {
     outline: none;
 }
 
 
-.skip-link {
-    position: absolute;
-    top: -40px; /* Off-screen by default */
-    left: 0;
-    background: var(--ias-blue); /* Use color variable */
-    color: var(--white); /* Use color variable */
-    padding: var(--spacing-sm) var(--spacing-md); /* Use spacing variables */
-    z-index: var(--z-fixed); /* Use z-index variable */
-    transition: top var(--transition-fast);
-}
-
-.skip-link:focus {
-    top: 0; /* Bring into view on focus */
-}
-
-/* Reduce motion for users who prefer it */
+/* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    * {
+    html {
+        scroll-behavior: auto; /* Disable smooth scrolling */
+    }
+    *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        transition-delay: 0ms !important;
     }
 }
 
 /* Print styles */
 @media print {
-    .hero-section {
-        background-image: none;
-        color: var(--black); /* Ensure text is black for printing */
-        text-shadow: none;
+    body {
+        background-color: var(--white);
+        color: var(--black);
+        font-size: 12pt; /* Standard print font size */
     }
-
-    a {
-        text-decoration: underline;
-        color: var(--black); /* Ensure links are black for printing */
-    }
-
-    /* Hide elements not needed for print */
     .site-header,
-    .footer-nav-section,
-    .site-footer,
     .mobile-menu-button,
-    .search-form {
+    .search-form,
+    .hero-section, /* Often not needed in print */
+    .site-footer {
         display: none !important;
     }
-
-    /* Ensure main content is visible */
     .main-content {
-        display: block !important;
-        width: auto !important;
-        margin: 0 !important;
-        padding: var(--spacing-md) !important;
+        padding-top: 0;
+        padding-bottom: 0;
     }
-
-    /* Adjust grid layout for print */
-    .main-content .grid {
-        grid-template-columns: 1fr !important;
-        gap: var(--spacing-md) !important;
+    .container {
+        max-width: 100%;
+        padding: 0;
     }
-
+    a {
+        color: var(--black);
+        text-decoration: underline;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--black);
+        page-break-after: avoid;
+    }
+    .event-card, .news-item {
+        box-shadow: none;
+        border: 1px solid var(--gray-300);
+        page-break-inside: avoid;
+    }
     img {
-        max-width: 50% !important; /* Reduce image size for print */
-        margin: 0 auto !important; /* Center images */
-    }
-
-    h1, h2, h3 {
-        page-break-after: avoid; /* Avoid breaking headings across pages */
-    }
-
-    p {
-        orphans: 3; /* Prevent single lines at the bottom of a page */
-        widows: 3; /* Prevent single lines at the top of a page */
+        max-width: 300px !important; /* Limit image size in print */
     }
 }
