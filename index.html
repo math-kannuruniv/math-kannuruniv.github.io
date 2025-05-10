@@ -520,7 +520,8 @@
            6.3 Hero Section
            -------------------------------------------------------------------------- */
         .hero-section {
-            background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('MathDepartment.jpg');
+            /* Removed linear gradient overlay */
+            background-image: url('MathDepartment.jpg');
             background-size: cover;
             background-position: center;
             color: var(--white);
@@ -609,7 +610,21 @@
              overflow: hidden; /* Hide the overflowing parts of the image */
              margin-bottom: 1rem; /* Space below the image */
              border-radius: 0.25rem; /* Match card border-radius */
+             /* Added gradient overlay */
+             position: relative; /* Needed for absolute positioning of pseudo-element */
          }
+
+         .msc-image-container::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,51,102,0.5) 100%); /* Gradient from transparent to dark blue */
+             z-index: 1; /* Ensure gradient is above the image */
+         }
+
 
          .msc-image-container img {
              display: block; /* Remove extra space below image */
@@ -617,6 +632,8 @@
              height: auto; /* Maintain aspect ratio */
              object-fit: cover; /* Cover the container while maintaining aspect ratio */
              object-position: center; /* Center the image within the container */
+             position: relative; /* Needed for z-index to be below gradient */
+             z-index: 0;
          }
 
 
@@ -932,6 +949,9 @@
                     <h2 class="text-2xl font-heading mb-6">News and Announcements</h2>
                     <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
                         <h3 class="text-lg font-medium">Admissions Open: MSc Mathematics (2025–2027) at Kannur University</h3>
+                        <div class="msc-image-container">
+                            <img src="MSc_Image.jpg" alt="MSc Mathematics Program illustration">
+                        </div>
                         <p class="text-sm text-gray-700 mt-2">
                             Applications are now invited for the MSc Mathematics program at the Department of Mathematical Sciences, Kannur University, for the academic years 2025–2027.
                         </p>
@@ -954,28 +974,38 @@
                             READ MORE
                         </button>
                     </div>
-                     <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
-                        <h3 class="text-lg font-medium">Another Announcement</h3> <p class="text-sm text-gray-700 mt-2">Brief summary of another announcement...</p>
-                        <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">READ MORE</a>
-                    </div>
                     </section>
 
-                <section class="research-section space-y-4 mt-8"> <h2 class="text-2xl font-heading mb-6">Research</h2> <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
-                         <h3 class="text-lg font-medium">Research Areas</h3> <p class="text-sm text-gray-700 mt-2">Information about the research areas within the department...</p>
-                         <a href="https://math-kannuruniv.github.io/research" class="text-ias-teal hover:underline font-medium mt-3 inline-block">LEARN MORE</a>
-                     </div>
-                      <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
-                         <h3 class="text-lg font-medium">Publications</h3> <p class="text-sm text-gray-700 mt-2">Details about recent publications by faculty and scholars...</p>
-                         <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">VIEW PUBLICATIONS</a>
-                     </div>
+                <section class="research-section space-y-4 mt-8">
+                    <h2 class="text-2xl font-heading mb-6">Research</h2>
+                    <a href="https://math-kannuruniv.github.io/research" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                        <h3 class="text-lg font-medium">Research Areas</h3>
+                         <p class="text-sm text-gray-700 mt-2">
+                            Explore the diverse research areas within our department, including:
+                        </p>
+                        <div class="collapsible-extra hidden">
+                            <p class="text-sm text-gray-700 mt-2 font-bold">Harmonic Analysis & Functional Inequalities</p>
+                            <p class="text-sm text-gray-700 mt-2">
+                                Research in this area focuses on extending classical inequalities (Hardy, Sobolev, Stein-Weiss) to non-Euclidean geometries governed by Dunkl operators, differential-difference tools for symmetric spaces. Key contributions include fractional calculus adaptations, trace theorems, and variational methods for PDEs in singular or reflection-invariant domains. This work bridges harmonic analysis, geometric measure theory, and mathematical physics, with collaborations advancing extremal functions and weighted Sobolev spaces.
+                            </p>
+                            <p class="text-sm text-gray-700 mt-2 font-bold">Operator Algebras & Quantum Structures</p>
+                            <p class="text-sm text-gray-700 mt-2">
+                                This work explores planar algebras, subfactor theory, and their connections to quantum information and mathematical physics. Highlights include combinatorial constructions (e.g., Latin squares), Fourier-theoretic inequalities for C*-algebra inclusions, and equilibrium states (KMS conditions) in quantum statistical mechanics. Collaborations reveal deep ties between algebraic structures, entanglement, and quantum computing, offering tools for both foundational theory and applied quantum systems.
+                            </p>
+                            <p class="text-sm text-gray-700 mt-2 font-bold">Spectral Synthesis & Approximation Theory</p>
+                            <p class="text-sm text-gray-700 mt-2">
+                                Pioneering studies on Wiener-Ditkin sets and spectral synthesis address stability under unions/intersections and approximation limits in harmonic analysis. Foundational results include nonsynthesizable sets, weak Ditkin properties, and spectral behavior on locally compact groups. Collaborative efforts refine ideals in function algebras, with implications for Fourier analysis and topological group theory.
+                            </p>
+                        </div>
+                        <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
+                            READ MORE
+                        </button>
+                    </a>
                      </section>
             </div>
 
             <div class="md:col-span-1">
                  <h2 class="text-2xl font-heading mb-6">Programmes</h2> <div class="space-y-8"> <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                        <div class="msc-image-container">
-                            <img src="MSc_Image.jpg" alt="MSc Mathematics Program illustration">
-                        </div>
                         <h3 class="text-xl font-semibold">M.Sc. Mathematics Programme</h3> <p class="text-sm text-gray-700 mt-2">
                             The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
                         </p>
@@ -1013,31 +1043,41 @@
 
             <div class="md:col-span-1">
                 <h2 class="text-2xl font-heading mb-6">Events and Activities</h2> <div class="space-y-4">
-                    <a href="https://math-kannuruniv.github.io/events/madhava/2025-06-Sandeep" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                     <a href="https://math-kannuruniv.github.io/events/madhava/2025-06-Sandeep" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
                         <h3 class="text-lg font-medium event-title">Madhava Lecture Series</h3>
                         <p class="text-sm text-gray-600">June 16-20, 2025</p>
                         <p class="text-sm text-gray-700">A week-long lecture series on an advanced topic by a leading expert. Featuring Prof. K. Sandeep, Bhatnagar award winner.</p>
                     </a>
-                    <a href="https://swim-ksom.github.io/2025/" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                        <h3 class="text-lg font-medium event-title">SWIM@KSoM 2025</h3>
-                        <p class="text-sm text-gray-600">May 05, 2025 - May 09, 2025</p>
-                        <p class="text-sm text-gray-700">Summer Workshop in Mathematics</p>
-                    </a>
-                    <a href="https://math-kannuruniv.github.io/events/2025-05-Anand" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                        <h3 class="text-lg font-medium event-title">Lecture by Anandavardhanan U K</h3>
-                        <p class="text-sm text-gray-600">May 10, 2025 | 11:00 am</p>
-                        <p class="text-sm text-gray-700">Affiliation: IIT Bombay</p>
+                    <a href="https://math-kannuruniv.github.io/events/2025-05-jaydeb" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                        <h3 class="text-lg font-medium event-title">Lecture by Jaydeb Sarkar</h3>
+                        <p class="text-sm text-gray-600">May 27, 2025 | 2:00 pm</p>
+                        <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
                     </a>
                     <a href="https://math-kannuruniv.github.io/events/2025-05-nands" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
                         <h3 class="text-lg font-medium event-title">Lecture by A K Nandakumaran</h3>
                         <p class="text-sm text-gray-600">May 27, 2025 | 10:00 am</p>
                         <p class="text-sm text-gray-700">Affiliation: IISc Bangalore</p>
                     </a>
-                     <a href="https://math-kannuruniv.github.io/events/2025-05-jaydeb" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                        <h3 class="text-lg font-medium event-title">Lecture by Jaydeb Sarkar</h3>
-                        <p class="text-sm text-gray-600">May 27, 2025 | 2:00 pm</p>
-                        <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
+                    <a href="https://swim-ksom.github.io/2025/" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                        <h3 class="text-lg font-medium event-title">SWIM@KSoM 2025</h3>
+                        <p class="text-sm text-gray-600">May 05, 2025 - May 09, 2025</p>
+                        <p class="text-sm text-gray-700">Summer Workshop in Mathematics</p>
                     </a>
+                     <a href="https://math-kannuruniv.github.io/events/insights" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                         <h3 class="text-lg font-medium event-title">INSIGHTS: Student Seminar Series</h3>
+                         <p class="text-sm text-gray-600">Last Talk: March 17, 2025 | 3:30 PM</p>
+                         <div class="collapsible-extra hidden">
+                             <p class="text-sm text-gray-700 mt-2">
+                                 Speaker: Fathimathu Rafneesha T
+                             </p>
+                              <p class="text-sm text-gray-700 mt-2">
+                                 Topic: Representation formula for the solution of Poisson Equation using Green's Function
+                             </p>
+                         </div>
+                         <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
+                            READ MORE
+                        </button>
+                     </a>
                 </div>
             </div>
         </div>
@@ -1179,24 +1219,6 @@
                 !mobileMenu.contains(event.target) && mobileMenuButton && !mobileMenuButton.contains(event.target)) {
                 mobileMenuButton.click();
             }
-        });
-
-        // --- Ensure dropdowns are hidden on page load (reinforcement) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('#desktop-nav .dropdown-menu').forEach(dropdownMenu => {
-                dropdownMenu.classList.remove('show');
-                const dropdownLink = dropdownMenu.closest('.dropdown')?.querySelector('a');
-                if (dropdownLink) {
-                    dropdownLink.setAttribute('aria-expanded', 'false');
-                }
-            });
-             document.querySelectorAll('.mobile-nav .mobile-dropdown.open').forEach(openDropdown => {
-                openDropdown.classList.remove('open');
-                 const dropdownLink = openDropdown.querySelector('a');
-                 if (dropdownLink) {
-                    dropdownLink.setAttribute('aria-expanded', 'false');
-                 }
-            });
         });
 
         // --- Collapsible Description Toggle ---
