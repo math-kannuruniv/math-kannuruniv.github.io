@@ -639,14 +639,21 @@ a:hover, a:focus-visible {
     flex-wrap: wrap;
     justify-content: center;
     list-style: none;
-    gap: var(--spacing-lg); /* Use spacing variable */
+    gap: var(--spacing-4); /* Reduced gap for less clutter */
     padding: 0;
+    margin: 0; /* Ensure no default margin */
+}
+
+.footer-nav-horizontal li {
+     /* Add some padding to list items for better click/tap area */
+    padding: var(--spacing-1) var(--spacing-2);
 }
 
 .footer-nav-horizontal a {
     color: var(--gray-800); /* Use color variable */
     text-decoration: none;
     transition: opacity var(--transition-fast);
+    font-size: var(--font-size-sm); /* Use small font size */
 }
 
 .footer-nav-horizontal a:hover,
