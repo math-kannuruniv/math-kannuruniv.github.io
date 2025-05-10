@@ -260,8 +260,8 @@
            6.1 Header
            -------------------------------------------------------------------------- */
         .site-header {
-            background-color: var(--white); /* Changed to white */
-            color: var(--gray-800); /* Adjusted text color for white background */
+            background-color: var(--white);
+            color: var(--gray-800);
             padding: var(--spacing-5) 0;
             position: sticky;
             top: 0;
@@ -310,7 +310,7 @@
         .dept-title {
             font-size: var(--font-size-lg);
             white-space: nowrap;
-            color: var(--ias-blue); /* Adjusted color for white background */
+            color: var(--ias-blue);
         }
 
         .header-right {
@@ -355,31 +355,35 @@
 
         /* Desktop Navigation */
         .main-nav {
-             max-width: fit-content; /* Reduced width */
+             /* Removed max-width: fit-content; to allow flex to manage width */
+             /* Adjusted gap on ul instead */
         }
 
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: var(--spacing-3); /* Adjusted gap */
+            gap: var(--spacing-4); /* Increased gap for more space between items */
+            padding: 0; /* Ensure no default padding */
+            margin: 0; /* Ensure no default margin */
         }
 
         .main-nav a { /* Applies to top-level links */
-            color: var(--ias-blue); /* Adjusted color for white background */
+            color: var(--ias-blue);
             text-decoration: none;
             padding: var(--spacing-2) var(--spacing-3);
             border-radius: var(--border-radius-sm);
             font-size: var(--font-size-sm);
             font-weight: 500;
             display: block;
+            white-space: nowrap; /* Prevent wrapping */
             transition: background-color var(--transition-fast), color var(--transition-fast);
         }
 
         .main-nav a:hover,
         .main-nav a:focus-visible,
         .main-nav li.relative.dropdown > a[aria-expanded="true"] {
-            background-color: var(--ias-light-blue); /* Adjusted hover background */
-            color: var(--ias-blue); /* Adjusted hover text color */
+            background-color: var(--ias-light-blue);
+            color: var(--ias-blue);
             text-decoration: none;
         }
 
@@ -388,8 +392,8 @@
             position: absolute;
             left: 0;
             top: calc(100% + var(--spacing-1));
-            background-color: var(--white); /* Consistent with header */
-            color: var(--gray-800); /* Adjusted text color */
+            background-color: var(--white);
+            color: var(--gray-800);
             min-width: 220px;
             z-index: var(--z-dropdown);
             border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
@@ -414,7 +418,7 @@
         .main-nav .dropdown-menu li a {
             padding: var(--spacing-2) var(--spacing-4);
             display: block;
-            color: var(--gray-800); /* Adjusted link color */
+            color: var(--gray-800);
             white-space: nowrap;
             font-size: var(--font-size-sm);
             font-weight: normal;
@@ -423,19 +427,19 @@
 
         .main-nav .dropdown-menu li a:hover,
         .main-nav .dropdown-menu li a:focus-visible {
-            background-color: var(--ias-light-blue); /* Adjusted hover background */
-            color: var(--ias-blue); /* Adjusted hover text color */
+            background-color: var(--ias-light-blue);
+            color: var(--ias-blue);
         }
 
         /* Mobile Menu Button */
         .mobile-menu-button {
-            color: var(--ias-blue); /* Adjusted color for white header */
+            color: var(--ias-blue);
             padding: var(--spacing-2);
             border-radius: var(--border-radius-sm);
             transition: background-color var(--transition-fast);
         }
         .mobile-menu-button:hover, .mobile-menu-button:focus-visible {
-            background-color: var(--ias-light-blue); /* Adjusted hover background */
+            background-color: var(--ias-light-blue);
         }
         .mobile-menu-button svg {
             width: var(--spacing-6);
@@ -445,11 +449,11 @@
 
         /* Mobile Navigation Panel */
         .mobile-nav {
-            background-color: var(--white); /* Changed to white */
-            color: var(--gray-800); /* Adjusted text color */
+            background-color: var(--white);
+            color: var(--gray-800);
             padding-top: var(--spacing-4);
             padding-bottom: var(--spacing-4);
-            border-top: 1px solid var(--gray-200); /* Adjusted border color */
+            border-top: 1px solid var(--gray-200);
             box-shadow: var(--shadow-md);
         }
 
@@ -462,14 +466,16 @@
 
         .mobile-nav ul {
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
         .mobile-nav ul li a { /* Top level mobile nav links */
             display: block;
             padding: var(--spacing-3) var(--spacing-4);
-            color: var(--ias-blue); /* Adjusted link color */
+            color: var(--ias-blue);
             font-size: var(--font-size-base);
             font-weight: 500;
-            border-bottom: 1px solid var(--gray-200); /* Adjusted border color */
+            border-bottom: 1px solid var(--gray-200);
             transition: background-color var(--transition-fast);
         }
         .mobile-nav ul li:last-child a {
@@ -477,7 +483,7 @@
         }
         .mobile-nav ul li a:hover,
         .mobile-nav ul li a:focus-visible {
-            background-color: var(--ias-light-blue); /* Adjusted hover background */
+            background-color: var(--ias-light-blue);
             text-decoration: none;
         }
 
@@ -492,7 +498,7 @@
             display: none;
             list-style: none;
             padding-left: 0;
-            background-color: var(--ias-light-blue); /* Adjusted submenu background */
+            background-color: var(--ias-light-blue);
             margin-top: 0;
         }
 
@@ -504,7 +510,7 @@
             padding: var(--spacing-2-5) var(--spacing-4) var(--spacing-2-5) var(--spacing-8);
             font-size: var(--font-size-sm);
             font-weight: normal;
-            border-bottom: 1px solid var(--gray-200); /* Adjusted border color */
+            border-bottom: 1px solid var(--gray-200);
         }
         .mobile-nav .mobile-dropdown ul li:last-child a {
             border-bottom: none;
@@ -521,6 +527,7 @@
             color: var(--white);
             padding: var(--spacing-16) 0;
             text-align: center;
+            min-height: 500px; /* Increased height for more image visibility */
         }
 
         .hero-dept-name {
@@ -548,14 +555,14 @@
             }
              /* Adjust padding for symmetry */
             .main-content > .grid > div:nth-child(1) {
-                padding-right: var(--spacing-2); /* Less padding on the right of the first column */
+                padding-right: var(--spacing-4); /* Increased padding on the right of the first column */
             }
              .main-content > .grid > div:nth-child(2) {
-                 padding-left: var(--spacing-2); /* Less padding on the left of the second column */
-                 padding-right: var(--spacing-2); /* Less padding on the right of the second column */
+                 padding-left: var(--spacing-4); /* Increased padding on the left of the second column */
+                 padding-right: var(--spacing-4); /* Increased padding on the right of the second column */
              }
              .main-content > .grid > div:nth-child(3) {
-                 padding-left: var(--spacing-2); /* Less padding on the left of the third column */
+                 padding-left: var(--spacing-4); /* Increased padding on the left of the third column */
              }
         }
 
@@ -728,7 +735,8 @@
             .hero-dept-name {
                 font-size: 3.5rem;
             }
-            .main-nav ul { gap: var(--spacing-3); }
+            /* Adjusted gap for desktop nav items */
+            .main-nav ul { gap: var(--spacing-4); }
         }
 
         /* Large screens (desktops) */
