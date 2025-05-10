@@ -38,7 +38,7 @@
     <header class="site-header">
         <div class="container site-header-inner flex items-center justify-between">
             <div class="site-branding flex items-center">
-                <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-4">
+                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block mr-4">Department of Mathematical Sciences</a> <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-4">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
                 </a>
                 <a href="https://www.kannuruniversity.ac.in/en/" class="site-title-link ml-4 mr-4"> <span class="site-title">Kannur University</span>
@@ -200,7 +200,7 @@
                             Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
                         </p>
                     </div>
-                    <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" onclick="event.preventDefault(); event.stopPropagation(); this.closest('a').querySelector('.collapsible-extra').classList.toggle('hidden'); this.textContent = this.closest('a').querySelector('.collapsible-extra').classList.contains('hidden') ? 'READ MORE' : 'READ LESS';">
+                    <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="msc-collapsible-extra">
                         READ MORE
                     </button>
                 </a>
@@ -218,7 +218,7 @@
                              The program involves rigorous coursework and significant independent research culminating in a dissertation.
                          </p>
                      </div>
-                     <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" onclick="event.preventDefault(); event.stopPropagation(); this.closest('a').querySelector('.collapsible-extra').classList.toggle('hidden'); this.textContent = this.closest('a').querySelector('.collapsible-extra').classList.contains('hidden') ? 'READ MORE' : 'READ LESS';">
+                     <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="phd-collapsible-extra">
                         READ MORE
                     </button>
                 </a>
@@ -426,20 +426,25 @@
         });
 
         // --- Collapsible Description Toggle ---
-        // Select all cards with a read-more-button
-        document.querySelectorAll('.content-card').forEach(card => {
-            const readMoreButton = card.querySelector('.read-more-button');
-            const extraDescription = card.querySelector('.collapsible-extra'); // Use generic class
+        // Select all buttons with the class 'read-more-button'
+        document.querySelectorAll('.read-more-button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default button action (if any)
+                event.stopPropagation(); // Stop the event from bubbling up to the parent link
 
-            if (readMoreButton && extraDescription) {
-                readMoreButton.addEventListener('click', (event) => {
-                    event.preventDefault(); // Prevent the card's link from being followed
-                    event.stopPropagation(); // Stop the event from bubbling up to the card's link
+                // Find the closest parent card (which is the <a> tag)
+                const card = event.target.closest('.content-card');
+                if (!card) return; // Exit if not inside a card
+
+                // Find the collapsible extra content within this card
+                const extraDescription = card.querySelector('.collapsible-extra');
+
+                if (extraDescription) {
                     const isHidden = extraDescription.classList.contains('hidden');
                     extraDescription.classList.toggle('hidden', !isHidden);
-                    readMoreButton.textContent = isHidden ? 'READ MORE' : 'READ LESS';
-                });
-            }
+                    button.textContent = isHidden ? 'READ LESS' : 'READ MORE';
+                }
+            });
         });
     </script>
 </body>
