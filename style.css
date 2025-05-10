@@ -32,610 +32,574 @@
     --gray-300: #dee2e6;
     --gray-400: #ced4da;
     --gray-500: #adb5bd; /* Medium gray for secondary text */
-    --gray-600: #6c757d; /* Darker gray for text */
-    --gray-700: #495057; /* Even darker gray */
-    --gray-800: #343a40; /* Primary text color */
-    --gray-900: #212529; /* Very dark gray / soft black */
-    --red-600: #dc2626;
+    --gray-600: #6c757d;
+    --gray-700: #495057; /* Darker gray for headings */
+    --gray-800: #343a40;
+    --gray-900: #212529; /* Very dark gray */
 
     /* Typography */
-    --font-primary: 'Lora', Georgia, serif;
-    --font-heading: 'Playfair Display', 'Times New Roman', serif;
-    --font-size-xs: 0.75rem;   /* 12px */
-    --font-size-sm: 0.875rem; /* 14px */
-    --font-size-base: 1rem;    /* 16px */
-    --font-size-lg: 1.125rem;  /* 18px */
-    --font-size-xl: 1.25rem;  /* 20px */
-    --font-size-2xl: 1.5rem;  /* 24px */
-    --font-size-3xl: 1.875rem; /* 30px */
-    --font-size-4xl: 2.25rem; /* 36px */
+    --font-family-sans: 'Inter', sans-serif;
+    --font-family-serif: 'Georgia', serif;
+    --font-size-base: 1rem; /* 16px */
+    --line-height-base: 1.5;
+    --heading-line-height: 1.2;
 
-    /* Spacing Scale (based on 4px grid) */
-    --spacing-0: 0;
-    --spacing-px: 1px;
-    --spacing-0-5: 0.125rem; /* 2px */
-    --spacing-1: 0.25rem;   /* 4px */
-    --spacing-1-5: 0.375rem; /* 6px */
-    --spacing-2: 0.5rem;    /* 8px */
-    --spacing-2-5: 0.625rem; /* 10px */
-    --spacing-3: 0.75rem;   /* 12px */
-    --spacing-3-5: 0.875rem; /* 14px */
-    --spacing-4: 1rem;      /* 16px */
-    --spacing-5: 1.25rem;   /* 20px */
-    --spacing-6: 1.5rem;    /* 24px */
-    --spacing-8: 2rem;      /* 32px */
-    --spacing-10: 2.5rem;   /* 40px */
-    --spacing-12: 3rem;     /* 48px */
-    --spacing-16: 4rem;     /* 64px */
-    --spacing-20: 5rem;     /* 80px */
-    --spacing-24: 6rem;     /* 96px */
+    /* Spacing */
+    --space-unit: 1rem; /* Base spacing unit */
+    --space-xs: calc(var(--space-unit) * 0.25); /* 4px */
+    --space-sm: calc(var(--space-unit) * 0.5);  /* 8px */
+    --space-md: var(--space-unit);             /* 16px */
+    --space-lg: calc(var(--space-unit) * 1.5);  /* 24px */
+    --space-xl: calc(var(--space-unit) * 2);  /* 32px */
+    --space-xxl: calc(var(--space-unit) * 3); /* 48px */
 
-    /* Layout */
-    --container-max-width: 1200px;
-    --border-radius-sm: 0.25rem; /* 4px */
-    --border-radius-md: 0.5rem;  /* 8px */
-    --border-radius-lg: 1rem;    /* 16px */
-    --border-radius-full: 9999px;
-
-    /* Transitions */
-    --transition-fast: 0.15s ease-in-out;
-    --transition-medium: 0.3s ease-in-out;
+    /* Borders & Radius */
+    --border-color: var(--gray-300);
+    --border-radius: 0.25rem; /* 4px */
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-text: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --shadow-md: 0 .5rem 1rem rgba(0,0,0,.15);
+    --shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
 
-    /* Z-index Scale */
-    --z-base: 1;
-    --z-dropdown: 1000; /* Ensure dropdowns are above other content */
-    --z-sticky: 1020;
-    --z-fixed: 1030;
-    --z-modal-backdrop: 1040;
-    --z-modal: 1050;
-    --z-tooltip: 1070;
+    /* Z-index */
+    --z-low: 10;
+    --z-mid: 100;
+    --z-high: 1000;
+    --z-dropdown: var(--z-mid); /* Example: dropdowns above normal content */
+    --z-modal: var(--z-high);   /* Example: modals above everything */
 }
 
 /* ==========================================================================
    2. Base Styles
    ========================================================================== */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 html {
     scroll-behavior: smooth;
-    font-size: 100%; /* Base font size for rem calculation */
-    line-height: 1.5; /* Default line height */
 }
 
 body {
-    font-family: var(--font-primary);
-    color: var(--gray-800);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--gray-900);
     background-color: var(--gray-100);
+    margin: 0;
+    padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Prevent horizontal scrollbars */
-}
-
-img, svg, video, canvas, audio, iframe, embed, object {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-button {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-}
-
-/* ==========================================================================
-   3. Typography
-   ========================================================================== */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 700; /* Bolder headings */
-    line-height: 1.3; /* Tighter line height for headings */
-    margin-bottom: var(--spacing-4); /* Default bottom margin for headings */
-    color: var(--ias-blue); /* Default heading color */
-}
-
-h1 { font-size: var(--font-size-4xl); } /* ~36px */
-h2 { font-size: var(--font-size-3xl); } /* ~30px */
-h3 { font-size: var(--font-size-2xl); } /* ~24px */
-h4 { font-size: var(--font-size-xl); }  /* ~20px */
-h5 { font-size: var(--font-size-lg); }  /* ~18px */
-h6 { font-size: var(--font-size-base); }/* ~16px */
-
-p {
-    margin-bottom: var(--spacing-4); /* Consistent paragraph spacing */
 }
 
 a {
     color: var(--ias-blue);
     text-decoration: none;
-    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+    transition: color 0.2s ease-in-out;
 }
 
-a:hover, a:focus-visible {
+a:hover {
     color: var(--ias-teal);
     text-decoration: underline;
-    text-decoration-color: var(--ias-teal);
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Basic form element styling */
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button, input[type="button"], input[type="submit"] {
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-serif);
+    line-height: var(--heading-line-height);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    color: var(--gray-800);
+}
+
+h1 { font-size: calc(var(--font-size-base) * 2.5); } /* Approx 40px */
+h2 { font-size: calc(var(--font-size-base) * 2);   } /* Approx 32px */
+h3 { font-size: calc(var(--font-size-base) * 1.75);} /* Approx 28px */
+h4 { font-size: calc(var(--font-size-base) * 1.5); } /* Approx 24px */
+h5 { font-size: calc(var(--font-size-base) * 1.25);} /* Approx 20px */
+h6 { font-size: var(--font-size-base);           } /* Approx 16px */
+
+p {
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+blockquote {
+    margin: var(--space-lg) 0;
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--ias-teal);
+    background-color: var(--ias-light-blue);
+    font-style: italic;
+}
+
+/* Lists */
+ul, ol {
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-lg);
+}
+
+li {
+    margin-bottom: var(--space-sm);
+}
+
+/* Code blocks */
+pre {
+    background-color: var(--gray-200);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    margin-bottom: var(--space-md);
+}
+
+code {
+    font-family: monospace;
+}
+
 
 /* ==========================================================================
    4. Layout Components
    ========================================================================== */
 .container {
     width: 100%;
-    max-width: var(--container-max-width);
+    max-width: 1200px; /* Max width for main content area */
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--spacing-4);  /* Default horizontal padding */
-    padding-right: var(--spacing-4);
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
 }
 
-/* Grid utilities (simple version, can be expanded) */
-.grid { display: grid; }
-.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-.gap-8 { gap: var(--spacing-8); }
+.grid {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.flex {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Utility classes for spacing */
+.mt-md { margin-top: var(--space-md); }
+.mb-md { margin-bottom: var(--space-md); }
+.py-lg { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
 
 
 /* ==========================================================================
-   5. Color Themes & Backgrounds
+   5. Color Themes
    ========================================================================== */
-.ias-blue-bg {
+/* Example: A dark theme section */
+.section-dark {
     background-color: var(--ias-blue);
     color: var(--white);
-}
-.ias-blue-bg a { color: var(--gray-200); } /* Lighter links on dark blue bg */
-.ias-blue-bg a:hover, .ias-blue-bg a:focus-visible { color: var(--white); text-decoration-color: var(--white); }
-
-
-.ias-light-blue-bg {
-    background-color: var(--ias-light-blue);
-    color: var(--gray-800);
+    padding: var(--space-xxl) 0;
 }
 
-.ias-teal-bg {
-    background-color: var(--ias-teal);
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
     color: var(--white);
 }
-.ias-teal-bg:hover { background-color: #006666; } /* Darken teal on hover for buttons */
 
+.section-dark a {
+    color: var(--ias-teal);
+}
 
-.ias-gold-text { color: var(--ias-gold); }
+.section-dark a:hover {
+    color: var(--white);
+}
+
 
 /* ==========================================================================
    6. Components
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   6.1 Header
-   -------------------------------------------------------------------------- */
+/* 6.1 Header */
 .site-header {
-    background-color: var(--ias-blue);
-    color: var(--white);
-    padding: var(--spacing-5) 0; /* MODIFIED: Increased padding for better proportion */
-    position: sticky; /* Make header sticky */
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-sm) 0;
+    position: sticky;
     top: 0;
-    z-index: var(--z-sticky);
-    box-shadow: var(--shadow-md);
+    width: 100%;
+    z-index: var(--z-mid); /* Ensure header is above content */
 }
 
 .site-header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping for smaller viewports if needed */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-.site-branding {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3); /* Space between logo and titles */
+.site-logo a {
+    display: block;
+    /* Adjust logo size as needed */
 }
 
-.site-logo-link {
-     display: flex;
-     align-items: center;
-     text-decoration: none;
-     color: inherit;
-}
-.site-logo-link:hover, .site-logo-link:focus-visible {
-    text-decoration: none; /* No underline for logo link */
-    opacity: 0.9;
-}
-
-.site-logo-img {
-    width: var(--spacing-12);  /* MODIFIED: Increased logo size */
-    height: var(--spacing-12); /* MODIFIED: Increased logo size */
-    border-radius: var(--border-radius-full);
-    background-color: var(--white); /* Add a white background if logo is transparent */
-    padding: var(--spacing-0-5); /* Small padding if logo needs breathing room */
-}
-
-.site-title {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-.dept-title {
-    font-size: var(--font-size-lg);
-    white-space: nowrap;
-    color: var(--gray-300); /* Subtler color for department title */
+.site-logo img {
+    height: 50px; /* Example logo height */
+    width: auto;
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: var(--spacing-3); /* Gap between nav, search, mobile button */
+    gap: var(--space-md);
 }
 
-/* Search Form in Header */
-.search-form {
-    display: flex;
-    align-items: center;
-}
-
-.search-form input[type="text"] {
-    padding: var(--spacing-2) var(--spacing-3);
-    border: 1px solid var(--gray-400);
-    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
-    font-size: var(--font-size-sm);
-    background-color: var(--white);
-    color: var(--gray-800);
-    max-width: 150px; /* Limit width */
-    transition: border-color var(--transition-fast);
-}
-.search-form input[type="text"]:focus {
-    border-color: var(--ias-teal);
-    outline: none;
-}
-
-.search-form button {
-    padding: var(--spacing-2) var(--spacing-3);
-    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    line-height: 1.21; /* To match input height */
-}
-
-
-/* --------------------------------------------------------------------------
-   6.2 Navigation (Desktop & Mobile)
-   -------------------------------------------------------------------------- */
-
-/* Desktop Navigation */
+/* 6.2 Navigation (Desktop & Mobile) */
 .main-nav ul {
-    display: flex;
     list-style: none;
-    gap: var(--spacing-1); /* Reduced gap for tighter nav */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: var(--space-md);
 }
 
-.main-nav a { /* Applies to top-level links */
-    color: var(--white);
-    text-decoration: none;
-    padding: var(--spacing-2) var(--spacing-3);
-    border-radius: var(--border-radius-sm);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
+.main-nav li {
+    position: relative; /* Needed for dropdown positioning */
+}
+
+.main-nav a {
     display: block;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--gray-700);
+    font-weight: 500;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    border-radius: var(--border-radius);
 }
 
-.main-nav a:hover,
-.main-nav a:focus-visible,
-.main-nav li.relative.dropdown > a[aria-expanded="true"] { /* Highlight active dropdown toggle */
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-    text-decoration: none;
+.main-nav a:hover {
+    color: var(--ias-blue);
+    background-color: var(--ias-light-blue);
+    text-decoration: none; /* Remove underline on nav hover */
 }
 
 /* Desktop Dropdown Menu */
-.main-nav .dropdown-menu {
+.dropdown-menu {
     position: absolute;
+    top: 100%; /* Position below the parent link */
     left: 0;
-    top: calc(100% + var(--spacing-1)); /* Position below parent with a small gap */
-    background-color: var(--ias-blue); /* Consistent with header */
-    color: var(--white);
-    min-width: 220px;
+    background-color: var(--white);
+    box-shadow: var(--shadow-md);
+    list-style: none;
+    padding: var(--space-sm) 0;
+    margin: 0;
+    min-width: 160px; /* Minimum width for dropdown */
     z-index: var(--z-dropdown);
-    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
-    padding: var(--spacing-2) 0; /* Vertical padding for the menu itself */
-    box-shadow: var(--shadow-lg);
-    opacity: 0; /* CORRECTED: Hidden by default */
-    visibility: hidden; /* CORRECTED: Hidden by default */
-    transform: translateY(var(--spacing-2)); /* Start slightly lower for animation */
-    transition: opacity var(--transition-medium) ease-out,
-                visibility var(--transition-medium) ease-out, /* Ensure visibility is transitioned */
-                transform var(--transition-medium) ease-out;
+    opacity: 0; /* Hidden by default */
+    visibility: hidden; /* Hidden by default */
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    border-radius: var(--border-radius);
     pointer-events: none; /* Prevent interaction when hidden */
 }
 
-.main-nav .dropdown-menu.show {
-    opacity: 1; /* CORRECTED: Show */
-    visibility: visible; /* CORRECTED: Show */
-    transform: translateY(0);
-    pointer-events: auto; /* Allow interaction when shown */
+.dropdown-menu li {
+    margin: 0;
 }
 
-.main-nav .dropdown-menu li a {
-    padding: var(--spacing-2) var(--spacing-4); /* Padding for dropdown items */
-    display: block;
-    color: var(--white);
-    white-space: nowrap;
-    font-size: var(--font-size-sm);
-    font-weight: normal; /* Normal weight for dropdown items */
-    border-radius: 0; /* No border radius for individual items */
+.dropdown-menu a {
+    padding: var(--space-sm) var(--space-md);
+    color: var(--gray-700);
+    display: block; /* Ensure the whole area is clickable */
 }
 
-.main-nav .dropdown-menu li a:hover,
-.main-nav .dropdown-menu li a:focus-visible {
-    background-color: var(--ias-teal);
-    color: var(--white);
+.dropdown-menu a:hover {
+    background-color: var(--ias-light-blue);
+    color: var(--ias-blue);
 }
 
-/* Mobile Menu Button */
+/* State for visible desktop dropdown */
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Allow interaction when visible */
+}
+
+
+/* Mobile Navigation */
 .mobile-menu-button {
-    color: var(--white);
-    padding: var(--spacing-2);
-    border-radius: var(--border-radius-sm);
-    transition: background-color var(--transition-fast);
-}
-.mobile-menu-button:hover, .mobile-menu-button:focus-visible {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-.mobile-menu-button svg {
-    width: var(--spacing-6); /* 24px */
-    height: var(--spacing-6); /* 24px */
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: var(--space-sm);
+    color: var(--gray-700);
 }
 
-
-/* Mobile Navigation Panel */
 .mobile-nav {
-    background-color: var(--ias-blue); /* Match header */
-    color: var(--white);
-    padding-top: var(--spacing-4);
-    padding-bottom: var(--spacing-4);
-    border-top: 1px solid var(--ias-teal); /* Separator from header */
-    box-shadow: var(--shadow-md);
-}
-
-.mobile-nav.mobile-menu-hidden {
-    display: none;
-}
-.mobile-nav.mobile-menu-visible {
-    display: block;
+    /* Styles for the mobile menu panel */
+    position: fixed;
+    top: 0; /* Adjust if header is fixed */
+    right: 0;
+    width: 250px; /* Width of the mobile menu */
+    height: 100%;
+    background-color: var(--white);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-md);
+    overflow-y: auto; /* Allow scrolling if menu is long */
+    z-index: var(--z-modal); /* Ensure it's above everything */
+    transition: transform 0.3s ease-in-out; /* Animation for sliding */
 }
 
 .mobile-nav ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
 }
-.mobile-nav ul li a { /* Top level mobile nav links */
+
+.mobile-nav li {
+    margin: 0;
+}
+
+.mobile-nav a {
     display: block;
-    padding: var(--spacing-3) var(--spacing-4);
-    color: var(--white);
-    font-size: var(--font-size-base);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--gray-700);
     font-weight: 500;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
-    transition: background-color var(--transition-fast);
-}
-.mobile-nav ul li:last-child a {
-    border-bottom: none;
-}
-.mobile-nav ul li a:hover,
-.mobile-nav ul li a:focus-visible {
-    background-color: var(--ias-teal);
-    text-decoration: none;
+    border-bottom: 1px solid var(--gray-200); /* Separator */
 }
 
-/* Mobile Navigation Dropdowns */
-.mobile-nav .mobile-dropdown > a {
-    display: flex; /* Allows for an icon/arrow if added */
-    justify-content: space-between;
-    align-items: center;
+.mobile-nav a:hover {
+    background-color: var(--ias-light-blue);
+    color: var(--ias-blue);
 }
-/* Add an indicator for dropdowns (optional, requires adding span/svg in HTML) */
-/* .mobile-nav .mobile-dropdown > a::after { content: ' ▼'; font-size: 0.8em; } */
-/* .mobile-nav .mobile-dropdown.open > a::after { content: ' ▲'; } */
 
-
-.mobile-nav .mobile-dropdown > ul {
-    display: none; /* CORRECTED: Hidden by default */
+/* Mobile Dropdown Submenu */
+.mobile-dropdown ul {
     list-style: none;
-    padding-left: 0; /* No extra indent, items will be indented */
-    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker bg for submenu */
-    margin-top: 0; /* Remove margin */
+    padding-left: var(--space-md); /* Indent submenu */
+    margin-top: var(--space-sm);
+    border-top: 1px solid var(--gray-200);
+    display: none; /* Hidden by default */
 }
 
-.mobile-nav .mobile-dropdown.open > ul {
-    display: block; /* CORRECTED: Show when parent li has .open */
+.mobile-dropdown.open ul {
+    display: block; /* Show submenu when parent is 'open' */
 }
 
-.mobile-nav .mobile-dropdown ul li a {
-    padding: var(--spacing-2-5) var(--spacing-4) var(--spacing-2-5) var(--spacing-8); /* Indent submenu items */
-    font-size: var(--font-size-sm);
-    font-weight: normal;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Fainter separator for sub-items */
+.mobile-dropdown a {
+    border-bottom: none; /* Remove separator for submenu items */
 }
-.mobile-nav .mobile-dropdown ul li:last-child a {
-    border-bottom: none;
+
+/* States for mobile menu visibility */
+.mobile-menu-hidden {
+    transform: translateX(100%); /* Slide out to the right */
+}
+
+.mobile-menu-visible {
+    transform: translateX(0); /* Slide in */
 }
 
 
-/* --------------------------------------------------------------------------
-   6.3 Hero Section
-   -------------------------------------------------------------------------- */
+/* 6.3 Hero Section */
 .hero-section {
-    background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('MathDepartment.jpg');
-    background-size: cover;
-    background-position: center;
-    color: var(--white);
-    padding: var(--spacing-16) 0; /* Generous padding */
+    background-color: var(--ias-light-blue);
+    padding: var(--space-xxl) 0;
     text-align: center;
 }
 
-.hero-dept-name {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-4xl);
-    font-weight: 700;
-    text-shadow: var(--shadow-text);
-}
-
-
-/* --------------------------------------------------------------------------
-   6.4 Main Content
-   -------------------------------------------------------------------------- */
-.main-content {
-    padding-top: var(--spacing-8);
-    padding-bottom: var(--spacing-8);
-}
-
-/* Event Cards */
-.event-card {
-    background-color: var(--white);
-    padding: var(--spacing-4);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--transition-medium);
-    margin-bottom: var(--spacing-4); /* Space between cards */
-}
-.event-card:hover {
-    box-shadow: var(--shadow-md);
-}
-.event-card a { text-decoration: none; color: inherit; }
-.event-card a:hover .event-title { color: var(--ias-teal); }
-
-.event-title {
-    font-size: var(--font-size-lg); /* Slightly smaller for card titles */
+.hero-section h1 {
+    margin-top: 0;
     color: var(--ias-blue);
-    margin-bottom: var(--spacing-1);
 }
-.event-card p {
-    margin-bottom: var(--spacing-1);
-    font-size: var(--font-size-sm);
+
+.hero-section p {
+    font-size: calc(var(--font-size-base) * 1.25);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.event-card .text-gray-600 { color: var(--gray-600); }
-.event-card .text-gray-700 { color: var(--gray-700); }
 
-/* Prose for article content */
-.prose h2 { margin-top: var(--spacing-8); }
-.prose p { line-height: 1.7; font-size: var(--font-size-base); }
-.prose a { text-decoration: underline; }
-.prose a:hover { color: var(--ias-teal); }
+/* 6.4 Main Content (Cards, Prose, News) */
+.main-content {
+    padding: var(--space-xxl) 0;
+}
 
-/* News Items */
-.news-item {
+/* Card Example */
+.card {
     background-color: var(--white);
-    border: 1px solid var(--gray-200);
-}
-.news-item h3 { font-size: var(--font-size-xl); }
-
-
-/* --------------------------------------------------------------------------
-   6.5 Footer
-   -------------------------------------------------------------------------- */
-.site-footer {
-    padding: var(--spacing-8) 0;
-    font-size: var(--font-size-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-md);
 }
 
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-8);
-    margin-bottom: var(--spacing-8);
+.card h3 {
+    margin-top: 0;
 }
 
-.site-footer h4 {
-    font-family: var(--font-heading); /* Use heading font for footer titles */
-    font-size: var(--font-size-lg);
-    color: var(--gray-300); /* Lighter color for titles on dark bg */
-    margin-bottom: var(--spacing-3);
+/* Prose (for text content) */
+.prose {
+    max-width: 800px; /* Standard width for readable text blocks */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.site-footer p, .site-footer ul li {
-    margin-bottom: var(--spacing-2);
+.prose img {
+    margin: var(--space-md) auto; /* Center images in prose */
+    display: block;
 }
 
-.footer-links ul {
+/* News/Article List Example */
+.news-list {
     list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item {
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--space-md) 0;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-item h4 {
+    margin-bottom: var(--space-sm);
+}
+
+.news-item .meta {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+
+/* 6.5 Footer */
+.site-footer {
+    background-color: var(--gray-900);
+    color: var(--gray-400);
+    padding: var(--space-xxl) 0;
+    font-size: 0.9rem;
+}
+
+.site-footer a {
+    color: var(--gray-400);
+}
+
+.site-footer a:hover {
+    color: var(--white);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: var(--space-lg);
+}
+
+.footer-section h5 {
+    color: var(--white);
+    margin-bottom: var(--space-md);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section li {
+    margin-bottom: var(--space-sm);
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: var(--spacing-4);
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border on dark bg */
-    color: var(--gray-400); /* Lighter text for copyright */
+    margin-top: var(--space-xxl);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--gray-700);
 }
 
 
 /* ==========================================================================
    7. Utilities
    ========================================================================== */
-.skip-link {
+.sr-only {
     position: absolute;
-    left: -9999px; /* Send off-screen */
-    top: auto;
     width: 1px;
     height: 1px;
+    padding: 0;
+    margin: -1px;
     overflow: hidden;
-    z-index: -999; /* Ensure it's not accidentally visible */
-    background-color: var(--ias-teal);
-    color: var(--white);
-    padding: var(--spacing-3);
-    border-radius: var(--border-radius-sm);
-    text-decoration: none;
-}
-.skip-link:focus {
-    left: var(--spacing-4);
-    top: var(--spacing-4);
-    width: auto;
-    height: auto;
-    overflow: auto;
-    z-index: var(--z-modal); /* Ensure it's on top when focused */
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-.hidden { display: none !important; } /* Tailwind-like hidden */
-.relative { position: relative; } /* Tailwind-like relative */
-.text-sm { font-size: var(--font-size-sm); }
-.text-lg { font-size: var(--font-size-lg); }
-.font-medium { font-weight: 500; }
-.space-y-2 > * + * { margin-top: var(--spacing-2); } /* Tailwind-like space-y */
-.space-y-4 > * + * { margin-top: var(--spacing-4); }
-.mt-8 { margin-top: var(--spacing-8); }
-.p-4 { padding: var(--spacing-4); }
-.border { border-width: 1px; }
-.border-gray-200 { border-color: var(--gray-200); }
-.rounded-md { border-radius: var(--border-radius-md); }
-.shadow-sm { box-shadow: var(--shadow-sm); }
-.shadow-md { box-shadow: var(--shadow-md); }
-.transition-shadow { transition-property: box-shadow; transition-timing-function: ease-in-out; transition-duration: var(--transition-medium); }
+/* Example: Visually hidden but accessible text */
+.visually-hidden {
+    @extend .sr-only; /* If using SCSS/Sass */
+    /* Or manually duplicate properties */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
-
-/* Basic button styling (can be extended) */
-.button {
-    display: inline-block;
-    padding: var(--spacing-2-5) var(--spacing-4);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    border-radius: var(--border-radius-sm);
-    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
-    cursor: pointer;
+/* Example: Clearfix for floats */
+.clearfix::after {
+    display: block;
+    content: "";
+    clear: both;
 }
 
 
@@ -643,30 +607,60 @@ a:hover, a:focus-visible {
    8. Media Queries
    ========================================================================== */
 
-/* Medium screens and up (tablets, small desktops) */
-@media (min-width: 768px) { /* md breakpoint */
-    .md\:block { display: block !important; }
-    .md\:hidden { display: none !important; }
-    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .md\:col-span-1 { grid-column: span 1 / span 1; }
-    .md\:col-span-2 { grid-column: span 2 / span 2; }
-
-    .hero-dept-name {
-        font-size: 3.5rem; /* Larger hero text on bigger screens */
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 767.98px) {
+    .main-nav {
+        display: none; /* Hide desktop nav on mobile */
     }
-    .main-nav ul { gap: var(--spacing-3); } /* Slightly more space for desktop nav items */
+
+    .mobile-menu-button {
+        display: block; /* Show mobile button on mobile */
+    }
+
+    .site-header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+
+    .header-right {
+        width: 100%; /* Make header-right full width */
+        justify-content: space-between; /* Space out search and button */
+    }
+
+     /* Adjust mobile nav initial position */
+    .mobile-nav {
+        right: -250px; /* Start off-screen */
+        transform: translateX(0); /* Reset transform for transition */
+        transition: right 0.3s ease-in-out;
+    }
+
+    .mobile-menu-visible {
+        right: 0; /* Slide in */
+    }
+
+    .mobile-menu-hidden {
+        right: -250px; /* Slide out */
+    }
+
+    /* Ensure body doesn't scroll when mobile menu is open */
+    body.mobile-menu-open {
+        overflow: hidden;
+    }
 }
 
-/* Large screens (desktops) */
-@media (min-width: 1024px) { /* lg breakpoint */
-    .lg\:text-4xl { font-size: var(--font-size-4xl); }
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    /* Adjust layout for larger screens if needed */
 }
 
 
 /* ==========================================================================
-   9. Accessibility & Print
+   9. Accessibility
    ========================================================================== */
-/* Focus visible polyfill or ensure outlines are clear */
+
+/* Focus states */
+/* Use focus-visible for better accessibility */
 *:focus-visible {
     outline: 2px solid var(--ias-teal);
     outline-offset: 2px;
@@ -717,16 +711,13 @@ a:hover, a:focus-visible {
         color: var(--black);
         text-decoration: underline;
     }
-    h1, h2, h3, h4, h5, h6 {
-        color: var(--black);
-        page-break-after: avoid;
-    }
-    .event-card, .news-item {
-        box-shadow: none;
-        border: 1px solid var(--gray-300);
+    /* Ensure images don't break layout */
+    img {
+        max-width: 100%;
         page-break-inside: avoid;
     }
-    img {
-        max-width: 300px !important; /* Limit image size in print */
+    /* Avoid breaking content across pages */
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, li {
+        page-break-inside: avoid;
     }
 }
