@@ -389,33 +389,7 @@
         }
 
         /* Search Form in Header */
-        .search-form {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-form input[type="text"] {
-            padding: var(--spacing-2) var(--spacing-3);
-            border: 1px solid var(--gray-400);
-            border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
-            font-size: var(--font-size-sm);
-            background-color: var(--white);
-            color: var(--gray-800);
-            max-width: 150px;
-            transition: border-color var(--transition-fast);
-        }
-        .search-form input[type="text"]:focus {
-            border-color: var(--ias-teal);
-            outline: none;
-        }
-
-        .search-form button {
-            padding: var(--spacing-2) var(--spacing-3);
-            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            line-height: 1.21;
-        }
+        /* Removed search form styles as the form is removed */
 
 
         /* --------------------------------------------------------------------------
@@ -776,10 +750,7 @@
         }
 
         /* Style for search highlights */
-        .highlight {
-            background-color: yellow; /* Or any other highlight color */
-            font-weight: bold;
-        }
+        /* Removed highlight style as search is removed */
 
 
         /* --------------------------------------------------------------------------
@@ -952,8 +923,8 @@
             }
             .site-header,
             .mobile-menu-button,
-            .search-form,
-            .hero-section,
+            .search-form, /* Also hide search form in print */
+            .hero-section, /* Often not needed in print */
             .site-footer {
                 display: none !important;
             }
@@ -1042,13 +1013,7 @@
                     </svg>
                 </button>
 
-                <form id="search-form" action="#" method="get" class="search-form ml-4 hidden md:block">
-                    <input type="text" id="search-input" name="q" placeholder="Search..." aria-label="Search">
-                    <button type="submit" class="ias-teal-bg button text-white" aria-label="Search">
-                        <span>SEARCH</span>
-                    </button>
-                </form>
-            </div>
+                </div>
         </div>
 
         <div id="mobile-menu" class="mobile-nav mobile-menu-hidden container">
@@ -1439,98 +1404,8 @@
              }
         });
 
-        // --- Client-Side Search Script ---
-        document.getElementById('search-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const searchTerm = document.getElementById('search-input').value.trim();
-            const mainContentArea = document.getElementById('main-content');
-
-            // Clear previous highlights
-            clearHighlights(mainContentArea);
-
-            if (searchTerm === '') {
-                return; // Do nothing if search term is empty
-            }
-
-            // Perform the search and highlight
-            highlightText(mainContentArea, searchTerm);
-        });
-
-        // Function to clear existing highlights
-        function clearHighlights(element) {
-            element.querySelectorAll('.highlight').forEach(span => {
-                // Replace the span with its text content
-                const parent = span.parentNode;
-                while (span.firstChild) {
-                    parent.insertBefore(span.firstChild, span);
-                }
-                parent.removeChild(span);
-            });
-             // Re-normalize the text nodes after removing spans
-             element.normalize();
-        }
-
-        // Function to highlight text within an element
-        function highlightText(element, searchTerm) {
-            const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi'); // 'gi' for global, case-insensitive
-
-            // Use a TreeWalker to efficiently traverse text nodes
-            const walker = document.createTreeWalker(
-                element,
-                NodeFilter.SHOW_TEXT,
-                null, // Use default acceptNode function
-                false // Don't expand entity references
-            );
-
-            let node;
-            const nodesToProcess = [];
-
-            // Collect text nodes to avoid modifying the DOM while traversing
-            while ((node = walker.nextNode())) {
-                nodesToProcess.push(node);
-            }
-
-            nodesToProcess.forEach(textNode => {
-                 // Check if the text node is within an element we want to ignore (e.g., script, style)
-                 if (textNode.parentElement.tagName === 'SCRIPT' || textNode.parentElement.tagName === 'STYLE') {
-                     return; // Skip this node
-                 }
-
-                 const content = textNode.nodeValue;
-                 const matches = content.match(regex);
-
-                 if (matches) {
-                     const fragment = document.createDocumentFragment();
-                     let lastIndex = 0;
-
-                     content.replace(regex, (match, group1, offset) => {
-                         // Add the text before the match
-                         fragment.appendChild(document.createTextNode(content.substring(lastIndex, offset)));
-
-                         // Add the highlighted span
-                         const span = document.createElement('span');
-                         span.className = 'highlight';
-                         span.textContent = match; // Use the actual matched text
-                         fragment.appendChild(span);
-
-                         lastIndex = offset + match.length;
-                         return match; // Return the match to the replace function
-                     });
-
-                     // Add the remaining text after the last match
-                     fragment.appendChild(document.createTextNode(content.substring(lastIndex)));
-
-                     // Replace the original text node with the fragment
-                     textNode.parentNode.replaceChild(fragment, textNode);
-                 }
-            });
-        }
-
-        // Helper function to escape special characters in a string for use in a RegExp
-        function escapeRegExp(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-        }
+        // --- Removed Client-Side Search Script ---
+        // The search script has been removed as requested.
 
     </script>
 </body>
