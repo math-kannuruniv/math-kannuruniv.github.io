@@ -59,15 +59,11 @@
             padding: 0.5rem 1rem; /* Adjust padding around logo */
         }
 
-        .site-branding .site-title-link {
-             /* Removed ml-4 mr-4 */
-             margin-left: 1rem; /* Space after logo */
-             /* margin-right: 1rem; /* Space before dept title - removed to bring closer */
-        }
+        /* Removed .site-branding .site-title-link styling as it's moved to footer */
 
          .site-branding .dept-title {
              /* Removed mr-4 */
-             margin-left: 0.5rem; /* Space after site title */
+             margin-left: 1rem; /* Space after logo */
              margin-right: 1rem; /* Space before menu */
          }
 
@@ -206,7 +202,7 @@
 
          /* Specific styles for the IAS-like header */
          .ias-header-bg {
-             background-color: #e0f2f7; /* Light blue background */
+             background-color: #b2dfdb; /* Slightly darker teal background for contrast */
          }
 
          .ias-blue-text {
@@ -236,9 +232,6 @@
                 <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img h-12"> </a>
                 <div class="flex flex-col ml-4">
-                    <a href="https://www.kannuruniversity.ac.in/en/" class="site-title-link ias-blue-text text-lg font-bold">
-                        <span class="site-title">KANNUR UNIVERSITY</span>
-                    </a>
                     <a href="https://math-kannuruniv.github.io/" class="dept-title ias-blue-text text-sm">DEPARTMENT OF MATHEMATICAL SCIENCES</a>
                 </div>
             </div>
@@ -246,7 +239,7 @@
             <div class="header-right flex items-center">
                 <nav id="desktop-nav" class="main-nav hidden md:block" aria-label="Main Navigation">
                     <ul class="flex space-x-4">
-                        <li><a href="#" class="ias-blue-text hover:underline font-medium">MATHEMATICS</a></li>
+                        <li><a href="https://math-kannuruniv.github.io/research" class="ias-blue-text hover:underline font-medium">RESEARCH</a></li>
                         <li class="relative dropdown">
                             <a href="#" role="button" aria-haspopup="true" aria-expanded="false" class="ias-blue-text hover:underline font-medium">ACTIVITIES</a>
                             <ul class="dropdown-menu" aria-label="Activities submenu">
@@ -302,7 +295,7 @@
         <div id="mobile-menu" class="mobile-nav mobile-menu-hidden container">
             <nav aria-label="Mobile Navigation">
                 <ul>
-                     <li><a href="#" class="text-sm">MATHEMATICS</a></li>
+                     <li><a href="https://math-kannuruniv.github.io/research" class="text-sm">RESEARCH</a></li>
                     <li class="mobile-dropdown">
                         <a href="#" role="button" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
                         <ul>
@@ -474,6 +467,7 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
+                        <li><a href="https://www.kannuruniversity.ac.in/en/" target="_blank" rel="noopener noreferrer">Kannur University</a></li>
                         <li><a href="https://www.kannuruniversity.ac.in/en/administration/statutory-bodies/syndicate/" target="_blank" rel="noopener noreferrer">Syndicate</a></li>
                         <li><a href="https://www.kannuruniversity.ac.in/en/administration/statutory-bodies/academic-council/" target="_blank" rel="noopener noreferrer">Academic Council</a></li>
                         <li><a href="https://www.kannuruniversity.ac.in/en/iqac/" target="_blank" rel="noopener noreferrer">IQAC</a></li>
