@@ -28,7 +28,7 @@
             .mobile-nav ul ul { display: block !important; }
              /* Ensure full content is visible if JS is disabled */
             .collapsible-extra { display: block !important; } /* Use a generic class for collapsible sections */
-            .read-more-button { display: none !important; }
+            /* .read-more-button { display: none !important; } *//* Removed button, no need to hide */
             /* Ensure column separators are visible without JS if needed */
              /* Removed border-r rule */
         </style>
@@ -211,11 +211,19 @@
             text-decoration-color: var(--ias-teal);
         }
 
-        /* Ensure links inside content cards do NOT get an underline on hover/focus */
-        .content-card a,
-        .content-card a:hover,
-        .content-card a:focus-visible {
-             text-decoration: none;
+        /* Ensure text elements inside clickable cards do NOT get underline on hover/focus */
+        .content-card h3,
+        .content-card p,
+        .content-card span, /* Also target spans like 'Apply now' */
+        .event-card h3,
+        .event-card p {
+            text-decoration: none !important; /* Use !important to override potential inherited styles */
+        }
+
+         /* Re-add underline for specific elements inside if needed, like 'Apply now' span */
+        .content-card span.text-ias-teal:hover,
+        .content-card span.text-ias-teal:focus-visible {
+            text-decoration: underline !important; /* Use !important to ensure it applies */
         }
 
 
@@ -408,22 +416,13 @@
             border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
             padding: var(--spacing-2) 0;
             box-shadow: var(--shadow-lg);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(var(--spacing-2));
-            transition: opacity var(--transition-medium) ease-out,
-                        visibility var(--transition-medium) ease-out,
-                        transform var(--transition-medium) ease-out;
-            pointer-events: none;
-            /* Ensure desktop dropdown items are vertical */
-            display: block;
+            /* Use display: none by default */
+            display: none;
         }
 
-        .main-nav .dropdown-menu.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto;
+        /* Show dropdown on hover of the parent li */
+        .main-nav .dropdown:hover .dropdown-menu {
+            display: block; /* Show on hover */
         }
 
         .main-nav .dropdown-menu li {
@@ -626,14 +625,15 @@
         /* Ensure text elements inside clickable cards do NOT get underline on hover/focus */
         .content-card h3,
         .content-card p,
+        .content-card span, /* Also target spans like 'Apply now' */
         .event-card h3,
         .event-card p {
             text-decoration: none !important; /* Use !important to override potential inherited styles */
         }
 
-        /* Re-add underline for specific elements inside if needed, like 'Apply now' span */
-        .content-card .text-ias-teal:hover,
-        .content-card .text-ias-teal:focus-visible {
+         /* Re-add underline for specific elements inside if needed, like 'Apply now' span */
+        .content-card span.text-ias-teal:hover,
+        .content-card span.text-ias-teal:focus-visible {
             text-decoration: underline !important; /* Use !important to ensure it applies */
         }
 
@@ -1050,10 +1050,7 @@
                             <p class="text-sm text-gray-700 mt-2 font-bold">Last Date to Apply : May 15, 2025 (by 5 PM)</p>
                             <span class="text-ias-teal hover:underline font-medium mt-3 inline-block">Apply now</span>
                         </div>
-                        <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
-                            READ MORE
-                        </button>
-                    </a>
+                        </a>
                     </section>
 
                 <section class="research-section space-y-4 mt-8">
@@ -1077,31 +1074,12 @@
                                 Pioneering studies on Wiener-Ditkin sets and spectral synthesis address stability under unions/intersections and approximation limits in harmonic analysis. Foundational results include nonsynthesizable sets, weak Ditkin properties, and spectral behavior on locally compact groups. Collaborative efforts refine ideals in function algebras, with implications for Fourier analysis and topological group theory.
                             </p>
                         </div>
-                        <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
-                            READ MORE
-                        </button>
-                    </a>
+                        </a>
                      </section>
             </div>
 
             <div class="md:col-span-1">
                  <h2 class="text-2xl font-heading mb-6">Programmes</h2> <div class="space-y-8">
-                     <a href="https://math-kannuruniv.github.io/programmes/phd" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                         <h3 class="text-xl font-semibold">Doctoral Programme (Ph.D.)</h3> <p class="text-sm text-gray-700 mt-2">
-                             The Department of Mathematical Sciences at Kannur University offers a Doctoral Programme (Ph.D.) for students interested in pursuing advanced research in various areas of mathematics.
-                         </p>
-                         <div class="collapsible-extra hidden">
-                             <p class="text-sm text-gray-700 mt-2">
-                                The program provides a stimulating environment for in-depth study and original research under the guidance of experienced faculty members. Research areas may include pure mathematics, applied mathematics, and interdisciplinary fields.
-                             </p>
-                             <p class="text-sm text-gray-700 mt-2">
-                                 The program involves rigorous coursework and significant independent research culminating in a dissertation.
-                             </p>
-                         </div>
-                         <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="phd-collapsible-extra">
-                            READ MORE
-                        </button>
-                    </a>
                      <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
                          <img src="MSc_Programme.png" alt="Illustration related to MSc Mathematics Programme" class="msc-programme-image">
                         <h3 class="text-xl font-semibold">M.Sc. Mathematics Programme</h3> <p class="text-sm text-gray-700 mt-2">
@@ -1115,10 +1093,21 @@
                                 Eligibility for admission typically requires a B.Sc. Degree in Mathematics with a minimum of 50% marks. Admission is generally based on the marks secured in the qualifying degree examination.
                             </p>
                         </div>
-                        <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0" data-target="msc-collapsible-extra">
-                            READ MORE
-                        </button>
-                    </a>
+                        </a>
+
+                    <a href="https://math-kannuruniv.github.io/programmes/phd" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                         <h3 class="text-xl font-semibold">Doctoral Programme (Ph.D.)</h3> <p class="text-sm text-gray-700 mt-2">
+                             The Department of Mathematical Sciences at Kannur University offers a Doctoral Programme (Ph.D.) for students interested in pursuing advanced research in various areas of mathematics.
+                         </p>
+                         <div class="collapsible-extra hidden">
+                             <p class="text-sm text-gray-700 mt-2">
+                                The program provides a stimulating environment for in-depth study and original research under the guidance of experienced faculty members. Research areas may include pure mathematics, applied mathematics, and interdisciplinary fields.
+                             </p>
+                             <p class="text-sm text-gray-700 mt-2">
+                                 The program involves rigorous coursework and significant independent research culminating in a dissertation.
+                             </p>
+                         </div>
+                         </a>
                  </div>
             </div>
 
@@ -1155,10 +1144,7 @@
                                  Topic: Representation formula for the solution of Poisson Equation using Green's Function
                              </p>
                          </div>
-                         <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
-                            READ MORE
-                        </button>
-                     </a>
+                         </a>
                 </div>
             </div>
         </div>
@@ -1182,12 +1168,10 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="https://www.kannuruniversity.ac.in/en/" target="_blank" rel="noopener noreferrer">Kannur University</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-statistical-sciences/" target="_blank" rel="noopener noreferrer">Department of Statistical Sciences</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-information-technology/" target="_blank" rel="noopener noreferrer">Department of Information Technology</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-physics/" target="_blank" rel="noopener noreferrer">Department of Physics</a></li>
                         <li><a href="https://www.kannuruniv.ac.in/en/iqac/" target="_blank" rel="noopener noreferrer">IQAC</a></li>
                         <li><a href="https://www.kannuruniv.ac.in/en/rti/" target="_blank" rel="noopener noreferrer">RTI</a></li>
-                        </ul>
+                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-statistical-sciences/" target="_blank" rel="noopener noreferrer">Department of Statistical Sciences</a></li>
+                    </ul>
                 </div>
                 <div class="footer-social">
                     <h4>Follow Us</h4>
@@ -1223,7 +1207,7 @@
             });
         }
 
-        // --- Desktop Navigation Dropdowns (Hover) ---
+        // --- Desktop Navigation Dropdowns (Hover controlled by CSS) ---
         const desktopDropdowns = document.querySelectorAll('#desktop-nav .dropdown');
 
         desktopDropdowns.forEach(dropdown => {
@@ -1231,48 +1215,37 @@
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
 
             if (link && dropdownMenu) {
-                // Show dropdown on mouseover
-                dropdown.addEventListener('mouseover', () => {
-                    link.setAttribute('aria-expanded', 'true');
-                    dropdownMenu.classList.add('show');
-                });
-
-                // Hide dropdown on mouseout
-                dropdown.addEventListener('mouseout', (event) => {
-                    if (!dropdown.contains(event.relatedTarget)) {
-                        link.setAttribute('aria-expanded', 'false');
-                        dropdownMenu.classList.remove('show');
-                    }
-                });
+                // JS is now primarily for accessibility (focus and escape key)
 
                 // Keep dropdown open when focusing on elements inside the menu
                  dropdownMenu.addEventListener('focusin', () => {
                     link.setAttribute('aria-expanded', 'true');
-                    dropdownMenu.classList.add('show');
-                });
+                    // CSS handles display, but aria-expanded helps screen readers
+                 });
 
                 // Hide dropdown when focus leaves the dropdown or its menu
                 dropdown.addEventListener('focusout', (event) => {
+                     // Check if the focus is moving to an element outside the dropdown li
                      if (!dropdown.contains(event.relatedTarget)) {
                         link.setAttribute('aria-expanded', 'false');
-                        dropdownMenu.classList.remove('show');
+                        // CSS handles display
                     }
-                });
+                 });
 
 
                 // Accessibility: Close dropdown with Escape key
                 dropdown.addEventListener('keydown', (event) => {
                     if (event.key === 'Escape') {
                         link.setAttribute('aria-expanded', 'false');
-                        dropdownMenu.classList.remove('show');
-                        link.focus();
+                        // CSS handles display
+                        link.focus(); // Return focus to the dropdown toggle link
                     }
                 });
             }
         });
 
 
-        // --- Mobile Navigation Dropdowns ---
+        // --- Mobile Navigation Dropdowns (Click toggle) ---
         const mobileDropdownToggles = document.querySelectorAll('.mobile-nav .mobile-dropdown > a');
 
         mobileDropdownToggles.forEach(toggle => {
@@ -1281,6 +1254,7 @@
                 const currentDropdownLI = this.parentElement;
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
+                // Close other open mobile dropdowns
                 document.querySelectorAll('.mobile-nav .mobile-dropdown.open').forEach(openDropdownLI => {
                     if (openDropdownLI !== currentDropdownLI) {
                         openDropdownLI.classList.remove('open');
@@ -1289,37 +1263,54 @@
                     }
                 });
 
+                // Toggle the current dropdown
                 currentDropdownLI.classList.toggle('open', !isExpanded);
                 this.setAttribute('aria-expanded', String(!isExpanded));
             });
         });
 
 
-        // --- Click outside to close dropdowns (for mobile menu itself) ---
+        // --- Click outside mobile menu to close ---
         document.addEventListener('click', function(event) {
             if (mobileMenu && mobileMenu.classList.contains('mobile-menu-visible') &&
                 !mobileMenu.contains(event.target) && mobileMenuButton && !mobileMenuButton.contains(event.target)) {
-                mobileMenuButton.click();
+                mobileMenuButton.click(); // Simulate click on button to toggle menu
             }
         });
 
-        // --- Collapsible Description Toggle ---
-        document.querySelectorAll('.read-more-button').forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
 
-                const card = event.target.closest('.content-card');
-                if (!card) return;
+        // --- Collapsible Description Toggle (Hover) ---
+        // Select all content-card and event-card elements
+        document.querySelectorAll('.content-card, .event-card').forEach(card => {
+            const extraDescription = card.querySelector('.collapsible-extra');
+            // No need to select the read-more-button as it's removed
 
-                const extraDescription = card.querySelector('.collapsible-extra');
+            if (extraDescription) {
+                // Show extra description on mouseover
+                card.addEventListener('mouseover', () => {
+                    extraDescription.classList.remove('hidden');
+                });
 
-                if (extraDescription) {
-                    const isHidden = extraDescription.classList.contains('hidden');
-                    extraDescription.classList.toggle('hidden', !isHidden);
-                    button.textContent = isHidden ? 'READ LESS' : 'READ MORE';
-                }
-            });
+                // Hide extra description on mouseout
+                card.addEventListener('mouseout', (event) => {
+                     // Check if the mouse is moving to an element outside the card itself
+                     if (!card.contains(event.relatedTarget)) {
+                        extraDescription.classList.add('hidden');
+                     }
+                });
+
+                // Handle focus for accessibility (optional, but good practice)
+                 card.addEventListener('focusin', () => {
+                     extraDescription.classList.remove('hidden');
+                 });
+
+                 card.addEventListener('focusout', (event) => {
+                     // Check if focus is moving outside the card
+                     if (!card.contains(event.relatedTarget)) {
+                         extraDescription.classList.add('hidden');
+                     }
+                 });
+            }
         });
     </script>
 </body>
