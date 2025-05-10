@@ -225,13 +225,28 @@
         }
 
         /* Ensure text elements inside clickable cards do NOT get underline on hover/focus */
-        .content-card h3,
-        .content-card p,
-        .content-card span, /* Also target spans like 'Apply now' */
-        .event-card h3,
-        .event-card p {
-            text-decoration: none !important; /* Use !important to override potential inherited styles */
+        /* Added more specific selectors and targeted the card link itself */
+        .content-card:hover h3,
+        .content-card:hover p,
+        .content-card:hover span,
+        .content-card:focus-visible h3,
+        .content-card:focus-visible p,
+        .content-card:focus-visible span,
+        .event-card:hover h3,
+        .event-card:hover p,
+        .event-card:focus-visible h3,
+        .event-card:focus-visible p {
+             text-decoration: none !important; /* Use !important to override potential inherited styles */
         }
+
+         /* Ensure the card link itself doesn't get an underline */
+         .content-card:hover,
+         .content-card:focus-visible,
+         .event-card:hover,
+         .event-card:focus-visible {
+             text-decoration: none !important;
+         }
+
 
          /* Re-add underline for specific elements inside if needed, like 'Apply now' span */
         .content-card span.text-ias-teal:hover,
@@ -338,10 +353,33 @@
             white-space: nowrap;
         }
 
+        /* Style for the university name in the header */
+        .university-name {
+            font-size: var(--font-size-sm); /* Slightly smaller font size */
+            font-weight: normal; /* Less bold than department name */
+            color: var(--gray-700); /* Slightly muted color */
+            margin-bottom: 0; /* Remove default paragraph margin */
+            line-height: 1.2; /* Adjust line height */
+        }
+
+        /* Style for the university name link */
+        .university-name-link {
+            color: inherit; /* Inherit color from parent (.university-name) */
+            text-decoration: none; /* Remove default underline */
+        }
+         .university-name-link:hover,
+         .university-name-link:focus-visible {
+             text-decoration: underline; /* Add underline on hover/focus */
+             text-decoration-color: var(--gray-700); /* Underline color matches text */
+         }
+
+
         .dept-title {
             font-size: var(--font-size-lg);
             white-space: nowrap;
             color: var(--ias-blue);
+            margin-top: 0; /* Remove default paragraph margin */
+            line-height: 1.2; /* Adjust line height */
         }
 
         .header-right {
@@ -942,14 +980,15 @@
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
     <header class="site-header"> <div class="container site-header-inner flex justify-between items-center py-4">
             <div class="site-branding flex items-center">
                 <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img h-12">
                 </a>
-                <div class="flex flex-col ml-2"> <a href="https://math-kannuruniv.github.io/" class="dept-title">DEPARTMENT OF MATHEMATICAL SCIENCES</a> </div>
+                <div class="flex flex-col ml-2">
+                    <a href="https://www.kannuruniversity.ac.in/en/" class="university-name university-name-link" target="_blank" rel="noopener noreferrer">KANNUR UNIVERSITY</a>
+                    <a href="https://math-kannuruniv.github.io/" class="dept-title">DEPARTMENT OF MATHEMATICAL SCIENCES</a>
+                </div>
             </div>
 
             <div class="header-right flex items-center">
@@ -1027,8 +1066,8 @@
                     </li>
                     <li class="mobile-dropdown">
                          <a href="#" role="button" aria-haspopup="true" aria-expanded="false">PROGRAMMES</a> <ul>
-                            <li><a href="https://math-kannuruniv.github.io/programmes/msc" class="text-sm">MSc Programme</a></li>
                             <li><a href="https://math-kannuruniv.github.io/programmes/phd" class="text-sm">Doctoral studies</a></li>
+                            <li><a href="https://math-kannuruniv.github.io/programmes/msc" class="text-sm">MSc Programme</a></li>
                         </ul>
                     </li>
                     <li class="mobile-dropdown">
@@ -1200,9 +1239,11 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="https://www.kannuruniversity.ac.in/en/" target="_blank" rel="noopener noreferrer">Kannur University</a></li>
+                        <li><a href="https://math-kannuruniv.github.io/" target="_blank" rel="noopener noreferrer">Department of Mathematical Sciences</a></li>
+                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-information-technology/" target="_blank" rel="noopener noreferrer">Department of Information Technology</a></li>
+                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-physics/" target="_blank" rel="noopener noreferrer">Department of Physics</a></li>
                         <li><a href="https://www.kannuruniv.ac.in/en/iqac/" target="_blank" rel="noopener noreferrer">IQAC</a></li>
                         <li><a href="https://www.kannuruniv.ac.in/en/rti/" target="_blank" rel="noopener noreferrer">RTI</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-statistical-sciences/" target="_blank" rel="noopener noreferrer">Department of Statistical Sciences</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
@@ -1360,7 +1401,7 @@
         // --- MSc Slideshow Script ---
         let slideIndex = 0;
         const slides = document.querySelectorAll('.msc-slide');
-        const slideshowContainer = document.querySelector('.slideshow-container');
+        const slideshowInterval = 7000; // 7 seconds
 
         function showSlides() {
             if (slides.length === 0) return; // Exit if no slides found
@@ -1379,35 +1420,19 @@
             // Show the current slide
             slides[slideIndex - 1].classList.add('active');
 
-            // Call showSlides again after 7 seconds (7000 milliseconds)
-            // Use setTimeout for sequential calls
-            setTimeout(showSlides, 7000);
+            // Call showSlides again after the defined interval
+            setTimeout(showSlides, slideshowInterval);
         }
 
-        // Start the slideshow when the page loads
-        window.onload = function() {
-             // Initial display of the first slide before the loop starts
+        // Start the slideshow
+        // Use DOMContentLoaded to ensure the DOM is fully loaded before accessing elements
+        document.addEventListener('DOMContentLoaded', () => {
              if (slides.length > 0) {
-                 slides[0].classList.add('active');
-                 slideIndex = 0; // Reset index for the first call to showSlides
-                 setTimeout(showSlides, 7000); // Start the loop after initial display
+                 slides[0].classList.add('active'); // Show the first slide initially
+                 slideIndex = 0; // Initialize index
+                 setTimeout(showSlides, slideshowInterval); // Start the loop
              }
-
-             // Initialize other scripts if needed
-             // For example, mobile menu initialization could go here if not already done by direct script placement
-        };
-
-        // Ensure the slideshow starts even if window.onload was already set by another script
-        if (document.readyState === 'complete') {
-             // If the page is already loaded, manually trigger the slideshow start
-             if (slides.length > 0 && !slides[0].classList.contains('active')) {
-                 slides[0].classList.add('active');
-                 slideIndex = 0;
-                 setTimeout(showSlides, 7000);
-             }
-        }
-
-
+        });
     </script>
 </body>
 </html>
