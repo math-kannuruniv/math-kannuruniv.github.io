@@ -486,7 +486,7 @@
             text-decoration: none;
         }
 
-        /* Mobile Navigation Dropdowns */
+        /* Mobile Navigation Dropdowns (already vertical) */
         .mobile-nav .mobile-dropdown > a {
             display: flex;
             justify-content: space-between;
@@ -548,8 +548,17 @@
 
         /* Custom styles for column separators */
         /* Removed border-right rules for columns */
-        @media (min-width: 768px) {
-             /* Adjusted padding for symmetry after removing borders */
+        @media (min-width: 768px) { /* md breakpoint */
+            .md\:block { display: block !important; }
+            .md\:hidden { display: none !important; }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:col-span-1 { grid-column: span 1 / span 1; }
+            .md\:col-span-2 { grid-column: span 2 / span 2; }
+
+            .hero-dept-name {
+                font-size: 3.5rem;
+            }
+            /* Adjusted padding for symmetry after removing borders */
             .main-content > .grid > div:nth-child(1) {
                 padding-right: var(--spacing-4);
             }
@@ -751,6 +760,19 @@
             .main-nav ul { gap: var(--spacing-2); } /* Further reduced gap */
         }
 
+        /* Small screens (mobile) */
+        @media (max-width: 767px) { /* Styles for screens smaller than md breakpoint */
+            .dept-title {
+                white-space: normal; /* Allow text to wrap */
+                font-size: var(--font-size-base); /* Adjust font size for smaller screens */
+                line-height: 1.3; /* Adjust line height */
+            }
+            .site-branding {
+                 align-items: flex-start; /* Align items to the top */
+            }
+        }
+
+
         /* Large screens (desktops) */
         @media (min-width: 1024px) { /* lg breakpoint */
             .lg\:text-4xl { font-size: var(--font-size-4xl); }
@@ -947,8 +969,8 @@
             <div class="md:col-span-1">
                 <section class="news-announcements space-y-4">
                     <h2 class="text-2xl font-heading mb-6">News and Announcements</h2>
-                    <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
-                        <h3 class="text-lg font-medium">Admissions Open: MSc Mathematics (2025–2027) at Kannur University</h3>
+                    <a href="https://admission.kannuruniversity.ac.in/DEPTPGSWS2025_PG/index.php" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
+                        <h3 class="text-lg font-medium mb-4">Admissions Open: MSc Mathematics (2025–2027) at Kannur University</h3>
                         <div class="msc-image-container">
                             <img src="MSc_Image.jpg" alt="MSc Mathematics Program illustration">
                         </div>
@@ -968,12 +990,12 @@
                                 <li>MSc project opportunities at top institutes in India.</li>
                             </ul>
                             <p class="text-sm text-gray-700 mt-2 font-bold">Last Date to Apply : May 15, 2025 (by 5 PM)</p>
-                            <a href="https://admission.kannuruniversity.ac.in/DEPTPGSWS2025_PG/index.php" class="text-ias-teal hover:underline font-medium mt-3 inline-block">Apply now</a>
+                            <span class="text-ias-teal hover:underline font-medium mt-3 inline-block">Apply now</span>
                         </div>
                         <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
                             READ MORE
                         </button>
-                    </div>
+                    </a>
                     </section>
 
                 <section class="research-section space-y-4 mt-8">
@@ -1101,10 +1123,9 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="https://www.kannuruniversity.ac.in/en/" target="_blank" rel="noopener noreferrer">Kannur University</a></li>
-                        <li><a href="https://www.kannuruniversity.ac.in/en/administration/statutory-bodies/syndicate/" target="_blank" rel="noopener noreferrer">Syndicate</a></li>
-                        <li><a href="https://www.kannuruniv.ac.in/en/administration/statutory-bodies/academic-council/" target="_blank" rel="noopener noreferrer">Academic Council</a></li>
                         <li><a href="https://www.kannuruniv.ac.in/en/iqac/" target="_blank" rel="noopener noreferrer">IQAC</a></li>
                         <li><a href="https://www.kannuruniv.ac.in/en/rti/" target="_blank" rel="noopener noreferrer">RTI</a></li>
+                        <li><a href="https://www.kannuruniversity.ac.in/en/academics/campus/all-departments/department-of-statistical-sciences/" target="_blank" rel="noopener noreferrer">Department of Statistical Sciences</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
