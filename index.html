@@ -23,6 +23,8 @@
                 display: block !important;
                 opacity: 1 !important;
                 visibility: visible !important;
+                transform: translateY(0) !important; /* Ensure no transform */
+                pointer-events: auto !important; /* Ensure clickable */
             }
              /* Ensure mobile nav submenus are visible without JS (if mobile nav was somehow visible) */
             .mobile-nav ul ul { display: block !important; }
@@ -408,7 +410,8 @@
         .main-nav .dropdown-menu {
             position: absolute;
             left: 0;
-            top: calc(100% + var(--spacing-1));
+            /* Adjusted top to remove the gap */
+            top: 100%;
             background-color: var(--white);
             color: var(--gray-800);
             min-width: 220px;
@@ -416,13 +419,23 @@
             border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
             padding: var(--spacing-2) 0;
             box-shadow: var(--shadow-lg);
-            /* Use display: none by default */
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(var(--spacing-2));
+            transition: opacity var(--transition-medium) ease-out,
+                        visibility var(--transition-medium) ease-out,
+                        transform var(--transition-medium) ease-out;
+            pointer-events: none; /* Initially not clickable */
+            display: block; /* Keep block display for vertical items */
         }
 
         /* Show dropdown on hover of the parent li */
-        .main-nav .dropdown:hover .dropdown-menu {
-            display: block; /* Show on hover */
+        .main-nav .dropdown:hover .dropdown-menu,
+        .main-nav .dropdown:focus-within .dropdown-menu { /* Also show on focus-within for accessibility */
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto; /* Make clickable on hover/focus */
         }
 
         .main-nav .dropdown-menu li {
@@ -635,6 +648,27 @@
         .content-card span.text-ias-teal:hover,
         .content-card span.text-ias-teal:focus-visible {
             text-decoration: underline !important; /* Use !important to ensure it applies */
+        }
+
+        /* Style for the collapsible content within cards */
+        .content-card .collapsible-extra,
+        .event-card .collapsible-extra {
+            display: none; /* Hidden by default */
+            /* Add transitions for smoother expand/collapse if desired */
+            /* transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; */
+            /* max-height: 0; */
+            /* opacity: 0; */
+            overflow: hidden; /* Hide overflow during transition */
+        }
+
+        .content-card:hover .collapsible-extra,
+        .content-card:focus-within .collapsible-extra, /* Expand on focus within the card */
+        .event-card:hover .collapsible-extra,
+        .event-card:focus-within .collapsible-extra { /* Expand on focus within the card */
+            display: block; /* Show on hover/focus */
+            /* If using transitions, set max-height and opacity here */
+            /* max-height: 500px; */ /* Or a value large enough to contain content */
+            /* opacity: 1; */
         }
 
 
@@ -1123,11 +1157,6 @@
                         <p class="text-sm text-gray-600">May 27, 2025 | 2:00 pm</p>
                         <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
                     </a>
-                    <a href="https://math-kannuruniv.github.io/events/2025-05-nands" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                        <h3 class="text-lg font-medium event-title">Lecture by A K Nandakumaran</h3>
-                        <p class="text-sm text-gray-600">May 27, 2025 | 10:00 am</p>
-                        <p class="text-sm text-gray-700">Affiliation: IISc Bangalore</p>
-                    </a>
                     <a href="https://swim-ksom.github.io/2025/" class="event-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
                         <h3 class="text-lg font-medium event-title">SWIM@KSoM 2025</h3>
                         <p class="text-sm text-gray-600">May 05, 2025 - May 09, 2025</p>
@@ -1208,6 +1237,7 @@
         }
 
         // --- Desktop Navigation Dropdowns (Hover controlled by CSS) ---
+        // JS is now primarily for accessibility (focus and escape key)
         const desktopDropdowns = document.querySelectorAll('#desktop-nav .dropdown');
 
         desktopDropdowns.forEach(dropdown => {
@@ -1215,32 +1245,44 @@
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
 
             if (link && dropdownMenu) {
-                // JS is now primarily for accessibility (focus and escape key)
-
-                // Keep dropdown open when focusing on elements inside the menu
-                 dropdownMenu.addEventListener('focusin', () => {
-                    link.setAttribute('aria-expanded', 'true');
-                    // CSS handles display, but aria-expanded helps screen readers
-                 });
-
-                // Hide dropdown when focus leaves the dropdown or its menu
-                dropdown.addEventListener('focusout', (event) => {
-                     // Check if the focus is moving to an element outside the dropdown li
-                     if (!dropdown.contains(event.relatedTarget)) {
-                        link.setAttribute('aria-expanded', 'false');
-                        // CSS handles display
-                    }
-                 });
-
-
                 // Accessibility: Close dropdown with Escape key
                 dropdown.addEventListener('keydown', (event) => {
                     if (event.key === 'Escape') {
+                        // Use CSS to hide the menu
+                        dropdownMenu.style.opacity = '0';
+                        dropdownMenu.style.visibility = 'hidden';
+                        dropdownMenu.style.transform = 'translateY(var(--spacing-2))';
+                        dropdownMenu.style.pointerEvents = 'none';
+
                         link.setAttribute('aria-expanded', 'false');
-                        // CSS handles display
                         link.focus(); // Return focus to the dropdown toggle link
                     }
                 });
+
+                // Accessibility: Handle focus leaving the dropdown area
+                dropdown.addEventListener('focusout', (event) => {
+                    // Check if the focus is moving to an element outside the dropdown li
+                    if (!dropdown.contains(event.relatedTarget)) {
+                         // Use CSS to hide the menu
+                        dropdownMenu.style.opacity = '0';
+                        dropdownMenu.style.visibility = 'hidden';
+                        dropdownMenu.style.transform = 'translateY(var(--spacing-2))';
+                        dropdownMenu.style.pointerEvents = 'none';
+                        link.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                 // Accessibility: Handle focus entering the dropdown menu
+                 dropdownMenu.addEventListener('focusin', () => {
+                    // Ensure the link's aria-expanded is true when focus is inside the menu
+                    const parentDropdown = dropdownMenu.closest('.dropdown');
+                    if (parentDropdown) {
+                         const link = parentDropdown.querySelector('a[role="button"]');
+                         if (link) {
+                             link.setAttribute('aria-expanded', 'true');
+                         }
+                    }
+                 });
             }
         });
 
@@ -1283,7 +1325,6 @@
         // Select all content-card and event-card elements
         document.querySelectorAll('.content-card, .event-card').forEach(card => {
             const extraDescription = card.querySelector('.collapsible-extra');
-            // No need to select the read-more-button as it's removed
 
             if (extraDescription) {
                 // Show extra description on mouseover
