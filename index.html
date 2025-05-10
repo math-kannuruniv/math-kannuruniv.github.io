@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Official website of the Department of Mathematical Sciences at Kannur University">
-    <title>Math Department | Kannur University</title> <link rel="stylesheet" href="style.css">
+    <title>Math Department | Kannur University</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preload" href="KannurUniversityLogo.png" as="image">
     <link rel="preload" href="MathDepartment.jpg" as="image">
     <link rel="preload" href="https://fonts.gstatic.com/s/lora/v32/0QI-MX1D_JO_P-z_VA.woff2" as="font" type="font/woff2" crossorigin>
@@ -17,7 +18,7 @@
             .main-nav { display: block !important; }
             .mobile-nav, .mobile-menu-button { display: none !important; }
             /* Ensure dropdowns are visible on hover without JS */
-            .dropdown:hover .dropdown-menu { display: block; }
+            .dropdown:hover .dropdown-menu { display: block; opacity: 1; visibility: visible; } /* Ensure opacity/visibility for noscript */
              /* Ensure mobile nav submenus are visible without JS */
             .mobile-nav ul ul { display: block !important; }
         </style>
@@ -95,28 +96,41 @@
         <div id="mobile-menu" class="mobile-nav mobile-menu-hidden container">
             <nav aria-label="Mobile Navigation">
                 <ul>
-                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a> <ul> <li><a href="#" class="text-sm">Seminars</a></li>
+                    <li class="mobile-dropdown">
+                        <a href="#" aria-haspopup="true" aria-expanded="false">ACTIVITIES</a>
+                        <ul>
+                            <li><a href="#" class="text-sm">Seminars</a></li>
                             <li><a href="#" class="text-sm">Named lectures</a></li>
                             <li><a href="#" class="text-sm">Programs</a></li>
                             <li><a href="#" class="text-sm">Conferences & Workshops</a></li>
                         </ul>
                     </li>
-                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a> <ul> <li><a href="#" class="text-sm">Faculty</a></li>
+                    <li class="mobile-dropdown">
+                        <a href="#" aria-haspopup="true" aria-expanded="false">PEOPLE</a>
+                        <ul>
+                            <li><a href="#" class="text-sm">Faculty</a></li>
                             <li><a href="#" class="text-sm">Research Scholars</a></li>
                             <li><a href="#" class="text-sm">Students</a></li>
                             <li><a href="#" class="text-sm">Staff</a></li>
                             <li><a href="#" class="text-sm">Alumni</a></li>
                         </ul>
                     </li>
-                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a> <ul> <li><a href="https://hgcl.kannuruniversity.ac.in/" class="text-sm">Library</a></li>
+                    <li class="mobile-dropdown">
+                        <a href="#" aria-haspopup="true" aria-expanded="false">SERVICES</a>
+                        <ul>
+                            <li><a href="https://hgcl.kannuruniversity.ac.in/" class="text-sm">Library</a></li>
                             <li><a href="https://mail.google.com/" class="text-sm">Email</a></li>
                         </ul>
                     </li>
-                    <li class="mobile-dropdown"> <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a> <ul> <li><a href="#" class="text-sm">Video Lectures</a></li>
+                    <li class="mobile-dropdown">
+                        <a href="#" aria-haspopup="true" aria-expanded="false">RESOURCES</a>
+                        <ul>
+                            <li><a href="#" class="text-sm">Video Lectures</a></li>
                             <li><a href="#" class="text-sm">Lecture notes</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">APPLY</a></li> </ul>
+                    <li><a href="#">APPLY</a></li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -156,293 +170,173 @@
                             <p class="text-sm text-gray-700">Affiliation: IISc Bangalore</p>
                         </a>
                     </div>
-                    <div class="event-card">
-                        <a href="https://math-kannuruniv.github.io/events/2025-05-jaydeb">
-                            <h3 class="text-lg font-medium event-title">Lecture by Jaydeb Sarkar</h3>
-                            <p class="text-sm text-gray-600">May 27, 2025 | 2:00 pm</p>
-                            <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
+                     <div class="event-card">
+                        <a href="https://math-kannuruniv.github.io/events/2025-06-goutam">
+                            <h3 class="text-lg font-medium event-title">Lecture by Goutam Mukherjee</h3>
+                            <p class="text-sm text-gray-600">June 03, 2025 | 10:00 am</p>
+                            <p class="text-sm text-gray-700">Affiliation: ISI Kolkata</p>
                         </a>
                     </div>
-                    <a href="https://math-kannuruniv.github.io/" class="block mt-4 button button-secondary w-full md:w-auto">MORE EVENTS</a>
+                     <div class="event-card">
+                        <a href="https://math-kannuruniv.github.io/events/2025-06-baskar">
+                            <h3 class="text-lg font-medium event-title">Lecture by S Baskar</h3>
+                            <p class="text-sm text-gray-600">June 10, 2025 | 10:00 am</p>
+                            <p class="text-sm text-gray-700">Affiliation: IIT Bombay</p>
+                        </a>
+                    </div>
+                    <div class="event-card">
+                        <a href="https://math-kannuruniv.github.io/events/2025-06-saha">
+                            <h3 class="text-lg font-medium event-title">Lecture by Iswar Saha</h3>
+                            <p class="text-sm text-gray-600">June 17, 2025 | 10:00 am</p>
+                            <p class="text-sm text-gray-700">Affiliation: IIT Bombay</p>
+                        </a>
+                    </div>
+                     <div class="event-card">
+                        <a href="https://math-kannuruniv.github.io/events/2025-06-saha">
+                            <h3 class="text-lg font-medium event-title">Lecture by Krishna Maddaly</h3>
+                            <p class="text-sm text-gray-600">June 24, 2025 | 10:00 am</p>
+                            <p class="text-sm text-gray-700">Affiliation: IIT Bombay</p>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="md:col-span-1 space-y-8">
-                <div>
-                    <img src="/api/placeholder/400/200" alt="MSc Mathematics Program Image" class="w-full h-auto rounded-md mb-4">
-                    <h2>Programs Offered</h2>
-                    <p class="text-gray-700 mb-4">
-                        The Department offers M.Sc. Mathematics, Ph.D. programs, and various certificate courses focused on advanced mathematical techniques and applications.
-                    </p>
-                    <a href="/programs" aria-label="Learn more about our programs" class="button button-accent w-full md:w-auto">READ MORE</a>
-                </div>
+            <div class="md:col-span-2">
+                <h1>Welcome to the Department of Mathematical Sciences</h1>
+                <p>The Department of Mathematical Sciences at Kannur University is dedicated to the pursuit and dissemination of mathematical knowledge. We offer comprehensive programs designed to equip students with a strong foundation in theoretical and applied mathematics.</p>
+                <p>Our faculty comprises experienced educators and researchers actively engaged in various fields of mathematics, including Algebra, Analysis, Topology, Differential Equations, and more. We strive to create a stimulating academic environment that encourages critical thinking, problem-solving skills, and a deep understanding of mathematical concepts.</p>
+                <p>The department is committed to fostering a vibrant research culture. We encourage both faculty and students to engage in research activities, contribute to scholarly publications, and participate in national and international conferences and workshops. Our research interests span a wide range of contemporary mathematical areas.</p>
+                <p>We offer various academic programs, including undergraduate and postgraduate degrees, as well as opportunities for doctoral research. Our curriculum is regularly updated to align with the latest developments in the field and to meet the evolving needs of students and society.</p>
+                <p>Beyond the classroom, the department organizes seminars, workshops, and guest lectures by eminent mathematicians to provide students with exposure to cutting-edge research and different perspectives in mathematics. We also encourage students to participate in mathematical competitions and other extracurricular activities.</p>
+                <p>We welcome prospective students, researchers, and collaborators to explore our website to learn more about our programs, faculty, research areas, and upcoming events. Feel free to contact us for any inquiries.</p>
 
-                <div>
-                    <img src="/api/placeholder/400/200" alt="Department Highlights Image" class="w-full h-auto rounded-md mb-4">
-                    <h2>Department Highlights</h2>
-                    <h3 class="text-lg font-medium mb-2">National Mathematics Day Celebration</h3>
-                    <p class="text-gray-700 mb-4">
-                        The department celebrated National Mathematics Day with a series of lectures and workshops featuring prominent mathematicians from across the country.
-                    </p>
-                    <a href="/highlights" aria-label="Read more about department highlights" class="button button-accent w-full md:w-auto">READ MORE</a>
-                </div>
-            </div>
-
-            <div class="md:col-span-1 space-y-8">
-                <div>
-                    <h2>Applications</h2>
-                    <ul class="space-y-2 text-gray-700">
-                        <li><a href="/admissions">Admissions and How to Apply</a> <span class="text-sm text-gray-600">- June 30, 2025</span></li>
-                        <li><a href="/scholarships">Scholarships and Financial Aid</a> <span class="text-sm text-gray-600">- July 15, 2025</span></li>
-                        <li><a href="/visiting-students">Visiting Students Program</a> <span class="text-sm text-gray-600">- Open year-round</span></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <img src="/api/placeholder/100/100" alt="Funding and Support Logo" class="mb-4">
-                    <h2>Funding & Support</h2>
-                    <p class="text-gray-700 mb-4">
-                        The Department of Mathematical Sciences wishes to acknowledge and thank DST, SERB, NBHM, and UGC for their generous support of our research and educational initiatives.
-                    </p>
-                    <ul class="space-y-2 text-gray-700">
-                        <li><a href="/funding">Funding Opportunities</a></li>
-                        <li><a href="/collaborations">Collaborating Institutions</a></li>
-                    </ul>
-                </div>
+                <h2>About the Department</h2>
+                <p>The Department of Mathematical Sciences was established with the aim of promoting advanced studies and research in mathematics within Kannur University. Since its inception, the department has been committed to maintaining high academic standards and contributing to the growth of mathematical knowledge.</p>
+                <p>Located within the serene and conducive environment of the university campus, the department provides excellent facilities for learning and research, including a well-equipped library, computer lab, and access to online resources. We believe in providing a supportive and inclusive environment for all members of our community.</p>
+                <p>Our alumni have gone on to pursue successful careers in academia, research institutions, industry, and various other fields, both in India and abroad. We are proud of their achievements and their contributions to the field of mathematics and beyond.</p>
+                <p>The department actively collaborates with other departments within the university and with external institutions to promote interdisciplinary research and academic exchange. We are constantly seeking new opportunities to expand our horizons and contribute to the broader scientific community.</p>
+                <p>Thank you for visiting our website. We hope you find the information you are looking for. Please do not hesitate to reach out if you have any questions or would like to learn more about the Department of Mathematical Sciences at Kannur University.</p>
             </div>
         </div>
-
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-                <div class="video-thumbnail">
-                     <img src="/api/placeholder/600/338" alt="Scholar Experience Video Thumbnail">
-                    <button class="play-button" aria-label="Play video about scholar experience">
-                        <svg fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div>
-                <img src="/api/placeholder/600/300" alt="Paths in Mathematics Graphic" class="w-full h-auto rounded-md">
-            </div>
-        </div>
-
     </main>
 
-    <section class="footer-nav-section" aria-label="Footer Navigation">
-        <div class="container footer-nav-horizontal">
-            <nav aria-label="Footer Links">
-                <ul>
-                    <li><a href="/privacy">PRIVACY</a></li>
-                    <li><a href="/careers">CAREERS</a></li>
-                    <li><a href="/press">PRESS CENTER</a></li>
-                    <li><a href="/library">LIBRARIES & ARCHIVES</a></li>
-                    <li><a href="/store">STORE</a></li>
-                    <li><a href="/contact">CONTACT</a></li>
-                </ul>
-            </nav>
-        </div>
-    </section>
-
-    <footer class="site-footer" aria-label="Site Footer">
+    <footer class="site-footer ias-blue-bg">
         <div class="container">
-            <div>
-                <img src="/api/placeholder/80/80" alt="Department Logo" class="w-20 h-20 bg-white rounded-full mb-4">
-                <h3>Department of Mathematical Sciences</h3>
-                <address>
-                    <p>Kannur University</p>
-                    <p>Swami Anandatheertha Campus</p>
-                    <p>Payyanur, Edat P.O.</p>
-                    <p>Kerala, India - 670327</p>
-                    <p class="mt-4">PHONE: (0460) 2247111</p>
-                    <p>EMAIL: <a href="mailto:math@kannuruniv.ac.in">math@kannuruniv.ac.in</a></p>
-                    <p>FAX: (0460) 2247111</p>
-                </address>
-            </div>
-
-            <div>
-                <h3>SUPPORT</h3>
-                <p class="mb-4">Help our scientists and scholars continue their field-shaping work.</p>
-                <a href="/donate" aria-label="Make a donation" class="button button-accent w-full md:w-auto">GIVE NOW</a>
-            </div>
-
-            <div>
-                <h3>CONNECT</h3>
-                 <a href="/newsletter" aria-label="Sign up for newsletter" class="button button-secondary mb-4 w-full md:w-auto">ENEWS SIGNUP</a>
-                <div class="flex space-x-4 text-xl social-links">
-                    <a href="https://facebook.com" aria-label="Visit our Facebook page">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M22.23 0H1.76C.785 0 .785 0 1.76v20.48c0 .975.785 1.76 1.76 1.76h10.38v-8.45h-2.81v-3.28h2.81V9.1c0-2.78 1.69-4.3 4.18-4.3 1.21 0 2.25.09 2.56.13v2.9h-1.72c-1.35 0-1.62.64-1.62 1.59v2.08h3.24l-.42 3.28h-2.82V24h5.49c.975 0 1.76-.785 1.76-1.76V1.76C24 .785 23.215 0 22.23 0z"></path>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com" aria-label="Visit our Twitter page">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M23.954 4.569a8.016 8.016 0 01-2.357.646A4.005 4.005 0 0024 2.49c-.745.432-1.56.753-2.413.922a3.996 3.996 0 01-6.864-2.868 4.006 4.006 0 012.864-4.113c1.9-.492 3.96-.086 5.18 1.68a7.95 7.95 0 002.555-.977 4.005 4.005 0 01-1.75 2.205 7.964 7.964 0 002.31.621 8.008 8.008 0 01-2.01-2.086z"></path>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com" aria-label="Visit our Instagram page">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.772 1.69 4.91 4.91.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.07 4.85-1.148 3.252-1.69 4.772-4.91 4.91-1.265.058-1.645-.069-4.849-.069-3.205 0-3.584-.012-4.85-.07-3.252-1.148-4.772-1.69-4.91-4.91-.058-1.265-.069-1.645-.069-4.849 0-3.205.012-3.584.07-4.85 1.148-3.252 1.69-4.772 4.91-4.91 1.265-.058 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162S15.403 5.838 12 5.838zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"></path>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com" aria-label="Visit our LinkedIn page">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.286-4 0v5.604h-3v-11h3v1.765c1.397-2.586 7-2.777 7 2.476v6.759z"></path>
-                        </svg>
-                    </a>
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>About Us</h3>
+                    <p>The Department of Mathematical Sciences at Kannur University is dedicated to advanced studies and research in mathematics.</p>
+                </div>
+                <div class="footer-nav-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Activities</a></li>
+                        <li><a href="#">People</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Apply</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Information</h3>
+                    <p>Department of Mathematical Sciences<br>Kannur University<br>Thavakkara, Civil Station P.O.<br>Kannur - 670 002<br>Kerala, India</p>
+                    <p>Email: <a href="mailto:maths@kannuruniversity.ac.in">maths@kannuruniversity.ac.in</a></p>
                 </div>
             </div>
-
-            <div>
-                <h3>ABOUT</h3>
-                <ul>
-                    <li><a href="/about">About the Department</a></li>
-                    <li><a href="/history">History</a></li>
-                    <li><a href="/mission">Mission & Values</a></li>
-                    <li><a href="/campus">Campus & Facilities</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Department of Mathematical Sciences, Kannur University. All rights reserved.</p>
             </div>
-        </div>
-        <div class="copyright container">
-            <p>&copy; 2025 Department of Mathematical Sciences, Kannur University. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // JavaScript for mobile menu and dropdown toggling
-
-        // Get the mobile menu button and the mobile menu
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const desktopNav = document.getElementById('desktop-nav'); // Get desktop nav
 
-        // Add event listener to the mobile menu button
         mobileMenuButton.addEventListener('click', () => {
             const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded)); // Toggle aria-expanded attribute
-            mobileMenu.classList.toggle('mobile-menu-hidden'); // Toggle visibility of mobile menu using CSS class
-
-            // Close all desktop dropdowns when mobile menu is toggled
-            document.querySelectorAll('#desktop-nav .dropdown-menu.show').forEach(openMenu => {
-                openMenu.classList.remove('show');
-                // Find the parent dropdown link and update its aria-expanded state
-                const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
-                if (dropdownLink) {
-                    dropdownLink.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Close all mobile dropdowns when mobile menu is toggled
-             document.querySelectorAll('#mobile-menu .mobile-dropdown.open').forEach(openDropdown => {
-                openDropdown.classList.remove('open');
-                 const dropdownLink = openDropdown.querySelector('a');
-                 if (dropdownLink) {
-                    dropdownLink.setAttribute('aria-expanded', 'false');
-                 }
-            });
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('mobile-menu-hidden');
+             // Toggle aria-hidden for screen readers on desktop nav when mobile menu is open
+            desktopNav.setAttribute('aria-hidden', !mobileMenu.classList.contains('mobile-menu-hidden'));
         });
 
-        // Close mobile menu when a link inside it is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                // Only close the mobile menu if the clicked link is NOT a mobile dropdown toggle
-                if (!link.parentElement.classList.contains('mobile-dropdown')) {
-                    mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
-                    mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
-                     // Close all mobile dropdowns
-                     document.querySelectorAll('#mobile-menu .mobile-dropdown.open').forEach(openDropdown => {
+        // Mobile dropdown toggle
+        document.querySelectorAll('.mobile-dropdown > a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Prevent default link behavior only if it has a submenu (href="#")
+                if (link.getAttribute('href') === '#') {
+                     e.preventDefault();
+                }
+                const parentDropdown = link.parentElement;
+                const wasOpen = parentDropdown.classList.contains('open');
+
+                // Close all other open mobile dropdowns
+                document.querySelectorAll('.mobile-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== parentDropdown) {
                         openDropdown.classList.remove('open');
                          const dropdownLink = openDropdown.querySelector('a');
                          if (dropdownLink) {
                             dropdownLink.setAttribute('aria-expanded', 'false');
-                         }
-                    });
-                }
-            });
-        });
-
-        // Toggle desktop dropdown on click for better mobile support and accessibility
-        document.querySelectorAll('#desktop-nav .dropdown > a').forEach(link => {
-            link.addEventListener('click', function(event) {
-                 // Prevent default link behavior only for # links or if it's a dropdown toggle
-                if (this.getAttribute('href') === '#' || this.getAttribute('href').startsWith('#') || this.parentElement.classList.contains('dropdown')) {
-                     event.preventDefault();
-                }
-
-                // Toggle dropdown visibility using the .show class
-                const dropdownMenu = this.nextElementSibling;
-                if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
-                    const isShowing = dropdownMenu.classList.contains('show');
-                    // Close other dropdowns before opening the clicked one
-                     document.querySelectorAll('#desktop-nav .dropdown-menu.show').forEach(openMenu => {
-                        if (openMenu !== dropdownMenu) {
-                            openMenu.classList.remove('show');
-                             // Find the parent dropdown link and update its aria-expanded state
-                            const dropdownLink = openMenu.closest('.dropdown')?.querySelector('a');
-                            if (dropdownLink) {
-                                dropdownLink.setAttribute('aria-expanded', 'false');
-                            }
                         }
-                    });
-                    dropdownMenu.classList.toggle('show', !isShowing); // Toggle based on current state
-                    this.setAttribute('aria-expanded', String(!isShowing)); // Update aria-expanded attribute
-                }
-            });
-        });
-
-        // Toggle mobile dropdown on click
-        document.querySelectorAll('#mobile-menu .mobile-dropdown > a').forEach(link => {
-             link.addEventListener('click', function(event) {
-                 // Prevent default link behavior only for # links or if it's a dropdown toggle
-                if (this.getAttribute('href') === '#' || this.getAttribute('href').startsWith('#') || this.parentElement.classList.contains('mobile-dropdown')) {
-                     event.preventDefault();
-                }
-
-                const parentLi = this.parentElement;
-                const isOpening = !parentLi.classList.contains('open');
-
-                // Close other mobile dropdowns
-                document.querySelectorAll('#mobile-menu .mobile-dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== parentLi) {
-                        openDropdown.classList.remove('open');
-                        const dropdownLink = openDropdown.querySelector('a');
-                         if (dropdownLink) {
-                            dropdownLink.setAttribute('aria-expanded', 'false');
-                         }
                     }
                 });
 
-                // Toggle the clicked mobile dropdown
-                parentLi.classList.toggle('open', isOpening);
-                 this.setAttribute('aria-expanded', String(isOpening)); // Update aria-expanded
+                // Toggle the clicked dropdown
+                parentDropdown.classList.toggle('open', !wasOpen);
+                link.setAttribute('aria-expanded', !wasOpen);
             });
         });
 
+        // Desktop dropdown toggle (click and hover support)
+        document.querySelectorAll('.main-nav .dropdown > a').forEach(link => {
+            const dropdownMenu = link.nextElementSibling; // Get the next sibling, which should be the dropdown menu
 
-         // Close dropdowns (both desktop and mobile) when clicking outside
-        document.addEventListener('click', function(event) {
-            // Close desktop dropdowns
-            document.querySelectorAll('#desktop-nav .dropdown').forEach(dropdown => {
-                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                const dropdownLink = dropdown.querySelector('.dropdown > a');
-                if (dropdownMenu && dropdownMenu.classList.contains('show') && !dropdown.contains(event.target)) {
-                    dropdownMenu.classList.remove('show');
-                    if (dropdownLink) {
-                         dropdownLink.setAttribute('aria-expanded', 'false');
+            // Handle click to toggle dropdown
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
+                const isExpanded = link.getAttribute('aria-expanded') === 'true';
+
+                // Close all other open desktop dropdowns
+                document.querySelectorAll('.main-nav .dropdown-menu.show').forEach(openMenu => {
+                    if (openMenu !== dropdownMenu) {
+                        openMenu.classList.remove('show');
+                        const parentLink = openMenu.previousElementSibling;
+                        if (parentLink) {
+                            parentLink.setAttribute('aria-expanded', 'false');
+                        }
                     }
+                });
+
+                // Toggle the clicked dropdown
+                dropdownMenu.classList.toggle('show', !isExpanded);
+                link.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            // Handle keyboard navigation (Enter key)
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    link.click(); // Simulate a click
                 }
             });
 
-             // Close mobile dropdowns
-            document.querySelectorAll('#mobile-menu .mobile-dropdown').forEach(dropdown => {
-                const dropdownMenu = dropdown.querySelector('ul'); // Mobile dropdown uses direct ul
-                const dropdownLink = dropdown.querySelector('a');
-                 // Check if the click is outside the mobile dropdown list item
-                if (dropdownMenu && dropdown.classList.contains('open') && !dropdown.contains(event.target)) {
-                    dropdown.classList.remove('open');
-                     if (dropdownLink) {
-                        dropdownLink.setAttribute('aria-expanded', 'false');
-                    }
+             // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!link.parentElement.contains(e.target) && dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                    link.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+             // Close dropdown when pressing Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                    link.setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -453,6 +347,8 @@
             if (window.innerWidth >= 768) { // md breakpoint
                 mobileMenu.classList.add('mobile-menu-hidden'); // Hide mobile menu
                 mobileMenuButton.setAttribute('aria-expanded', 'false'); // Reset button state
+                 desktopNav.setAttribute('aria-hidden', 'false'); // Ensure desktop nav is visible to screen readers
+
                 // Close all dropdowns (desktop and mobile)
                 document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
                     openMenu.classList.remove('show');
@@ -468,8 +364,16 @@
                         dropdownLink.setAttribute('aria-expanded', 'false');
                      }
                 });
+            } else {
+                 // On smaller screens, ensure desktop nav is hidden from screen readers
+                 desktopNav.setAttribute('aria-hidden', 'true');
             }
         });
+
+        // Initial check on load for screen reader visibility
+        if (window.innerWidth < 768) {
+             desktopNav.setAttribute('aria-hidden', 'true');
+        }
     </script>
 </body>
 </html>
