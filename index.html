@@ -38,12 +38,14 @@
     <header class="site-header">
         <div class="container site-header-inner flex items-center justify-between">
             <div class="site-branding flex items-center">
-                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block mr-4">Department of Mathematical Sciences</a> <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-4">
+                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block mr-4">Department of Mathematical Sciences</a>
+                <a href="https://www.kannuruniversity.ac.in/en/" class="site-logo-link p-4">
                     <img src="KannurUniversityLogo.png" alt="Kannur University Logo" class="site-logo-img">
                 </a>
-                <a href="https://www.kannuruniversity.ac.in/en/" class="site-title-link ml-4 mr-4"> <span class="site-title">Kannur University</span>
+                <a href="https://www.kannuruniversity.ac.in/en/" class="site-title-link ml-4 mr-4 text-white">
+                    <span class="site-title">Kannur University</span>
                 </a>
-                <a href="https://math-kannuruniv.github.io/" class="dept-title hidden md:block">Department of Mathematical Sciences</a> </div>
+            </div>
 
             <div class="header-right flex items-center">
                 <nav id="desktop-nav" class="main-nav" aria-label="Main Navigation">
@@ -92,14 +94,17 @@
                     </ul>
                 </nav>
 
-                <button id="mobile-menu-button" class="mobile-menu-button md:hidden ml-4" aria-label="Toggle mobile menu" aria-controls="mobile-menu" aria-expanded="false"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <button id="mobile-menu-button" class="mobile-menu-button md:hidden ml-4" aria-label="Toggle mobile menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
 
-                <form action="/search" method="get" class="search-form ml-4 hidden md:block"> <input type="text" name="q" placeholder="Search..." aria-label="Search">
+                <form action="/search" method="get" class="search-form ml-4 hidden md:block">
+                    <input type="text" name="q" placeholder="Search..." aria-label="Search">
                     <button type="submit" class="ias-teal-bg button" aria-label="Search">
-                        <span>SEARCH</span> </button>
+                        <span>SEARCH</span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -154,7 +159,10 @@
     </header>
 
     <section class="hero-section relative" aria-label="Department Header Image" style="background-image: url('MathDepartment.jpg'); background-size: cover; background-position: center; min-height: 400px;">
-        </section>
+        <div class="container absolute inset-0 flex items-center justify-center">
+             <h1 class="text-4xl md:text-6xl font-bold text-white text-center drop-shadow-lg">Department of Mathematical Sciences</h1>
+        </div>
+    </section>
 
     <main id="main-content" class="main-content container">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
