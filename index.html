@@ -30,7 +30,7 @@
             .collapsible-extra { display: block !important; } /* Use a generic class for collapsible sections */
             .read-more-button { display: none !important; }
             /* Ensure column separators are visible without JS if needed */
-             .border-r { border-right-width: 1px !important; }
+             /* Removed border-r rule */
         </style>
     </noscript>
     <style>
@@ -361,7 +361,7 @@
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: var(--spacing-3); /* Reduced gap for more compact navigation */
+            gap: var(--spacing-2); /* Further reduced gap for a smaller navigation bar */
             padding: 0;
             margin: 0;
         }
@@ -524,9 +524,9 @@
             background-size: cover;
             background-position: center;
             color: var(--white);
-            padding: var(--spacing-16) 0;
+            padding: var(--spacing-10) 0;
             text-align: center;
-            min-height: 300px; /* Reduced height for less image visibility */
+            min-height: 250px;
         }
 
         .hero-dept-name {
@@ -546,22 +546,18 @@
         }
 
         /* Custom styles for column separators */
-        /* Apply right border to the first two columns on medium screens and up */
+        /* Removed border-right rules for columns */
         @media (min-width: 768px) {
-            .main-content > .grid > div:nth-child(1),
-            .main-content > .grid > div:nth-child(2) {
-                border-right: 1px solid var(--gray-200); /* mild gray border */
-            }
-             /* Adjust padding for symmetry */
+             /* Adjusted padding for symmetry after removing borders */
             .main-content > .grid > div:nth-child(1) {
-                padding-right: var(--spacing-3); /* Adjusted padding */
+                padding-right: var(--spacing-4);
             }
              .main-content > .grid > div:nth-child(2) {
-                 padding-left: var(--spacing-3); /* Adjusted padding */
-                 padding-right: var(--spacing-3); /* Adjusted padding */
+                 padding-left: var(--spacing-4);
+                 padding-right: var(--spacing-4);
              }
              .main-content > .grid > div:nth-child(3) {
-                 padding-left: var(--spacing-3); /* Adjusted padding */
+                 padding-left: var(--spacing-4);
              }
         }
 
@@ -735,7 +731,7 @@
                 font-size: 3.5rem;
             }
             /* Adjusted gap for desktop nav items */
-            .main-nav ul { gap: var(--spacing-3); } /* Reduced gap */
+            .main-nav ul { gap: var(--spacing-2); } /* Further reduced gap */
         }
 
         /* Large screens (desktops) */
@@ -933,9 +929,30 @@
 
             <div class="md:col-span-1">
                 <section class="news-announcements space-y-4">
-                    <h2 class="text-2xl font-heading mb-6">News and Announcements</h2> <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
-                        <h3 class="text-lg font-medium">Latest News Item Title</h3> <p class="text-sm text-gray-700 mt-2">Brief summary of the latest news or announcement...</p>
-                        <a href="#" class="text-ias-teal hover:underline font-medium mt-3 inline-block">READ MORE</a>
+                    <h2 class="text-2xl font-heading mb-6">News and Announcements</h2>
+                    <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
+                        <h3 class="text-lg font-medium">Admissions Open: MSc Mathematics (2025–2027) at Kannur University</h3>
+                        <p class="text-sm text-gray-700 mt-2">
+                            Applications are now invited for the MSc Mathematics program at the Department of Mathematical Sciences, Kannur University, for the academic years 2025–2027.
+                        </p>
+                        <div class="collapsible-extra hidden">
+                            <p class="text-sm text-gray-700 mt-2">
+                                The department is known for its dedicated faculty, academic excellence, and vibrant learning environment. Students benefit from regular activities such as weekly seminars, evening problem-solving sessions, and viva-voce exams with external experts.
+                            </p>
+                            <p class="text-sm text-gray-700 mt-2 font-bold">Key highlights include :</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 ml-4">
+                                <li>A Bridge Course for smooth transition from UG to PG.</li>
+                                <li>SWIM – Summer Workshop in Mathematics, conducted annually with the Kerala School of Mathematics (KSoM).</li>
+                                <li>An active MoU with KSoM, offering collaborative academic opportunities.</li>
+                                <li>Students selected for summer internships in premier institutes such as IISc, IIT Kanpur, ISI Delhi, TIFR-CAM, and KSoM.</li>
+                                <li>MSc project opportunities at top institutes in India.</li>
+                            </ul>
+                            <p class="text-sm text-gray-700 mt-2 font-bold">Last Date to Apply : May 15, 2025 (by 5 PM)</p>
+                            <a href="https://admission.kannuruniversity.ac.in/DEPTPGSWS2025_PG/index.php" class="text-ias-teal hover:underline font-medium mt-3 inline-block">Apply now</a>
+                        </div>
+                        <button class="read-more-button text-ias-teal hover:underline font-medium mt-3 inline-block cursor-pointer bg-transparent border-none p-0">
+                            READ MORE
+                        </button>
                     </div>
                      <div class="content-card p-4 border border-gray-200 rounded-md shadow-sm">
                         <h3 class="text-lg font-medium">Another Announcement</h3> <p class="text-sm text-gray-700 mt-2">Brief summary of another announcement...</p>
