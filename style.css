@@ -297,13 +297,15 @@ a:hover, a:focus-visible {
     text-decoration: underline;
 }
 
-/* Desktop Dropdown - Fix */
+/* Desktop Dropdown */
 .dropdown {
     position: relative;
 }
 
 .dropdown-menu {
-    display: none; /* Hidden by default - This is the rule that hides the sub-menus */
+    /* --- Rule to hide desktop dropdown menus by default --- */
+    display: none; /* Hidden by default */
+
     position: absolute;
     top: 100%;
     left: 0;
@@ -333,10 +335,10 @@ a:hover, a:focus-visible {
     text-decoration: none; /* Remove underline on dropdown hover */
 }
 
-/* Class to show desktop dropdown menu - use consistent selector pattern */
-.dropdown:hover > .dropdown-menu,
-.dropdown:focus-within > .dropdown-menu, /* Added focus-within */
-.dropdown-menu.show {
+/* --- Rules to show desktop dropdown menu on interaction --- */
+.dropdown:hover > .dropdown-menu, /* Show on hover */
+.dropdown:focus-within > .dropdown-menu, /* Show when focus is inside the dropdown */
+.dropdown-menu.show { /* Show when .show class is added by JavaScript */
     display: block;
 }
 
@@ -393,7 +395,7 @@ a:hover, a:focus-visible {
     text-decoration: underline;
 }
 
-/* Mobile Dropdown Submenus - Fix */
+/* Mobile Dropdown Submenus */
 .mobile-nav ul ul {
     /* Hidden by default - Explicitly set */
     display: none;
@@ -401,6 +403,11 @@ a:hover, a:focus-visible {
     margin-top: var(--spacing-1); /* Use spacing variable */
 }
 
+.mobile-nav ul ul a {
+    font-size: var(--font-size-sm); /* Use font size variable */
+}
+
+/* Show mobile dropdown submenu when parent has 'open' class */
 .mobile-nav .mobile-dropdown.open > ul {
     display: block;
 }
