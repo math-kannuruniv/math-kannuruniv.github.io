@@ -415,6 +415,19 @@
                         visibility var(--transition-medium) ease-out,
                         transform var(--transition-medium) ease-out;
             pointer-events: none;
+            /* Ensure desktop dropdown items are vertical */
+            display: block;
+        }
+
+        .main-nav .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .main-nav .dropdown-menu li {
+            display: block; /* Ensure list items are block for vertical layout */
         }
 
         .main-nav .dropdown-menu li a {
@@ -497,7 +510,7 @@
         }
 
         .mobile-nav .mobile-dropdown > ul {
-            display: none;
+            display: none; /* Hidden by default */
             list-style: none;
             padding-left: 0;
             background-color: var(--ias-light-blue);
@@ -505,7 +518,11 @@
         }
 
         .mobile-nav .mobile-dropdown.open > ul {
-            display: block;
+            display: block; /* Shown when the parent LI has the 'open' class */
+        }
+
+        .mobile-nav .mobile-dropdown ul li {
+             display: block; /* Ensure list items are block for vertical layout */
         }
 
         .mobile-nav .mobile-dropdown ul li a {
@@ -574,8 +591,21 @@
              }
         }
 
+        /* Small screens (mobile) */
+        @media (max-width: 767px) { /* Styles for screens smaller than md breakpoint */
+            .dept-title {
+                white-space: normal; /* Allow text to wrap */
+                font-size: var(--font-size-base); /* Adjust font size for smaller screens */
+                line-height: 1.3; /* Adjust line height */
+            }
+            .site-branding {
+                 align-items: flex-start; /* Align items to the top */
+            }
+        }
 
-        /* Event Cards */
+
+        /* Event Cards and Content Cards (clickable boxes) */
+        .content-card,
         .event-card {
             background-color: var(--white);
             padding: var(--spacing-4);
@@ -583,15 +613,30 @@
             box-shadow: var(--shadow-sm);
             transition: box-shadow var(--transition-medium);
             margin-bottom: var(--spacing-4);
+            display: block; /* Ensure the entire box is a block link */
+            text-decoration: none; /* Remove underline from the box itself */
+            color: inherit; /* Inherit text color */
         }
+        .content-card:hover,
         .event-card:hover {
             box-shadow: var(--shadow-md);
+            text-decoration: none; /* Ensure no underline on hover of the box */
         }
-        /* Keep text inside event cards from being underlined */
+
+        /* Ensure text elements inside clickable cards do NOT get underline on hover/focus */
+        .content-card h3,
+        .content-card p,
         .event-card h3,
         .event-card p {
-            text-decoration: none; /* Ensure text inside is not underlined */
+            text-decoration: none !important; /* Use !important to override potential inherited styles */
         }
+
+        /* Re-add underline for specific elements inside if needed, like 'Apply now' span */
+        .content-card .text-ias-teal:hover,
+        .content-card .text-ias-teal:focus-visible {
+            text-decoration: underline !important; /* Use !important to ensure it applies */
+        }
+
 
         .event-title {
             font-size: var(--font-size-lg);
@@ -650,6 +695,16 @@
              position: relative; /* Needed for z-index to be below gradient */
              z-index: 0;
          }
+
+        /* Styling for the MSc Programme image */
+        .msc-programme-image {
+             margin-bottom: var(--spacing-4); /* Space below the image */
+             border-radius: var(--border-radius-md); /* Rounded corners */
+             box-shadow: var(--shadow-sm); /* Subtle shadow */
+             /* Optional: Add a subtle filter or opacity if needed for blending */
+             /* filter: brightness(0.9); */
+             /* opacity: 0.95; */
+        }
 
 
         /* --------------------------------------------------------------------------
@@ -977,9 +1032,6 @@
                     <h2 class="text-2xl font-heading mb-6">News and Announcements</h2>
                     <a href="https://admission.kannuruniversity.ac.in/DEPTPGSWS2025_PG/index.php" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
                         <h3 class="text-lg font-medium mb-4">Admissions Open: MSc Mathematics (2025–2027) at Kannur University</h3>
-                        <div class="msc-image-container">
-                            <img src="MSc_Image.jpg" alt="MSc Mathematics Program illustration">
-                        </div>
                         <p class="text-sm text-gray-700 mt-2">
                             Applications are now invited for the MSc Mathematics program at the Department of Mathematical Sciences, Kannur University, for the academic years 2025–2027.
                         </p>
@@ -1035,7 +1087,7 @@
             <div class="md:col-span-1">
                  <h2 class="text-2xl font-heading mb-6">Programmes</h2> <div class="space-y-8">
                      <a href="https://math-kannuruniv.github.io/programmes/msc" class="content-card block p-4 border border-gray-200 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-200">
-                         <img src="MSc_Programme.png" alt="Illustration related to MSc Mathematics Programme" class="mb-4 rounded-md">
+                         <img src="MSc_Programme.png" alt="Illustration related to MSc Mathematics Programme" class="msc-programme-image">
                         <h3 class="text-xl font-semibold">M.Sc. Mathematics Programme</h3> <p class="text-sm text-gray-700 mt-2">
                             The M.Sc. Mathematics program at the Department of Mathematical Sciences, Kannur University, is a comprehensive two-year postgraduate course spread across four semesters.
                         </p>
