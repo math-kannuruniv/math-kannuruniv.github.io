@@ -92,7 +92,8 @@
                     <input type="text" name="q" placeholder="Search..." class="hidden md:block" aria-label="Search">
                     <button type="submit" class="ias-teal-bg button" aria-label="Search">
                         <span class="hidden md:inline">SEARCH</span>
-                        <span class="md:hidden">Q</span> </button>
+                        <span class="md:hidden">Q</span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -174,6 +175,13 @@
                             <p class="text-sm text-gray-700">Affiliation: IISc Bangalore</p>
                         </a>
                     </div>
+                     <div class="event-card">
+                        <a href="https://math-kannuruniv.github.io/events/2025-05-jaydeb">
+                            <h3 class="text-lg font-medium event-title">Lecture by Jaydeb Sarkar</h3>
+                            <p class="text-sm text-gray-600">May 27, 2025 | 2:00 pm</p>
+                            <p class="text-sm text-gray-700">Affiliation: ISI Bangalore</p>
+                        </a>
+                    </div>
                     </div>
             </div>
 
@@ -189,7 +197,7 @@
                         Explore our website to learn more about our activities, faculty, programs, and resources.
                         We are committed to academic excellence and the advancement of mathematical knowledge.
                     </p>
-                </article>
+                    </article>
 
                 <section class="mt-8">
                     <h2>News & Announcements</h2>
@@ -204,7 +212,7 @@
                             <p class="text-sm text-gray-500">Published on: April 20, 2025</p>
                             <p class="mt-2 text-gray-700">Applications are invited for the PhD program in Mathematical Sciences. Last date to apply is June 30, 2025. Visit the 'Apply' section for more information.</p>
                         </div>
-                    </div>
+                        </div>
                 </section>
             </div>
         </div>
@@ -254,8 +262,8 @@
             mobileMenuButton.addEventListener('click', () => {
                 const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
                 mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('mobile-menu-hidden');
-                mobileMenu.classList.toggle('mobile-menu-visible');
+                mobileMenu.classList.toggle('mobile-menu-hidden'); // Used by CSS to hide/show
+                mobileMenu.classList.toggle('mobile-menu-visible'); // Used by CSS to hide/show
 
                 // Toggle aria-hidden on main content for accessibility when mobile menu is open
                 if (mainContent) {
@@ -288,7 +296,7 @@
 
                     // Toggle current dropdown
                     this.setAttribute('aria-expanded', String(!isExpanded));
-                    dropdownMenu.classList.toggle('show', !isExpanded);
+                    dropdownMenu.classList.toggle('show', !isExpanded); // 'show' class controls visibility via CSS
                 });
 
                 // Close dropdown if focus moves out of it
@@ -315,7 +323,7 @@
                      if (event.key === 'Escape') {
                         link.setAttribute('aria-expanded', 'false');
                         dropdownMenu.classList.remove('show');
-                        link.focus();
+                        link.focus(); // Return focus to the main dropdown link
                     }
                 });
             }
@@ -333,7 +341,7 @@
                 // Close all other open mobile dropdowns
                 document.querySelectorAll('.mobile-nav .mobile-dropdown.open').forEach(openDropdownLI => {
                     if (openDropdownLI !== currentDropdownLI) {
-                        openDropdownLI.classList.remove('open');
+                        openDropdownLI.classList.remove('open'); // 'open' class controls visibility of submenu via CSS
                         const link = openDropdownLI.querySelector('a');
                         if (link) link.setAttribute('aria-expanded', 'false');
                     }
@@ -348,7 +356,7 @@
 
         // --- Click outside to close dropdowns (both desktop and mobile menu itself) ---
         document.addEventListener('click', function(event) {
-            // Close desktop dropdowns
+            // Close desktop dropdowns if click is outside
             const openDesktopDropdown = document.querySelector('#desktop-nav .dropdown-menu.show');
             if (openDesktopDropdown && !openDesktopDropdown.closest('.dropdown').contains(event.target)) {
                 openDesktopDropdown.classList.remove('show');
@@ -358,16 +366,16 @@
                 }
             }
 
-            // Close mobile menu if click is outside
+            // Close mobile menu if click is outside the menu and the button
             if (mobileMenu && mobileMenu.classList.contains('mobile-menu-visible') &&
-                !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
-                mobileMenuButton.click(); // Simulate click to close
+                !mobileMenu.contains(event.target) && mobileMenuButton && !mobileMenuButton.contains(event.target)) {
+                mobileMenuButton.click(); // Simulate click on the button to toggle and close
             }
         });
 
         // --- Ensure dropdowns are hidden on page load (reinforcement) ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Desktop dropdowns
+            // Ensure desktop dropdowns are closed
             document.querySelectorAll('#desktop-nav .dropdown-menu').forEach(dropdownMenu => {
                 dropdownMenu.classList.remove('show');
                 const dropdownLink = dropdownMenu.closest('.dropdown')?.querySelector('a');
@@ -375,7 +383,7 @@
                     dropdownLink.setAttribute('aria-expanded', 'false');
                 }
             });
-            // Mobile dropdowns (sub-menus within mobile nav)
+            // Ensure mobile dropdowns (sub-menus within mobile nav) are closed
              document.querySelectorAll('.mobile-nav .mobile-dropdown.open').forEach(openDropdown => {
                 openDropdown.classList.remove('open');
                  const dropdownLink = openDropdown.querySelector('a');
@@ -383,6 +391,8 @@
                     dropdownLink.setAttribute('aria-expanded', 'false');
                  }
             });
+            // The main mobile menu itself is hidden by default by its class 'mobile-menu-hidden'
+            // and its aria-expanded attribute on the button is set to false in HTML.
         });
 
     </script>
